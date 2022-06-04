@@ -1,0 +1,197 @@
+\section*{Problem 7}
+
+Note: For \(n \in \bbN\), \(f^n = f \cdot \stackrel{n}{\cdots} \cdot f\). i.e. for \(z \in \Dom(f)\), \(f^n(z) = f(z)^n\).
+
+Let \(f: \bbC \to \bbC\) be a function.
+Prove that
+\begin{enumerate}[label=(\arabic*)]
+\item \(f\) is entire if \(f^4\) and \(f^7\) are entire.
+\item \(f\) is entire if \(f^2\) is entire and \(f\) is continuous.
+\end{enumerate}
+
+\subsection*{Lemmata}
+
+\begin{lemma}\label{lem-7-n-m}
+  Let \(f: \bbC \to \bbC\) be functions.
+  If \(f^m\) and \(f^n\) are entire for integers \(0 < m < n\),
+  \(f^{n - m}\) is entire too.
+\end{lemma}
+\begin{proof}
+  If \(f^m = 0\) or \(f^n = 0\), then \(f = 0\) because only \(0\) can be zero by powering by some integers. (If \(z \neq 0\), then \(|z| > 0\), \(|z|^k > 0\) and \(z^k \neq 0\) for \(k \in \bbN\))
+  Thus, in this case, \(f\) is entire.
+
+  If \(f^m\) is a constant \(c \in \bbC \bs \{0\}\),
+  \(f^n = f^m \cdot f^{n - m} = c \cdot f^{n - m}\) is entire. Thus \(f^{n - m}\) is entire.
+
+  Thus, let's consider that \(f^m\) is non-constant and \(f^n\) is non-zero.
+
+  Let
+  \[g(z) = \left\{
+    \begin{array}{cl}
+      0 & (f(z) = 0) \\
+      \frac{f^n(z)}{f^m(z)} & (f(z) \neq 0)
+    \end{array}
+    \right.\]
+  Note that this is well-defined, because if \(f^m(z) = 0\) holds, \(f(z)^m = 0\) and \(f(z) = 0\).
+  Also, \(g(z) = f^{n - m}(z)\)
+  because \(g(z) = 0 = f(z)^{n - m}\) for \(z \in \bbC\) such that \(f(z) = 0\),
+  and \(g(z) = \frac{f(z)^n}{f(z)^m} = f(z)^{n - m}\) for \(z \in \bbC\) such that \(f(z) \neq 0\).
+
+  For \(z_0 \in \bbC\) where \(f(z_0) \neq 0\), \(g\) is differentiable at \(z_0\).
+  Because \(g(z_0) = \frac{f^n(z_0)}{f^m(z_0)}\),
+  \(f^m(z_0) \neq 0\) and \(f^n, f^m\) are entire.
+
+  Let \(z_0 \in \bbC\) such that \(f(z_0) = 0\).
+  (Note that if \(f^n\) is a constant, there are no such case; because \(f^n\) is non-zero, if \(f^n\) is a constant, \(f^n\) is nowhere zero, and \(0 \neq f(z_0)^n = 0^n = 0\) make a contradiction.
+  Thus, if \(f^n\) is a constant, we can ignore this case.
+  Also, let's assume that \(f^n\) is non-constant for this case.)
+  Then, \(f^n(z_0) = f^m(z_0) = 0\).
+  In this case, since \(f^n\) and \(f^m\) are entire, there are \(a_k, b_k \in \bbC\) such that:
+  \[f^n(z) = \sum_{k=0}^{\infty} a_k (z - z_0)^k\]
+  \[f^m(z) = \sum_{k=0}^{\infty} b_k (z - z_0)^k\]
+
+  If \(a_0 \neq 0\), \(0 = f_n(z_0) = a_0 \neq 0\) and it contradicts.
+  Thus, \(a_0 = 0\) holds, and \(b_0 = 0\) also holds because of the same reason.
+
+  Because we assumed that \(f^n\) and \(f^m\) are non-constant, at least one \(a_j\) and \(b_k\) is non-zero for some \(j, k \in \bbN\).
+  Let \(p \in \bbN\) be a minimum number which satisfies \(a_p \neq 0\),
+  and let \(q \in \bbN\) be a minimum number which satisfies \(b_q \neq 0\).
+  Then, \(a_0 = \cdots = a_{p - 1} = 0\) and \(b_0 = \cdots = b_{q - 1} = 0\) holds.
+  Let \(c_k = a_{p + k}\), \(d_k = b_{q + k}\) for every \(k \in \bbZ^{\ge 0}\).
+  We can rewrite the power series of \(f^n\) and \(f^m\) as:
+  \[f^n(z) = (z - z_0)^p \sum_{k=0}^{\infty} c_k (z - z_0)^k\]
+  \[f^m(z) = (z - z_0)^q \sum_{k=0}^{\infty} d_k (z - z_0)^k\]
+
+  By assigning the above power series to \(f^{nm}\), we obtain:
+  \begin{align*}
+    (z - z_0)^{pm} (\sum_{k=0}^{\infty} c_k (z - z_0)^k)^m
+    &= (f^n(z))^m
+    \\&= f^{nm}(z)
+    \\&= (f^m(z))^n
+    = (z - z_0)^{qn} (\sum_{k=0}^{\infty} d_k (z - z_0)^k)^n
+  \end{align*}
+
+  Since \(c_0 \neq 0 \neq d_0\), and the non-zero coefficient lowest degree term of each of LHS and RHS are \(c_0^m (z-z_0)^{pm}\) and \(d_0^n (z-z_0)^{qn}\).
+  So, \(c_0^m = d_0^n\) and \(pm = qn\).
+  Then, because \(n > m\),
+  \[p = \frac{pm}{m} = \frac{qn}{m} > \frac{qn}{n} = q\]
+  and since \(p, q \in \bbN\), \(p \ge q + 1\).
+
+  Let \(\phi_0 = f^n\)
+  \[\phi_{k}(z) = \left\{
+    \begin{array}{ll}
+      a_k & (z = z_0) \\
+      \frac{f^n(z)}{(z - z_0)^k} & (z \neq z_0)
+    \end{array}
+  \right.\]
+  for \(k \in \{1, \cdots, p\}\).
+  Note that \(\frac{f^n(z)}{(z - z_0)^k}
+  = \frac{\phi_{k - 1}(z)}{z - z_0}
+  = \frac{\phi_{k - 1}(z) - 0}{z - z_0}
+  = \frac{\phi_{k - 1}(z) - \phi_{k - 1}(z_0)}{z - z_0}\)
+  for \(z \neq z_0\).
+  As \(a_1 = \phi_0'(z_0) = (f^n)'(z_0)\), by Proposition 5.8, \(\phi_1\) is entire.
+  And for \(k \le p\), we can repeat this since if \(\phi_0, \cdots, \phi_{k - 1}\) are entire, \(a_k = \phi_{k - 1}'(z_0)\) and \(\phi_k\) is entire by Proposition 5.8.
+  It shows that \(\phi_p(z) = \sum_{k=0}^{\infty} c_k (z - z_0)^k\) is entire.
+  Since entire function is continuous,
+  \[\lim_{z \to z_0} \sum_{k=0}^{\infty} c_k (z - z_0)^k = c_0\]
+
+  In the same processes, we obtain
+  \[\lim_{z \to z_0} \sum_{k=0}^{\infty} d_k (z - z_0)^k = d_0\]
+
+  Thus,
+  \begin{align*}
+    \lim_{z \to z_0} \frac{g(z)}{z - z_0}
+    &= \lim_{z \to z_0}
+      \frac{1}{z - z_0}
+      \frac{(z - z_0)^p \sum_{k=0}^{\infty} c_k (z - z_0)^k}
+      {(z - z_0)^q \sum_{k=0}^{\infty} d_k (z - z_0)^k}
+    \\&= \lim_{z \to z_0} (z - z_0)^{p - q - 1}
+      \frac{\sum_{k=0}^{\infty} c_k (z - z_0)^k}
+      {\sum_{k=0}^{\infty} d_k (z - z_0)^k}
+  \end{align*}
+
+  If \(p - q - 1 = 0\),
+  \begin{align*}
+    \lim_{z \to z_0} \frac{g(z)}{z - z_0}
+    &= \lim_{z \to z_0}
+      \frac{\sum_{k=0}^{\infty} c_k (z - z_0)^k}
+      {\sum_{k=0}^{\infty} d_k (z - z_0)^k}
+    \\&= \frac{c_0}{d_0}
+  \end{align*}
+
+  Otherwise,
+  \begin{align*}
+    \lim_{z \to z_0} \frac{g(z)}{z - z_0}
+    &= \lim_{z \to z_0} (z - z_0)^{p - q - 1}
+      \frac{\sum_{k=0}^{\infty} c_k (z - z_0)^k}
+      {\sum_{k=0}^{\infty} d_k (z - z_0)^k}
+    \\&= 0^{p - q - 1} \cdot \frac{c_0}{d_0}
+    \\&= 0
+  \end{align*}
+
+  Therefore,
+  \[\lim_{h \to 0} \frac{g(z_0 + h) - g(z_0)}{h}
+  = \lim_{z \to z_0} \frac{g(z)}{z - z_0}
+  = \left\{ \begin{array}{ll}
+    c_0/d_0 & (p - q - 1 = 0) \\ 0 & (p - q - 1 \neq 0)
+  \end{array}\right.\]
+  Thus, \(g\) is differentiable at \(z_0\) where \(f(z_0) = 0\).
+
+  Therefore, \(g\) is differentiable everywhere in \(\bbC\), i.e. entire.
+  Since \(g = f^{n - m}\), \(f^{n - m}\) is entire.
+\end{proof}
+
+\subsection*{Proof of (1)}
+
+Since \(f^7\) and \(f^4\) are entire, \(f^3 = f^{7 - 4}\) is entire by Lemma \ref{lem-7-n-m}.
+Since \(f^4\) and \(f^3\) are entire, \(f = f^{4 - 3}\) is entire by Lemma \ref{lem-7-n-m}.
+\qedsq
+
+\subsection*{Proof of (2)}
+
+Let \(f^2\) be entire and \(f\) continuous.
+
+If \(f \equiv 0\), it's trivially entire.
+Thus let's assume that \(f\) is non-zero at some point.
+Then, there is some \(z \in \bbC\) such that \(f(z) \neq 0\), and \(f(z)^2 \neq 0\)
+(Because \(|f(z)^2| = |f(z)|^2 > 0\) for this \(z\).)
+Therefore, \(f^2\) is also non-zero at some point.
+(i.e. \(f^2 \not\equiv 0\).)
+
+Suppose that \(f(z_0) \neq 0\) at \(z_0 \in \bbC\).
+\begin{align*}
+  (f^2)'(z_0)
+  &= \lim_{z \to z_0} \frac{f(z)^2 - f(z_0)^2}{z - z_0}
+  \\&= \lim_{z \to z_0} \frac{(f(z) + f(z_0))(f(z) - f(z_0))}{z - z_0}
+\end{align*}
+converges.
+Also, because \(f\) is continuous and \(f(z_0) \neq 0\),
+\[\lim_{z \to z_0} \frac{1}{f(z) + f(z_0)} = \frac{1}{2f(z_0)}\]
+converges.
+Thus,
+\begin{align*}
+  \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}
+  &= \left(\lim_{z \to z_0} \frac{(f(z) + f(z_0))(f(z) - f(z_0))}{z - z_0}\right)
+    \left(\lim_{z \to z_0} \frac{1}{f(z) + f(z_0)}\right)
+  \\&= \frac{(f^2)'(z_0)}{2f(z_0)}
+\end{align*}
+converges. Thus \(f\) is differentiable at every \(z_0 \in \bbC\) where \(f(z_0) \neq 0\).
+
+Suppose that \(f(z_0) = 0\).
+Then, there is \(\rho > 0\) such that \(f(z) \neq 0\) for every \(z \in D(z_0; \rho) \bs \{z_0\}\).
+(\(\because\)
+ If not, for every \(n \in \bbN\), there is \(z_n \in D(z_0; 1/n) \bs \{z_0\}\)
+ such that \(f(z_n) = 0\).
+ It implies \(f(z_n)^2 = 0\) trivially.
+ Then, \(\{z_n\}_{n \in \bbN}\) is a subset of \(\bbC\), where \(f^2(z_n) = 0\), and it has a limit point, \(z_0 = \lim_{n \to \infty} z_n\), which is in \(\bbC\).
+ Since \(f^2\) is entire, by Uniqueness Theorem, \(f^2 \equiv 0\).
+ It's a contradiction because of our assumption that \(f^2 \not\equiv 0\).)
+Let \(D = D(z_0; \rho)\) and \(L = \{x + iy \mid y = \text{Im } z_0, x \in [-\frac{\rho}{2} + \text{Re } z_0, \frac{\rho}{2} + \text{Re } z_0]\}\).
+As we proved that \(f\) is differentiable in every point \(z \in \bbC\) where \(f(z) \neq 0\) and every point \(z \in D \bs \{z_0\}\) satisfies \(f(z) \neq 0\),
+\(f\) is analytic in \(D\) except the line segment \(L\).
+By applying Theorem 7.7 with the continuity of \(f\), \(f\) is analytic in \(D\).
+Since \(z_0 \in D\), \(f\) is differentiable at \(z_0\).
+
+Therefore, \(f\) is differentiable at every point of \(\bbC\). It means \(f\) is entire.
+\qedsq

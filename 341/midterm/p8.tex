@@ -1,0 +1,227 @@
+\section*{Problem 8}
+
+Find all analytic functions \(f\) on the closed unit disc in \(\bbC\) such that
+\(|f(z)| \le 1\) for \(|z| \le 1\),
+\(|f(z)| = 1\) for \(|z| = 1\),
+and \(f\) is injective.
+
+\subsection*{Answer}
+\[\left\{z \mapsto \frac{Kz + \alpha}{1 + \overline{\alpha}Kz}
+  \mid
+  \alpha \in \bbD;
+  K \in \bbC;
+  |K| = 1
+  \right\}\]
+
+\subsection*{Proof}
+
+I'll denote \(\bbD = D(0; 1)\).
+\newline
+
+\noindent
+Abstract:
+First, I'll show that the function of \(f\) restricted by \(\bbD\) is bijective and it's inverse is also analytic in \(\bbD\).
+Then, using Blaschke Factor to make bijective analytic function \(g\) which satisfies every properties given in problem and \(g(0) = 0\).
+Next, applying Schwarz's Lemma to \(g\) and \(g^{-1}\) and get \(g(z) = Kz\) for some \(K \in \bbC\) such that \(|K| = 1\).
+Finally, transform \(g(z)\) to \(f(z)\).
+\newline
+
+\noindent
+Before the proof, note that we learned about the Blaschke Factor:
+The Blaschke Factor for \(\alpha \in \bbD\) is:
+\[B_\alpha(z) = \frac{z - \alpha}{1 - \overline{\alpha}z}\]
+As we proved in the lecture, it has below properties:
+\begin{itemize}
+\item \(B_\alpha\) is analytic in \(\bbD\).
+\item \(B_\alpha\) maps \(\bbD \mapsto \bbD\), \(\partial\bbD \mapsto \partial\bbD\), \(0 \mapsto -\alpha\), and \(\alpha \mapsto 0\).
+\item \(B_\alpha\) is bijective with its inverse \(B_\alpha^{-1} = B_{-\alpha}\)
+\end{itemize}
+Also, \(B_\alpha\) is continuous in \(\overline{\bbD}\) because for \(z \in \overline{\bbD}\), the denominator of \(B_\alpha(z)\), \(1 - \overline{\alpha}z\) cannot be zero since \(|\alpha| < 1\) and denominator and numerator of \(B_\alpha\) are continuous (as linear polynomial).
+\newline
+
+\noindent
+Suppose that \(f\) is analytic in \(\overline{\bbD}\), \(\forall z \in \overline{\bbD}: |f(z)| \le 1\), \(\forall z \in \partial\bbD: |f(z)| = 1\) and \(f\) is injective.
+\newline
+
+First of all, note that \(f\) cannot be constant.
+Because, if \(f\) is a constant function, \(f(1) = f(-1)\) and it violates injectivity of \(f\).
+\newline
+
+Also, note that \(f\) maps all elements of \(\bbD\) into \(\bbD\).
+Because, by Maximum-Modulus Theorem, every interier point of \(\overline{\bbD}\)
+cannot has maximum modulus of \(f\).
+Since \(f\) has maximum modulus, 1, at every points of \(\partial\bbD\),
+\(|f(z)| < 1\) for each element of \(z \in \bbD\).
+\newline
+
+Let \(h = \left. f \right|_{\bbD}\), which is the function obtained from \(f\) by restricting the domain to \(\bbD\).
+We will show that \(h\) is surjective.
+
+Let \(t\) be an arbitrary element of \(\bbD\).
+Then, we can take the Blaschke Factor of \(t\).
+Let \(F = B_t \circ f\).
+Then, \(F(t) = 0\).
+Because \(\overline{\bbD}\) is non-empty compact
+and \(|F|\) is continuous (\(\because\) \(|\cdot|\), \(f\) and \(B_t\) are continuous in \(\overline{\bbD}\)),
+\(S = |F|(\overline{\bbD}) = \{|F(z)| \mid z \in \overline{\bbD}\}\) is non-empty compact.
+Since \(S\) is a non-empty compact set of real values,
+\(S\) contains a minimum value.
+Let \(v \in \overline{\bbD}\) and \(|F(v)|\) is minimum.
+
+Suppose that \(v \in \partial\bbD\).
+\(|f(v)| = 1\) because of the property of \(f\),
+and \(|F(v)| = |B_t(f(v))| = 1\) because of the property of \(B_t\).
+Thus, \(|F(v)| = 1\) is the minimum value of \(S\).
+Since the image of \(F\) is a subset of \(\overline{\bbD}\),
+\(s \le 1\) for every \(s \in S\).
+Then, \(1 = |F(v)| \le s \le 1\) and \(s = 1\) for every \(s \in S\).
+In other words, for every \(z \in \overline{\bbD}\), \(|F(z)| = 1\).
+But it's a contradiction
+because \(0 \in \bbD\),
+but \(|F(0)| = |B_t(f(0))| = 1\) implies \(f(0) \in \partial\bbD\) and \(0 \in \partial\bbD\).
+
+Thus, \(v \in \bbD\).
+But in this case, \(v\) is a minimum point of the open connected set \(\bbD\)
+for the analytic function \(F\).
+By Minimum-Modulus Theorem, \(|F(v)| = 0\) and \(F(v) = 0\).
+Because of the property of \(B_t\), \(F(v) = B_t(f(v)) = 0\) means \(f(v) = t\).
+Therefore, for every \(t \in \bbD\), there is \(v \in \bbD\) such that \(f(v) = t\).
+And this shows that \(h\), obtained from \(f\) by restricting the domain to \(\bbD\), is surjective.
+\newline
+
+Because \(h\) is injective (\(\because\) \(f\) is injective) and surjective,
+there is an inverse function \(h^{-1}\).
+What we next to check is \(h^{-1}\) is analytic in \(\bbD\).
+
+As Proposition 3.5, if \(h\) is differentiable at \(z_1 = h^{-1}(z_0)\)
+and \(h'(z_1) \neq 0\), then \(h^{-1}\) is differentiable at \(z_0\).
+Since \(h\) is analytic in \(\bbD\) (\(\because\) \(f\) is analytic in \(\overline{\bbD}\)), we know that \(h'(z_0)\) exists for every \(z_0 \in \bbD\).
+Suppose that \(Z = \{z \in \bbD \mid h'(z) = 0\}\) is non-empty.
+Let \(z_0\) be any element of \(Z\).
+If \((D(z_0; r) \cap Z) \bs \{z_0\} \neq \emptyset\) for every \(r > 0\), it contradicts.
+(\(\because\) If \((D(z_0; r) \cap Z) \bs \{z_0\} \neq \emptyset\) for every \(r > 0\),
+ \(z_0\) is a limit point of \(Z\).
+ Then, since \(Z\) is a zero of \(h'\), by Uniqueness Theorem, \(h' \equiv 0\) in \(\bbD\).
+ Then, \(h\) should be constant function in \(\bbD\),
+ but it's a contradiction because \(h(1/42) = h(0)\) violates the injectivity of \(h\).)
+Therefore, there is \(r > 0\) such that \(D(z_0; r) \cap Z = \{z_0\}\).
+In other words, for \(z \in D(z_0; r) \bs \{z_0\}\), \(h'(z) \neq 0\).
+Since \(h\) is analytic in \(\bbD\), by Open Mapping Theorem,
+\(T = h(D(z_0; r))\) is also open.
+Since \(h(z_0)\) is an interier point of the open set \(T\),
+take \(s > 0\) such that \(D(h(z_0); s) \subseteq T\).
+Because \(h'\) is non-zero for every points of \(D(z_0; r) \bs \{z_0\}\),
+\(h^{-1}\) is differentiable at every points of \(T \bs \{h(z_0)\}\),
+and \(h^{-1}\) is differentiable at every points of \(D(h(z_0); s) \bs \{h(z_0)\}\).
+Let \(L = \{x + iy \mid y = \text{Im } h(z_0), x = [-\frac{s}{2} + \text{Re } h(z_0), \frac{s}{2} + \text{Re } h(z_0)]\}\).
+Since \(h^{-1}\) is continuous in \(\bbD\)
+(\(\because\) \(h\) is an open map because \(h\) is analytic in \(\bbD\) and because of Open Mapping Theorem. Since \(h\) is an inverse map of \(h^{-1}\), inverse map of \(h^{-1}\) is an open map in \(\bbD\). Thus, \((h^{-1})^{-1}\) maps open sets to open sets and it implies \(h^{-1}\) is continuous in \(\bbD\).)
+and analytic in \(D(h(z_0), s)\) except the line segment \(L\)
+(\(\because\) \(h^{-1}\) is differentiable in the open set \(D(h(z_0), s) \bs L\)),
+by Theorem 7.7, \(h^{-1}\) is analytic throughout \(D(h(z_0), s)\).
+Then, since \(h(z_0) \in D(h(z_0), s)\), \(h^{-1}\) is differentiable at \(h(z_0)\).
+However, it's a contradiction because if \(h^{-1}\) is differentiable at \(h(z_0)\), since \(h\) is differentiable at \(z_0\) and,
+\[0 = (h^{-1})'(h(z_0)) \cdot 0 = (h^{-1})'(h(z_0))h'(z_0) \neq
+  (h^{-1} \circ h)'(z_0) = \text{Id}_{\bbD}'(z_0) = 1\]
+It violates Chain Rule.
+Thus, \(Z\) should be empty.
+And \(h'\) is nowhere zero and \(h^{-1}\) is analytic in \(\bbD\).
+\newline
+
+So to sum up at this point, for \(h = \left. f \right|_{\bbD}\), \(h: \bbD \to \bbD\) is bijective, continuous and analytic in \(\bbD\) and so is \(h^{-1}: \bbD \to \bbD\).
+\newline
+
+\noindent
+Next, we will show that \(B_q \circ h\) is a linear function for some \(q \in \bbD\).
+\newline
+
+Let \(\alpha = h(0)\).
+Then, let \(g: \bbD \to \bbD\) such that \(g = B_\alpha \circ h\).
+Because of the properties of \(h\) and \(B_\alpha\),
+\begin{itemize}
+\item \(g\) is analytic in \(\bbD\).
+\item \(g\) is continuous in \(\bbD\).
+\item \(g\) is bijective in \(\bbD\).
+\item \(g(0) = B_\alpha(h(0)) = B_\alpha(\alpha) = 0\).
+\item \(g\) maps every element of \(\bbD\) into \(\bbD\).
+  It's because \(B_\alpha\) and \(h\) are automorphisms of \(\bbD\).
+  Thus, \(|g(z)| < 1\).
+\item \(g'\) is nowhere zero in \(\bbD\),
+  and \(g^{-1}\) is continuous and analytic in \(\bbD\).
+  Because \(g\) is a bijective function in \(\bbD \to \bbD\),
+  we can show this continuity and differentiability in \(\bbD\)
+  in exactly same way to show that \(h^{-1}\) is analytic in \(\bbD\) above.
+\item \(g^{-1}(0) = 0\) and \(g^{-1}(z) < 1\) for every \(z \in \bbD\).
+  It's because \(g\) is an automorphism of \(\bbD\) and because of above properties.
+\end{itemize}
+
+Since \(g\) and \(g^{-1}\) are analytic in the unit disc \(\bbD\), \(g \ll 1\), \(g^{-1} \ll 1\), \(g(0) = g^{-1}(0) = 0\), we can apply Schwarz's Lemma to \(g\) and \(g^{-1}\).
+
+By applying Schwarz's Lemma to \(g^{-1}\), we obtain \(\left|(g^{-1})'(0)\right| \le 1\) and,
+\begin{gather*}
+  \frac{1}{\left|g'(0)\right|}
+    = \left|(g^{-1})'(g(0))\right|
+    = \left|(g^{-1})'(0)\right| \le 1 \\
+  \left|g'(0)\right| \ge 1
+\end{gather*}
+
+And by applying Schwarz's Lemma to \(g\), we obtain
+\[\left|g'(0)\right| \le 1\]
+
+By combining above two inequalities, we obtain
+\[\left|g'(0)\right| = 1\]
+and by Schwarz's Lemma, there is some \(K \in \bbC\) such that \(|K| = 1\) and
+\[g(z) = Kz\]
+
+Because \(B_{-\alpha} = B_{\alpha}^{-1}\),
+\begin{align*}
+  h(z)
+  &= B_{-\alpha}(B_\alpha(h(z)))
+  \\&= B_{-\alpha}(g(z))
+  \\&= B_{-\alpha}(Kz)
+  \\&= \frac{Kz - (-\alpha)}{1 - (\overline{-\alpha})Kz}
+  \\&= \frac{Kz + \alpha}{1 + \overline{\alpha}Kz} \;\;\cdots\text{(*)}
+\end{align*}
+
+Because \(\alpha = h(0) \in \bbD\) (i.e. \(|\alpha| < 1\)) and \(|K| = 1\),
+\(|\overline{\alpha}Kz| < 1\) for \(z \in \overline{\bbD}\).
+Thus, for every \(z \in \overline{\bbD}\), \(1 + \overline{\alpha}Kz \neq 0\).
+Also, since the numerator and denominator of (*) are entire as linear polynomial, (*) is analytic in \(\overline{\bbD}\).
+Since \(h(z) = f(z)\) for every \(z \in \bbD\) and \(h\) is analytic,
+by Uniqueness Theorem,
+\[f(z) = \frac{Kz + \alpha}{1 + \overline{\alpha}Kz}\]
+for \(\alpha = h(0) = f(0)\), \(|K| = 1\).
+\newline
+
+Let \(K \in \bbC\) such that \(|K| = 1\) and \(\alpha \in \bbD\).
+And let \(f(z) = B_{-\alpha}(Kz) = \frac{Kz + \alpha}{1 + \overline{\alpha}Kz}\).
+First, as we shown above, the numerator and denominator of \(f(z)\) are entire as linear polynomial and \(1 + \overline{\alpha}Kz\) cannot be zero for every \(z \in \overline{\bbD}\) because \(|\alpha| < 1\).
+Thus \(f(z)\) is entire.
+
+And let \(g = B_\alpha \circ f\). Then,
+\begin{align*}
+  g(z)
+  &= B_{\alpha}(f(z))
+  \\&= B_{-\alpha}(B_{\alpha}(Kz))
+  \\&= Kz
+\end{align*}
+Since \(Kz\) is a linear polynomial as \(|K| = 1 > 0\), \(Kz\) is bijective, and \(g(z)\) is bijective since \(B_\alpha, B_{-\alpha}, Kz\) are bijective.
+For \(|z| \le 1\), \(|g(z)| = |K|\cdot |z| = 1 \cdot |z| = |z| \le 1\).
+In other words, since \(B_{\alpha}\) is a bijection which maps \(\overline{\bbD}\) to \(\overline{\bbD}\),
+\(|f(z)| \le 1\) for \(|z| \le 1\).
+Also, for \(|z| = 1\), \(|g(z)| = |K|\cdot |z| = |z| = 1\),
+and since \(B_{\alpha}\) is a bijection which maps \(\partial\bbD\) to \(\partial\bbD\), 
+\(|f(z)| = 1\) for \(|z| = 1\).
+
+Thus, the \(f(z) = \frac{Kz + \alpha}{1 + \overline{\alpha}Kz}\) satisfies all condition given in the problem.
+\newline
+
+\noindent
+In conclusion. The set consisting of all analytic functions \(f\) on the closed unit disc in \(\bbC\) such that \(|f(z)| \le 1\) for \(|z| \le 1\), \(|f(z)| = 1\) for \(|z| = 1\), and \(f\) is injective is:
+\[\left\{z \mapsto \frac{Kz + \alpha}{1 + \overline{\alpha}Kz}
+  \mid
+  \alpha \in \bbD;
+  K \in \bbC;
+  |K| = 1
+  \right\}\]
+\qedsq

@@ -1,0 +1,198 @@
+\section*{Problem 7}
+
+Prove the Snake Lemma:
+\begin{theorem} (The Snake Lemma)
+  Suppose we have a commutative diagram with exact rows:
+  \[
+  \begin{tikzcd}
+    & A_1 \ar["\alpha"]{r} \ar["f"]{d}
+    & A_2 \ar["\beta"]{r} \ar["g"]{d}
+    & A_3 \ar{r} \ar["h"]{d}
+    & 0
+    \\ 0 \ar{r}
+    & B_1 \ar["\gamma"]{r}
+    & B_2 \ar["\delta"]{r}
+    & B_3
+    &
+  \end{tikzcd}
+  \]
+  Then there is a natural homomorphism \(\partial\)
+  and an exact sequence
+  \[
+  \ker f \xrightarrow{\tilde\alpha}
+  \ker g \xrightarrow{\tilde\beta}
+  \ker h
+  \xrightarrow{\partial}
+  \coker f \xrightarrow{\tilde\gamma}
+  \coker g \xrightarrow{\tilde\delta}
+  \coker h
+  \]
+\end{theorem}
+where \(\tilde\alpha\) and \(\tilde\beta\) are obtained from \(\alpha\) and \(\beta\) by restricting each domains to \(\ker f\) and \(\ker g\),
+\(\tilde\gamma\) and \(\tilde\delta\) are module homomorphisms such that \(\tilde\gamma: x + \im f \mapsto \gamma(x) + \im g\) and \(\tilde\delta: x + \im g \mapsto \delta(x) + \im h\).
+
+
+\subsection*{Proof}
+
+(1) The image of \(\alpha\) from \(\ker f\) is in \(\ker g\).
+Because, if \(x \in \ker f\),
+\[0 = \gamma(0) = \gamma(f(x)) = g(\alpha(x))\]
+holds, and \(\alpha(x) \in \ker g\).
+In the same way, we can show that the image of \(\tilde\beta\) from \(\ker g\) is in \(\ker h\).
+\br
+\noindent
+(2)
+\(\tilde\gamma\) is well-defined. If \(x + \im f = x' + \im f\) for \(x, x' \in B_1\), \(x - x' \in \im f\). Thus, there is \(d \in A_1\) such that \(f(d) = x - x'\). Then,
+\[\gamma(x) - \gamma(x') = \gamma(x - x') = \gamma(f(d)) = g(\alpha(d)) \in \im g\]
+Therefore, \(\gamma(x) + \im g = \gamma(x') + \im g\).
+In the same way, \(\tilde\delta\) is well-defined.
+\br
+\noindent
+(3)
+\(\ker f \xrightarrow{\tilde\alpha} \ker g \xrightarrow{\tilde\beta} \ker h\) is exact.
+To show this, we need to check \(\im \tilde\alpha = \ker \tilde\beta\).
+
+Let \(x \in \im\tilde\alpha\).
+Then, \(x \in \im\alpha\).
+Since \(A_1 \to A_2 \to A_3\) is exact, \(x \in \ker\beta\).
+Then, \(\tilde\beta(x) = \beta(x) = 0\) and \(x \in \ker\tilde\beta\).
+This shows \(\im\tilde\alpha \subseteq \ker\tilde\beta\).
+
+Let \(x \in \ker\tilde\beta\).
+Note that \(g(x) = 0\) as \(x \in \ker g\).
+Then, \(\tilde\beta(x) = \beta(x) = 0\) and \(x \in \ker\beta = \im\alpha\).
+Let \(a \in A_1\) such that \(\alpha(a) = x\).
+Then, \(\gamma(f(a)) = g(\alpha(a)) = g(x) = 0\).
+Because \(\gamma\) is injective, \(f(a) = 0\).
+Therefore, \(a \in \ker f\) such that \(\alpha(a) = \tilde\alpha(a) = x\).
+This shows \(\ker\tilde\beta \subseteq \im\tilde\alpha\).
+
+Thus, \(\im\tilde\alpha = \ker\tilde\beta\).
+\br
+\noindent
+(4)
+\(\coker f \xrightarrow{\tilde\gamma} \coker g \xrightarrow{\tilde\delta} \coker h\) is exact.
+To show this, we need to check \(\im \tilde\gamma = \ker \tilde\delta\).
+
+Let \(x + \im g \in \im\tilde\gamma\).
+Then, there is \(y \in B_1\) such that \(\gamma(y) + \im g = x + \im g\).
+This shows \(x - \gamma(y) \in \im g\).
+Then, let \(a \in A_2\) such that \(g(a) = x - \gamma(y)\).
+Then, \(\delta(x - \gamma(y)) = \delta(g(a)) = h(\beta(a)) \in \im h\).
+And,
+\(\delta(x) - \delta(\gamma(y)) \in \im h\).
+Since \(B_1 \to B_2 \to B_3\) is exact, \(\delta \circ \gamma = 0\) and \(\delta(\gamma(y)) = 0\).
+Therefore, \(\delta(x) \in \im h\) and \(\delta(x) + \im h = \im h\).
+It implies \(\tilde\delta(x + \im g) = \delta(x) + \im h = \im h\)
+and \(x + \im g \in \ker\tilde\delta\).
+This shows \(\im\tilde\gamma \subseteq \ker\tilde\delta\).
+
+Let \(x + \im g \in \ker\tilde\delta\).
+\(\delta(x) + \im h = \im h\) and \(\delta(x) \in \im h\).
+Let \(y \in A_3\) such that \(h(y) = \delta(x)\).
+Since \(\beta\) is surjective, there is \(y' \in A_2\) such that \(\beta(y') = y\).
+Then, \(\delta(x) = h(\beta(y')) = \delta(g(y'))\).
+Since \(\delta\) is a homomorphism,
+\(\delta(x - g(y')) = 0\).
+So, \(x - g(y') \in \ker\delta = \im\gamma\).
+Let \(x' \in B_1\) such that \(\gamma(x') = x - g(y')\).
+In this case,
+\[\tilde\gamma(x' + \im f) = \gamma(x') + \im g = x - g(y') + \im g = x + \im g\].
+Therefore, \(x + \im g \in \im\tilde\gamma\).
+This shows \(\ker\tilde\delta \subseteq \im\tilde\gamma\).
+
+Therefore, \(\im\tilde\gamma = \ker\tilde\delta\).
+\br
+\noindent
+(5) Define \(\partial: \ker h \to \coker f\) as:
+
+Let \(x \in \ker h\). Since \(\beta\) is surjective, let \(x_2 \in A_2\) such that \(\beta(x_2) = x\).
+Since \(x \in \ker h\),
+\(\delta(g(x_2)) = h(\beta(x_2)) = h(x) = 0\),
+and \(g(x_2) \in \ker \delta = \im \gamma\).
+For \(y_1 \in B_1\) such that \(\gamma(y_1) = g(x_2)\), let \(\partial(x) = y_1 + \im f\).
+\br
+\noindent
+(6) \(\partial\) is well-defined.
+
+First, since \(\gamma\) is injective, for given \(y_2 \in \im \gamma\), there is a unique \(y_1 \in B_1\) such that \(\gamma(y_1) = y_2\).
+
+Therefore, the only pary which can violates well-definedness is choosing \(x_2\) from \(x_1\).
+
+Suppose that there is \(x'_2 \in A_2\) such that \(\beta(x'_2) = x\).
+Then, there is a unique \(y'_1\) such that \(\gamma(y'_1) = g(x'_2)\).
+
+As \(\beta(x_2) - \beta(x'_2) = x - x = 0\), \(x_2 - x'_2 \in \ker \beta = \im \alpha\).
+Thus, there is \(x_1 \in A_1\) such that \(\alpha(x_1) = x_2 - x'_2\).
+Then,
+\[\gamma(y_1 - y'_1) = g(x_2 - x'_2) = g(\alpha(x_1)) = \gamma(f(x_1))\]
+Since \(\gamma\) is injective, \(y_1 - y'_1 = f(x_1)\).
+Since \(y_1 - y'_1 \in \im f\), \(y_1 + \im f = y'_1 + \im f\).
+Therefore, for given \(x_3\), \(y_1 + \im f\) is a unique choice,
+and \(\partial\) is well-defined.
+\br
+\noindent
+(7) \(\partial\) is a module homomorphism.
+Note that, since \(\gamma\) is an injective module homomorphism, it's an isomorphism between \(B_1\) and its image.
+Therefore, for \(t, t' \in \im \gamma\), \(g^{-1}(t) + g^{-1}(t') = g^{-1}(t + t')\).
+
+Let \(x, x' \in B_3\). Then, there are some \(x_2, x'_2 \in B_2\) such that \(\beta(x_2) = x\), \(\gamma(\partial(x)) = g(x_2)\), \(\beta(x'_2) = x'\), \(\gamma(\partial(x')) = g(x'_2)\).
+Since \(\beta\) is homomorphism, \(\beta(x_2 + x'_2) = \beta(x_2) + \beta(x'_2) = x + x'\).
+Then, as \(\gamma^{-1}\) and \(g\) are homomorphisms,
+\begin{align*}
+  \partial(x) + \partial(x')
+  = \gamma^{-1}(g(x_2)) + \gamma^{-1}(g(x'_2))
+  &= \gamma^{-1}(g(x_2 + x'_2))
+  \\&= \partial(x + x')
+\end{align*}
+holds.
+
+In the similar way, for \(r \in R\),
+\begin{align*}
+  r\partial(x)
+  = r\gamma^{-1}(g(x_2))
+  &= \gamma^{-1}(g(rx_2))
+  = \partial(rx)
+\end{align*}
+holds.
+\br
+\noindent
+(8) \(\ker g \xrightarrow{\tilde\beta} \ker h \xrightarrow{\partial} \coker f\) is exact.
+
+Let \(x \in \im\tilde\beta \subseteq \ker h \subseteq A_3\).
+Then, there is \(x_2 \in \ker g \subseteq A_2\)
+such that \(\tilde\beta(x_2) = x\).
+Then, \(g(x_2) = 0\).
+Then, \(\partial(x) = \gamma^{-1}(g(x_2)) = \gamma^{-1}(0) = 0\) by the definition.
+Thus, \(x \in \ker\partial\) and \(\im\tilde\beta \subseteq \ker\partial\).
+
+Let \(x \in \ker\partial \subseteq \ker h \subseteq A_3\).
+Let \(x_2 \in A_2\) such that \(\beta(x_2) = x\).
+Then, \(g(x_2) = \gamma(\partial(x)) = 0\).
+This shows \(x_2 \in \ker g\).
+In this case, \(x = \beta(x_2) = \tilde\beta(x_2)\)
+and \(x \in \im\tilde\beta\).
+Therefore, \(\ker\partial \subseteq \im\tilde\beta\).
+
+Thus, \(\im\tilde\beta = \ker\partial\).
+\br
+\noindent
+(9) \(\ker h \xrightarrow{\partial} \coker f \xrightarrow{\tilde\gamma} \coker g\) is exact.
+
+Let \(y + \im f \in \im\partial \subseteq \coker f\) where \(y \in B_1\).
+Then, there is \(x \in A_3\) such that \(\partial(x) = y + \im f\).
+Let \(x_2 \in A_2\) such that \(\beta(x_2) = x\). 
+Then, \(y' = \gamma^{-1}(g(x_2)) \subseteq y + \im f\) and,
+\(\tilde\gamma(y + \im f) = \tilde\gamma(y' + \im f) = \gamma(y') + \im g = g(x_2) + \im g = \im g\).
+Thus, \(y + \im f \in \ker\tilde\gamma\) and
+\(\im\partial \subseteq \ker\tilde\gamma\).
+
+Let \(y + \im f \in \ker\tilde\gamma \subseteq \coker f\) where \(y \in B_1\).
+Then, \(\tilde\gamma(y + \im f) = \gamma(y) + \im g = \im g\) and \(\gamma(y) \in \im g\).
+Let \(x_2 \in A_2\) such that \(g(x_2) = \gamma(y)\) and \(x \in A_3\) such that \(\beta(x_2) =  x\).
+Then, \(\partial(x) = y + \im f\).
+This shows that \(y + \im f \in \im\partial\) and
+\(\ker\tilde\gamma \subseteq \im\partial\).
+
+Thus, \(\im\partial = \ker\tilde\gamma\).
+\qedsq

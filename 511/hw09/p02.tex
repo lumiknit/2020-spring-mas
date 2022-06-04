@@ -1,0 +1,45 @@
+\section*{Problem 2}
+
+Give the proof of the below theorem:
+\begin{theorem}
+  Let \(\phi: G \to \GL(V)\) be a representation for a finite dimensoinal
+  vector space \(V\).
+  Let \(\{v_1, \cdots, v_n\}\) be a basis of \(V\)
+  and let \(\{v_1^*, \cdots, v_n^*\}\) be its dual basis.
+
+  Then \(\Tr \phi(g) = \sum_{i=1}^n v_i^*(g \cdot v_i)\).
+\end{theorem}
+
+\subsection*{Proof}
+
+Let \(V\) is a vector space over a field \(F\),
+and let \(n = \dim_F V\).
+
+Note, the action of \(G\) on \(V\) is the representation \(\phi\).
+i.e. \(g \cdot v_i = \phi(g)(v_i)\).
+
+Let \(\calB = \{v_1, \cdots, v_n\}\).
+And let \([A]_\calB\) be a matrix of a linear transformation \(A \in \End(V)\) with respect to \(\calB\), and let \([v]_\calB\) be a column matrix of \(v \in V\) with respect to \(\calB\).
+
+Let \((a_{i,j}) = [\phi(g)]_\calB\).
+Note that \([v_i]_\calB = e_i\),
+where \(e_i\) is an element of \(V\) such that all entries are zero except
+the \(i\)-th entry which is valued by \(1_F\).
+In this case,
+\[[\phi(g)(v_i)]_\calB = [\phi(g)]_\calB e_i =
+\mMat{c}{a_{1,i} \\ \vdots \\ a_{n,i}}\]
+Thus,
+\[\phi(g)(v_i) = \sum_{j=1}^{n} a_{j, i} v_j\]
+Then, by the definition of dual basis,
+\begin{align*}
+  v_i^*(\phi(g)(v_i))
+  &= v_i^*(\sum_{j=1}^{n} a_{j, i} v_j)
+  \\&= \sum_{j=1}^{n} a_{j, i} \delta_{i, j}
+  = a_{i, i}
+\end{align*}
+Thus,
+\[\sum_{i=1}^{n} v_i^*(\phi(g)(v_i)) = \sum_{i=1}^n a_{i,i} = \Tr [\phi(g)]_\calB = \Tr \phi(g)\]
+since trace is not changed by change of basis
+(because change of basis give a similar linear transformation,
+and two similar linear transformations have same trace).
+\qedsq

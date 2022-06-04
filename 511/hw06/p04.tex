@@ -1,0 +1,167 @@
+From the below problem, \(\Hom\) without subscript means \(\Hom_R\).
+
+\section*{Problem 4}
+
+Let \(R\) be a ring with a unity and
+let \(M, N\) be \(R\)-modules.
+
+Note:
+\(\Ext_R(M, N)\) is the set of equivalence classes of extensions of \(M\) by \(N\) (i.e. eq cls by \(0 \to N \to T \to M \to 0\) and \(~\) is there is a homo \(T\) to \(T'\))
+
+For given \(e := [0 \to N \to T \to M \to 0] \in \Ext_R(M, N)\),
+we can make \(\Ext_R(M, -)\) long sequence:
+\[0 \to \Ext_R^0(M, N) \to \Ext_R^0(M, T) \to \Ext_R^0(M, M) \xrightarrow{\partial} \Ext_R^1(M, N) \to \cdots\]
+Note that \(\Id_M \in \Hom_R(M, M) = \Ext_R^0(M, M)\).
+
+Let \(\delta: \Ext_R(M, N) \to \Ext_R^1(M, N)\).
+Then, let \(\delta(e) = \partial(\Id_M)\).
+
+We can find \(0 \to K \xrightarrow{\alpha} P \to M \to 0\)
+where \(P\) is projective.
+Then, from long exact sequence, we obtain
+\[\Hom_R(P, N) \to \Hom_R(K, N) \xrightarrow{\partial'} \ext_R^1(M, N) \to 0 = \ext_R^1(P, N)\]
+
+Let \(x \in \Ext_R^1(M, N) \simeq \ext_R^1(M, N)\).
+There is some \(\beta \in \Hom_R(K, N)\) such that \(\partial'(\beta) = x\).
+
+Consider the push-out \(T\) of \(N \xleftarrow{\beta} K \xrightarrow{\alpha} P\)
+which is \(\coker(K \to P \oplus N)\) for the map \(k \mapsto (\alpha(k), -\beta(k))\).
+Let \(i: N \to T\) be the natural induced morphism.
+Also, because of surjection \(\pi: P \to M\) and \(\phi: P \to T\), we obtain \(\psi: T \to M\) such that \(\psi = \pi\phi^{-1}\).
+
+In this case, we obtain the below diagram with exact rows:
+\[\begin{tikzcd}
+  0 \ar{r} & K \ar["\beta"]{d} \ar["\alpha"]{r} & P \ar["\phi"]{d} \ar["\pi"]{r} & M \ar[equal]{d} \ar{r} & 0 \\
+  0 \ar{r} & N \ar["i"]{r} & T \ar["\psi"]{r} & M \ar{r} & 0
+\end{tikzcd}\]
+
+Let \(e = [0 \to N \to T \to M \to 0]\).
+
+Prove that \(\delta(e) = x\).
+
+%-------------------------------------------------------------------------------
+\subsection*{Proof}
+
+
+
+%-----------------------------------------------------------
+% From Problem 7 (Injective)
+Note that, if we apply Snake Lemma to below diagram with exact rows,
+\[\begin{tikzcd}
+  & A \ar["f"]{d} \ar["\alpha"]{r} & B \ar["g"]{d} \ar["\beta"]{r} & C \ar["h"]{d} \ar{r} & 0 \\
+  0 \ar{r} & A' \ar["\alpha'"]{r} & B \ar["\beta'"]{r} & C &
+\end{tikzcd}\]
+we obtain the exact sequence
+\[\begin{tikzcd}
+\ker f \ar["\tilde\alpha"]{r} & \ker g \ar["\tilde\beta"]{r} & \ker h \ar["\partial"]{r} & \coker f \ar["\tilde\alpha'"]{r} & \coker g \ar["\tilde\beta'"]{r} & \coker h
+\end{tikzcd}\]
+where the funcitons with tilde are induced from ones without tilde.
+Also \(\partial\) is constructed as \(\tilde\alpha'^{-1} \circ g \circ \tilde\beta^{-1}\) for the restricted domain \(\ker h\).
+\br
+\noindent
+Suppose that
+\(0 \to N \xrightarrow{\alpha} T \xrightarrow{\pi} M \to 0\)
+is an exact sequence.
+Let
+\(N \xrightarrow{f} I_N^\bullet\),
+\(T \xrightarrow{g} I_T^\bullet\),
+\(M \xrightarrow{h} I_M^\bullet\)
+be injective resolutions.
+We obtain \(\Ext\) beginning from
+\[\begin{tikzcd}[column sep=huge]
+  0 \ar{r} & \Hom(M, I_N^k) \ar["\Hom(M{,}f^k)"]{d} \ar["\Hom(M{,}\alpha^k)"]{r} & \Hom(M, I_T^k) \ar["\Hom(M{,}g^k)"]{d} \ar["\Hom(M{,}\pi^k)"]{r} & \Hom(M, I_M^k) \ar["\Hom(M{,}h^k)"]{d} \ar{r} & 0 \\
+  0 \ar{r} & \Hom(M, I_N^{k+1}) \ar["\Hom(M{,}\alpha^{k+1})"]{r} & \Hom(M, I_T^{k+1}) \ar["\Hom(M{,}\pi^{k+1})"]{r} & \Hom(M, I_M^{k+1}) \ar{r} & 0
+\end{tikzcd}\]
+Note that \(\Ext\) long exact sequence is obtained by applying
+the Snake Lemma twice to the above diagram. (See Problem 2)
+
+At the first application of the Snake Lemma,
+we obtain an exact sequence
+\begin{align*}
+  &\ker \Hom(M, f^k) \xrightarrow{\sigma}
+  \ker \Hom(M, g^k) \xrightarrow{\upsilon}
+  \ker \Hom(M, h^k) \\
+  \xrightarrow{\partial}
+  &\coker \Hom(M, f^k) \xrightarrow{\sigma'}
+  \coker \Hom(M, g^k) \xrightarrow{\upsilon'}
+  \coker \Hom(M, h^k)
+\end{align*}
+Note that each \(\sigma, \upsilon, \sigma', \upsilon'\) is induced from
+\(\Hom(M, \alpha^k), \Hom(M, \pi^k), \Hom(M, \alpha^{k + 1}), \Hom(M, \pi^{k + 1})\).
+Also, each \(\Hom(M, f^k), \Hom(M, g^k), \Hom(M, h^k)\) induces to maps from cokernels to kernels.
+
+And at the second application of the Snake Lemma,
+we obtain a map
+\[\partial: \coker \Hom(M, h^{k - 1})^* \to \ker \Hom(M, f^{k + 1})^*\]
+where \(\Hom(M, h^{k - 1})^*\) and \(\Hom(M, f^{k + 1})^*\) are induced one.
+Note that \(\partial: \Ext_R^k(M, N) \to \Ext_R^{k + 1}(M, N)\),
+and \(\partial = (\sigma')^{-1} \circ \Hom(M, g^{k})^* \circ (\upsilon)^{-1}\)
+for the restricted domain following applications of the Snake Lemma.
+\br
+\noindent
+Note that the exact sequence
+\[0 \to N \xrightarrow{\alpha} T \xrightarrow{\pi} M \to 0\]
+was given.
+Note that we can induce \(\partial_j\) from above sequences.
+Then, for the injective resolutions
+\(T \xrightarrow{g} I^\bullet\) and differentials \(g^\bullet\) of \(I^\bullet\),
+\[\partial =
+  (\Hom(M, \alpha^1)^*)^{-1} \circ \Hom(M, g^0)^* \circ (\Hom(M, \pi^0)^*)^{-1}\]
+where each maps with a superscript \(*\) are induced one in the diagram just before the second application of the Snake Lemma.
+
+%-----------------------------------------------------------
+% Original (Projective)
+\br\noindent
+In the similar way,
+For the given exact sequence \(0 \to K \xrightarrow{i} P \xrightarrow{\psi} M \to 0\),
+\[\partial': \ext_R^0(K, N) \to \ext_R^1(M, N)\]
+obtained by \(\ext\) long exact sequence is
+\(\partial' = (\Hom(\psi_{k + 1}, N)^*)^{-1} \circ \Hom(g_k, N)^* \circ (\Hom(i_k, N)^*)^{-1}\)
+where
+supserscript \(*\) means `induced',
+\(0 \to P_{K\bullet} \xrightarrow{i_\bullet} P_{P\bullet} \xrightarrow{\psi_\bullet} P_{M\bullet} \to 0\)
+is exact,
+\(P_{K\bullet} \xrightarrow{f} K\),
+\(P_{P\bullet} \xrightarrow{g} P\),
+\(P_{M\bullet} \xrightarrow{h} M\)
+are projective resolutions,
+and \(g_\bullet\) are differentials of \(P_{P\bullet}\).
+
+%-------------------------------------------------------------------------------
+\br\noindent
+Because \(x = \partial'(\beta)\) and \(\partial(\Id_M) = \delta(e)\),
+it's enough to show that \(\partial(\Id_M) = \partial'(\beta)\).
+
+Note that,
+\[\partial(\Id_M) =
+  ((\alpha^1)^*)^{-1} \circ (g^0)^* \circ ((\pi^0)^*)^{-1} \circ \Id^M =
+  ((\alpha^1)^*)^{-1} \circ (g^0)^* \circ ((\pi^0)^*)^{-1}\]
+\[\partial'(\beta) =
+  \beta \circ ((i_0)^*)^{-1} \circ (g_0)^* \circ ((\psi'_1)^*)^{-1}\]
+
+%-------------------------------------------------------------------------------
+Then, from the below given diagram,
+\[\begin{tikzcd}
+  0 \ar{r} & K \ar["\beta"]{d} \ar["\alpha"]{r} & P \ar["\phi"]{d} \ar["\pi"]{r} & M \ar[equal]{d} \ar{r} & 0 \\
+  0 \ar{r} & N \ar["i"]{r} & T \ar["\psi"]{r} & M \ar{r} & 0
+\end{tikzcd}\]
+
+We obtain the below commutative diagram:
+
+\[\begin{tikzcd}
+  K \ar["\beta"]{dd} & \ar[swap, "\alpha^\op"]{l} P &
+  \\
+  & & M \ar[swap, "\pi^\op"]{lu} \ar[blue, "\psi^\op"]{ld}
+  \\
+  N & \ar[blue, "i^\op"]{l} T &
+\end{tikzcd}\]
+
+Since \(\alpha^1\), \(\pi^0\), \(i_0\), \(\psi_1\)
+are induced by \(\alpha\), \(\pi\), \(i\), \(\psi\),
+and \(g_\bullet\) and \(g^\bullet\) are transitions between resolutions,
+the composition of the above black arrows induces \(\partial'(\beta)\)
+and
+the composition of the below blue arrows induces \(\partial(\Id_M)\).
+
+Therefore, \(\partial(\Id_M) = \partial'(\beta)\).
+\qedsq

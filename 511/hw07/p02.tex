@@ -1,0 +1,177 @@
+\section*{Problem 2}
+
+\begin{theorem}
+  Let
+  \(R\) be PID,
+  \(M\) be finitely generated \(R\)-modules.
+  Then
+  \(M \simeq R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m)\).
+  for some \(a_i \in R\) such that \(a_1 \mid a_2 \mid \cdots \mid a_m\).
+  The number \(r\) is unique and \(a_1, \cdots, a_m\) are uniquely
+  decided up to units in \(R\).
+\end{theorem}
+
+Let \(x_1, \cdots, x_n \in M\) be a set of generators of \(M\) as an \(R\)-Mod.
+
+Then, we can choose a generating set such that \(n\) to be minimum.
+
+Define a surjective \(R\)-mod homomorphism \(\phi: R^n \to M\)
+given by \((b_1, \cdots, b_n) \mapsto \sum_i b_ix_i\).
+Here \(\ker \phi \subset R^n\) is a submodule of free module \(R^n\)
+over the PID \(R\),
+by the previous theorem,
+it is free of rank \(\le n\), say \(m\).
+
+Also by the previous theorem,
+we can choose a basis \(y_1, \cdots, y_n \in R^n\)
+and \(a_1 \mid \cdots \mid a_m \in R\)
+such that \(a_1y_1, \cdots, a_my_m \in \ker \phi\)
+and this set gives a basis for \(\ker \phi\).
+Then
+\begin{align*}
+  M \simeq R^n / \ker\phi
+  &= (Ry_1 \oplus \cdots \oplus Ry_n) / (Ra_1y_1 \oplus \cdots \oplus Ra_my_m \oplus 0 \cdots)
+  \\&\simeq R/(a_1) \oplus \cdots \oplus R/(a_m) \oplus R^{n - m}
+\end{align*}
+
+Show that the uniqueness part.
+
+\subsection*{Proof}
+
+Let \(\Tor(M)\) be a torsion \(R\)-submodule of \(M\).
+In other words,
+\(\Tor(M) = \{m \in M \mid \exists r \in R \setminus \{0\}: rm = 0\}\).
+
+Also, let's denote \(a \sim b\) is \(a = ub\) for some unit \(u \in R\).
+
+Suppose that there are
+\(r, s \in \bbZ^{\ge 0}\)
+and \(a_1 \mid a_2 \mid \cdots \mid a_m \in R\),
+\(b_1 \mid \cdots \mid b_n \in R\)
+such that
+\begin{align*}
+  M &\simeq R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m)
+  \\&\simeq R^s \oplus R/(b_1) \oplus \cdots \oplus R/(b_n)
+\end{align*}
+For convinience, let's denote
+\[A_1 = R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m)\]
+\[A_2 = R^s \oplus R/(b_1) \oplus \cdots \oplus R/(b_n)\]
+
+Since \(M \simeq A_1 \simeq A_2\),
+\(\Tor(M) \simeq \Tor(A_1) \simeq \Tor(A_2)\).
+And, \(M/\Tor(M) \simeq A_1 / \Tor(A_1) \simeq A_2 / \Tor(A_2)\).
+
+Since \(R\) is a PID (thus ID), there is no zero divisors in \(R\).
+In other words, for every nonzero \(r \in R\), \(rs \neq 0\) for every \(s \in R \setminus \{0\}\).
+Then, for \(\bfx \in A_1\) such that
+\[\bfx = (x_1, \cdots, x_r, \overline{y_1}, \cdots, \overline{y_m})\]
+by multiplicating by \(a_m\)
+\begin{align*}
+  a_m\bfx
+  &= (a_m x_1, \cdots, a_m x_r, a_m\overline{y_1}, \cdots, a_m\overline{y_m})
+  \\&= (a_m x_1, \cdots, a_m x_r, 0, \cdots, 0)
+\end{align*}
+since \(a_k \mid a_m\) for each \(k = 1, \cdots, m\).
+Also, each \(r x_k\) is non-zero for \(r \in R \setminus \{0\}\) if \(x_k\) is non-zero.
+Thus,
+\[\Tor(A_1)
+  = 0^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m)
+  \simeq R/(a_1) \oplus \cdots \oplus R/(a_m)\]
+\[A_1 / \Tor(A_1)
+  = R^r \oplus 0 \oplus \cdots \oplus 0
+  \simeq R^r\]
+In the same way,
+\[\Tor(A_2) \simeq R/(b_1) \oplus \cdots \oplus R/(b_n) \]
+\[A_2 / \Tor(A_2) \simeq R^s\]
+
+First, \(R^r \simeq A_1 / \Tor(A_1) \simeq A_2 / \Tor(A_2) \simeq R^s\).
+Then, the free rank of \(R^r\), \(r\), should be equal to
+the free rank of \(R^s\), \(s\).
+Thus, \(r = s\).
+\br
+\noindent
+Next,
+\begin{align*}
+  A'_1 = R/(a_1) \oplus \cdots \oplus R/(a_m)
+  &\simeq \Tor(A_1)
+  \\&\simeq \Tor(A_2)
+  \simeq R/(b_1) \oplus \cdots \oplus R/(b_n) = A'_2
+\end{align*}
+Let \((x_1, \cdots, x_m) \in A'_1\).
+Then, \(a_m x_k = 0\) for each \(k = 1, \cdots, m\), because \(x_k \in R/(a_k)\) and \(a_k \mid a_m\).
+Thus, every element of \(A'_1\) becomes zero by multiplicating by \(a_m\).
+Since \(A'_1 \simeq A'_2\), every element of \(A'_2\) becomes zero by multiplicating by \(a_m\) too.
+It means, for every \(r \in R\),
+\(a_m r + (b_n) = a_m(r + (b_n)) = (b_n)\)
+and \(a_m r \in (b_n)\).
+This shows \((b_n) \subseteq (a_m)\).
+
+We can do this process from the \(A'_2\):
+since every element of \(A'_2\) becomes zero by multiplication by \(b_n\),
+every element of \(A'_1\) becomes zero by multiplication by \(b_n\),
+and this implies \((a_m) \subseteq (b_n)\).
+
+Then, we know that \((a_m) = (b_n)\). This implies \(a_m \sim b_n\).
+
+Let \(j \in \{1, \cdots, m\}\) be the minimal integer
+such that \(a_{j} \sim a_{j + 1} \sim \cdots \sim a_m\).
+And let \(k \in \{1, \cdots, n\}\) be the minimal integer
+such that \(b_{k} \sim b_{k + 1} \sim \cdots \sim b_n\).
+Then, we known
+\[(a_j) = (a_{j + 1}) = \cdots = (a_m) = (b_n) = (b_{n-1}) = \cdots = (b_k)\]
+
+Suppose that \(j = 1\).
+Then, every elements of \(A'_1\) and \(A'_2\) should be zero by multiplication by \(a_m\).
+It means \(k\) should be 1 too.
+Then,
+\[A'_1 \simeq \oplus_{i=1}^m R/(a_m) \simeq \oplus_{i=1}^n R/(a_m) \simeq A'_2 \qquad\cdots(*)\].
+In this case, \(m = n\) must hold.
+
+If \(j > 1\),
+since there is an element of \(A'_1\) which are not zero after the multiplication by \(a_m\),
+there is an element of \(A'_2\) which are not zero after the multiplication by \(a_m\) too.
+Thus, \(k > 1\).
+
+Let's define \(D(r; M) = \{0\} \cup \{m \in M \mid sm = 0 \text{ iff } r \mid s \in R\}\) for \(r \in R\) and \(M \in \Ob(R-\Mod)\).
+Then, \(D(r; M) \subseteq M\).
+
+In this case,
+\[D(a_m; A'_1) \simeq R/(a_j) \oplus \cdots \oplus R/(a_m)\]
+\[A'_1 / D(a_m; A'_1) \simeq R/(a_1) \oplus \cdots \oplus R/(a_{j-1})\]
+\[D(a_m; A'_2) \simeq R/(b_k) \oplus \cdots \oplus R/(b_n)\]
+\[A'_2 / D(a_m; A'_2) \simeq R/(b_1) \oplus \cdots \oplus R/(b_{k-1})\]
+Note that \(D(a_m; A'_1) \simeq D(a_m; A'_2)\) since \(A'_1 \simeq A'_2\).
+Thus,
+\[\oplus_{i=j}^m R/(a_m) \simeq \oplus_{i=k}^n R/(a_m) \qquad\cdots(*)\]
+and \(m - j + 1 = n - k + 1\).
+Also, \(A'_1 / D(a_m; A'_1) \simeq A'_2 / D(a_m; A'_2)\).
+Thus, let's take \(A''_i = A'_i / D(a_m; A'_i)\) for each \(i = 1, 2\),
+repeat the above process for \(A''_1\) and \(A''_2\).
+Since the numbers of direct summands are strictly decreasing,
+this process halt at some time.
+
+After the repetition,
+we know that,
+\begin{itemize}
+\item There are \(0 = j_0 < j_1 < \cdots < j_p = m\)
+  such that \(a_{j_{i-1}} \not\sim a_{j_{i-1} + 1} \sim a_{j_{i-1} + 2} \sim \cdots \sim a_{j_i-1} \sim a_{j_i} \not\sim a_{j_i + 1}\)
+  for each \(i\).
+\item There are \(0 = k_0 < k_1 < \cdots < k_q = m\)
+  such that \(b_{k_{i-1}} \not\sim b_{k_{i-1} + 1} \sim b_{k_{i-1} + 2} \sim \cdots \sim b_{k_i-1} \sim b_{k_i} \not\sim b_{k_i + 1}\)
+  for each \(i\).
+\item \(p = q\). It's because \(p\) and \(q\) are the number of repition of above process.
+\item \(j_i - j_{i - 1} = k_i - k_{i - 1}\)  for every \(i\). It's because of \((*)\).
+\item \(m = n\). Because of above properties.
+\item \(a_i \sim b_i\) for every \(i\). It can be shown by above 5 properties and counting from the last element using the fact that for each process, the last element of \(\{a_k\}\) and \(\{b_k\}\) associate.
+\end{itemize}
+
+Therefore, it shows that \(m = n\) and \(a_i \sim b_i\) for each \(i = 1, \cdots, m\).
+\br
+\noindent
+In conclusion, if
+\begin{align*}
+  M &\simeq R^r \oplus R/(a_1) \oplus \cdots \oplus R/(a_m)
+  \\&\simeq R^s \oplus R/(b_1) \oplus \cdots \oplus R/(b_n)
+\end{align*}
+\(r = s\), \(m = n\) and \(a_i = b_i\) for each \(i = 1, \cdots, m\).
+\qedsq

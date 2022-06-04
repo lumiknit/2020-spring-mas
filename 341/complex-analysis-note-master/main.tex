@@ -1,0 +1,480 @@
+% lumiknit's flavored latex presettings
+% 20200526
+% lumiknit
+
+% === Main file ===
+
+% Document descriptions
+\title{Note for Complex Analysis}
+\author{lumi}
+\date{} % Commenting out this if you want to get a date
+
+% Document style
+\documentclass{article}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.15}
+
+% Load packages and settings
+\input{packages}
+\input{settings}
+
+% --- Document ---
+\begin{document}
+\maketitle
+\vspace{1pt}
+% --- Put all contents below, using \input{<FILE>} or \include{<FILE>}
+
+\section{The Complex Numbers}
+\section{Functions of the Complex Variable \(z\)}
+\section{Analytic Functions}
+\section{Line Integrals and Entire Functions}
+\section{Properties of Entire Functions}
+
+\begin{theorem}(5.10; Liouville's Theorem)
+  A bounded entire function is constant.
+\end{theorem}
+\begin{theorem}(5.11; The ExtendedLiouville's Theorem)
+  If \(f\) is entire and if, for some integer \(k \ge 0\),
+  there exist positive constants \(A\) and \(B\) such that
+  \[f(z) \le A + B|z|^k\]
+  then \(f\) is a polynomial of degree at most \(k\).
+\end{theorem}
+
+\begin{theorem}(5.12; Fundamental Theorem of Algebra)
+  \[\bbC = \overline{\bbC}\]
+\end{theorem}
+
+\section{Properties of Analytic Functions}
+
+\begin{property}(6.8)
+  If \(f\) is analytic at \(\alpha\), so is
+  \[g(z) = \left\{\begin{array}{ll} \frac{f(z)-f(\alpha)}{z-\alpha} \\ f'(\alpha) \end{array}\right.\]
+\end{property}
+
+\begin{property}(6.9; Uniqueness Theorem)
+  Suppose that \(f\) is analytic in a region \(D\) and that \(f(z_n) = 0\)
+  where \(\{z_n\}\) is a sequence of distinct points and \(z_n \to z_0 \in D\).
+  Then \(f \equiv 0\) in \(D\).
+\end{property}
+\begin{corollary}(6.10)
+  If two functions \(f\) and \(g\), analytic in \(D\),
+  agree at a set of points with an accumulation point in \(D\),
+  then \(f \equiv g\) in \(D\).
+\end{corollary}
+
+\begin{theorem}(6.11)
+  If \(f\) is entire and if \(f(z) \to \infty\) as \(z \to \infty\),
+  then \(f\) is a polynomial.
+\end{theorem}
+
+\begin{theorem}(6.12; Mean Value Theorem)
+  Let \(f\) be analytic in \(D\) and \(\alpha \in D\).
+  For \(r > 0\) such that \(D(\alpha; r) \subseteq D\),
+  \[f(\alpha) = \frac{1}{2\pi}\int_{0}^{2\pi} f(\alpha + re^{i\theta})d\theta\]
+\end{theorem}
+
+\begin{theorem}(6.13; Maximum-Modulus Theorem)
+  Let \(f\) be a non-constant analytic function in a region \(D\).
+  For each \(z \in D\) and \(\delta > 0\), there exists some \(\omega \in D(z; \delta) \cup D\) such that \(|f(\omega)| > |f(z)|\).
+\end{theorem}
+\begin{corollary}(6.14; Minimum-Modulus Theorem)
+  Let \(f\) be a non-constant analytic function in a region \(D\).
+  \(z \in D\) is a relative minimum of \(f\) iff \(f(z) = 0\).
+\end{corollary}
+\begin{theorem}(6.15)
+  Suppose \(f\) is nonconstant and analytic on the closed disc \(D\).
+  Assume that \(f\)'s maximum modulus at boundary point \(z_0\).
+  Then, \(f'(z_0) \neq 0\).
+\end{theorem}
+
+\begin{definition}(6.16)
+  \(z_0\) is a \emph{saddle point} of an analytic function \(f\)
+  if it's a saddle point of \(|f|\).
+  i.e. \(|f|_x(z_0) = |f|_y(z_0) = 0\) but \(z_0\) is neither a local maximum
+  nor a local minimum.
+\end{definition}
+\begin{theorem}(6.17)
+  \(z_0\) is a saddle point of analytic \(f\) iff \(f'(z_0) = 0\) and \(f(z_0) \neq 0\).
+\end{theorem}
+
+\section{Further Properties of Analytic Functions}
+
+\begin{theorem}(7.1; Open Mapping Theorem)
+  A non-constant analytic function is an open function.
+\end{theorem}
+
+\begin{theorem}(7.2; Schwarz' Lemma)
+  Suppose that \(f\) is analytic in the unit disc,
+  the \(|f| < 1\) there and that \(f(0) = 0\).
+  Then \(|f(z)| \le |z|\) and \(|f'(0)| \le 1\).
+
+  In addition, \(|f(z)| = |z|\), \(|f'(0)| = 1\) and \(f(z) = e^{i\theta}z\) are equivalent.
+\end{theorem}
+
+\begin{proposition}(7.3)
+  If \(f\) is entire and satisfies
+  \[|f(z)| \le 1/|\Im z|\]
+  for all \(z\), then \(f \equiv 0\).
+\end{proposition}
+
+\begin{theorem}(7.4; Morera's Theorem)
+  Let \(f\) be a continuous function on an open set \(D\).
+  If
+  \[\int_\Gamma f(z) dz = 0\]
+  whenever \(\Gamma\) is the boundary of a closed rectangle in \(D\),
+  then \(F\) is analytic on \(D\).
+\end{theorem}
+
+\begin{theorem}(7.6)
+  Suppose \(\{f_n\}\) represents a sequence of functions,
+  analytic in an open domain \(D\)
+  and such that \(f_n \to f\) uniformly on compacta.
+  Then \(f\) is analytic in \(D\).
+\end{theorem}
+
+\begin{theorem}(7.7)
+  Suppose \(f\) is continuous in an open set \(D\)
+  and analytic there except possibly at the poitns of a line segment \(L\).
+  Then \(f\) is analytic throughout \(D\).
+\end{theorem}
+
+\section{Simply Connected Domain}
+
+\begin{definition}(8.1)
+  A region \(D\) is \emph{simply connected}
+  if its complement is connected within \(\epsilon to \infty\)
+  (i.e. for any \(z_0 \in \bbC \bs D\), there is a curve \(\gamma\)
+  such that \(d(\gamma(t), \bbC \bs D) < \epsilon\) for all \(t \ge 0\),
+  \(\gamma(0) = z_0\), \(\lim_{t \to \infty} \gamma(t) = \infty)\))a
+\end{definition}
+
+\begin{definition}(8.2)
+  The \emph{number of levels of \(\Gamma\)}
+  is the number of different imaginary part of points in horizontal lines in
+  the polygonal path \(\Gamma\).
+\end{definition}
+
+\begin{theorem}(8.4)
+  For every function which is analytic in a simply connected domain,
+  there is a primitive function.
+\end{theorem}
+
+\begin{theorem}(8.5; General Closed Curve Theorem)
+  Suppose that \(f\) is analytic in a simply connected region \(D\)
+  and that \(C\) is a smooth closed curve contained in \(D\).
+  Then,
+  \[\int_C f = 0\]
+\end{theorem}
+
+\begin{theorem}(8.8)
+  Suppose that \(D\) is simply connected
+  and that \(0 \not\in D\).
+  Choose \(z_0 \in D\),
+  fix a value of \(\log z_0\) and set
+  \[f(z) = \int_{z_0}^z \frac{d\zeta}{\zeta} + \log z_0\]
+  Then \(f\) is an analytic branch of \(\log z\) in \(D\).
+\end{theorem}
+
+\section{Isolated Singularities of an Analytic Function}
+
+\begin{theorem}(9.3-9.5)
+  Suppose \(f\) is analytic in a deleted neighborhood of \(z_0\)
+  and \(z_0\) is a singularity of \(f\).
+  Then,
+  \begin{enumerate}
+  \item If \(\lim_{z \to z_0} (z-z_0)f(z) = 0\), \(z_0\) is a removable singularity.
+  \item If \(f\) is bounded in a deleted neighborhood, \(z_0\) is a removable singularity.
+  \item If there is a posigive integer \(k\) such that
+  \[\lim_{z \to z_0} (z-z_0)^k f(z) \neq 0, \lim_{z \to z_0} (z-z_0)^{k+1} f(z) = 0 \]
+  then, \(z_0\) is a pole of order \(k\).
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}(9.6; Casorati-Weierstrass Theorem)
+  If \(f\) has an essential singularity at \(z_0\)
+  and if \(D\) is a deleted neighborhood of \(z_0\),
+  then the range \(R = \{f(z) \mid z \in D\}\)
+  is dense in the complex plane.
+\end{theorem}
+
+\begin{theorem}(9.10)
+  Every function which is analytic in some annulus
+  has a unique representation as a Laurent Series,
+  where the coefficient of \(z^k\) is
+  \[a_k = \frac{1}{2\pi i} \int_C \frac{f(z)}{(z - z_0)^{k+1}}\]
+\end{theorem}
+
+\begin{definition}(9.12)
+  Every terms of Laurent series with degress lower then \(0\)
+  is a \emph{principal part},
+  and other terms is an \emph{analytic part}.
+\end{definition}
+
+\section{The Residue Theorem}
+
+\begin{theorem}
+  Let \(z_0\) be a simple pole of \(f\).
+  \[\Res(f; z_0) = \lim_{z \to z_0} f(z)\]
+
+  Let \(z_0\) be an order \(k \ge 1\) pole of \(f\).
+  \[\Res(f; z_0) = \frac{1}{(k-1)!} \frac{d^{k-1}}{dz^{k-1}} (z-z_0)^k f(z)\]
+\end{theorem}
+
+\begin{definition} The winding number of \(\gamma\) around \(a\) is
+  \[n(\gamma, a) = \frac{1}{2\pi i} \int_\gamma \frac{dz}{z - a}\]
+  This is an integer.
+\end{definition}
+
+\begin{theorem}(10.5; Cauchy's Residue Theorem)
+  Suppose \(f\) is analytic in a simply connected domain \(D\)
+  except for isolated singularities at \(z_1, \cdots, z_m\).
+  Let \(\gamma\) be a closed curve not intersecting any of the singularities.
+  Then,
+  \[\int_\gamma f = 2\pi i \sum_{k=1}^m n(\gamma, z_k) \Res(f; z_k)\]
+\end{theorem}
+
+\begin{definition}(10.7)
+  \(f\) is \emph{meromorphic} if \(f\) is analytic there except at isolated poles.
+\end{definition}
+
+\begin{theorem}(10.8)
+  For regular curve \(\gamma\) and \(f\) which is analytic in and on \(\gamma\),
+  where every zero and pole of \(f\) is not on \(\gamma\),
+  \[\frac{1}{2\pi i}\int_\gamma\frac{f'}{f} = \bbZ - \bbP\]
+  where \(\bbZ\)/\(\bbP\) is the number of zeros/poles of \(f\) inside \(\gamma\).
+\end{theorem}
+
+\begin{corollary}(10.9; Argument Principle)
+  If \(f\) analytic inside and on a regular closed curve \(\gamma\)
+  where zeros of \(f\) are not on \(\gamma\),
+  then \(\bbZ = \frac{1}{2\pi i}\int_\gamma\frac{f'}{f}\).
+
+  If \(\gamma: z(t)\) where \(t \in [0, 1]\),
+  \[\frac{1}{2\pi i}\int_\gamma\frac{f'}{f}
+  = \frac{\log f(z(1)) - \log f(z(0))}{2 \pi i}
+  = \frac{1}{2\pi} \Delta \Arg f(z)\]
+\end{corollary}
+
+\begin{theorem}(10.10; Rouch\''s Theorem)
+  Suppose that \(f\) and \(g\) are analytic inside and
+  on a regular closed curve \(\gamma\)
+  and that \(|f(z)| > |g(z)|\) for all \(z \in \gamma\).
+  Then
+  \[\bbZ(f + g) = \bbZ(f)\]
+  inside \(\gamma\).
+\end{theorem}
+
+\begin{theorem}(10.11; Generalized Cauchy Integral Formula)
+  For a function \(f\) analytic in a simply connected domain \(D\),
+  \[f^{(k)}(z) = \frac{k!}{2\pi i}\int_\gamma \frac{f(\omega)}{(\omega - z)^{k + 1}} d\omega\]
+\end{theorem}
+
+\begin{theorem}(10.12)
+  Suppose \(\{f_n\}\) represents a sequence of functions,
+  analytic in an open domain \(D\)
+  and such that \(f_n \to f\) uniformly on compacta.
+  Then \(f\) is analytic in \(D\),
+  \(f'_n \to f'\) uniformly on compacta.
+\end{theorem}
+
+\begin{theorem}(10.13; Hurwitz's Theorem)
+  Let \(\{f_n\}\) be a sequence of non-vanishing analytic functions
+  in a region \(D\) and suppose \(f_n \to f\) uniformly on compacta of \(D\).
+  Then either \(f \equiv 0\) in \(D\) or \(f(z) \neq 0\)
+  for all \(z \in D\).
+\end{theorem}
+\begin{corollary}(10.14)
+  Suppose that \(f_n\) is a sequence of analytic function in a region \(D\),
+  that \(f_n \to f\) uniformly on compact in \(D\),
+  and that \(f_n \neq a\).
+  Then either \(f \equiv a\) or \(f \neq a\) in \(D\).
+\end{corollary}
+\begin{theorem}(10.15)
+  Suppose that \(f_n\) is a sequence of analytic function in a region \(D\),
+  that \(f_n \to f\) uniformly on compact in \(D\).
+  If \(f_n\) is 1-1 in \(D\) for all \(n\),
+  then either \(f\) is constant or \(f\) is 1-1 in \(D\).
+\end{theorem}
+
+\section{Applications of the Residue Theorem to the Evaluation of Integral of Sums}
+
+\begin{proposition}
+  If \(P\), \(Q\) are polynomials and \(\deg Q - \deg P > 1\),
+  \[\lim_{R \to \infty} \int_{\Gamma_R} \frac{P(z)}{Q(z)} dz = 0\]
+  where \(\Gamma_R\) is an arc of radius \(R\).
+\end{proposition}
+
+\begin{proposition}
+  If \(P\), \(Q\) are polynomials and \(\deg Q > \deg P\),
+  \[\lim_{R \to \infty} \int_{\Gamma_R} e^{iz} \frac{P(z)}{Q(z)} dz = 0\]
+  where \(\Gamma_R\) is an arc of radius \(R\).
+\end{proposition}
+
+\begin{proposition}
+  Let \(P\), \(Q\) be polynomials and \(\deg Q - \deg P \ge 2\).
+
+  \[\lim_{R \to \infty} \int_{\Gamma_R} \frac{P(z)}{Q(z)} \log z dz = 0\]
+  where \(\Gamma_R\) is an arc of radius \(R\).
+
+  \[\lim_{r \to 0} \int_{\Gamma_r} \frac{P(z)}{Q(z)} \log z dz = 0\]
+  where \(\Gamma_r\) is an arc of radius \(R\) in \(x \le 0\) half-plane.
+
+  \[\int_0^\infty \frac{P(x)}{Q(x)} dx = - \sum_k \Res\left(\frac{P(z)}{Q(z)} \log z; z_k\right)\]
+\end{proposition}
+
+\begin{proposition}
+  \[\sum_{n=-\infty}^{\infty} f(n) = \lim_{N \to \infty} \int_{C_N} f(z) \pi \cot \pi z dz = -\sum_k \Res(f(z)\pi\cot\pi z; z_k)\]
+\end{proposition}
+\begin{proposition}
+  \[\sum_{n=-\infty}^{\infty} (-1)^n f(n) = \lim_{N \to \infty} \int_{C_N} f(z) \pi \csc \pi z dz = -\sum_k \Res(f(z)\pi\csc\pi z; z_k)\]
+\end{proposition}
+
+\begin{proposition}
+  \[{n \choose k} = \frac{1}{2\pi i} \int_C \frac{(1+z)^n}{z^{k+1}}\]
+\end{proposition}
+\begin{proposition}
+  \[\sum_{k=0}^n {n \choose k}^2 =
+  \frac{1}{2\pi i}\int_C (1+z)^n\left(1+\frac{1}{z}\right)^n \frac{dz}{z}\]
+\end{proposition}
+
+\section{Further Contour Integarl Techniques}
+
+\begin{proposition}
+  \[\lim_{R \to \infty} \int_{C_R} e^z f(z) dz = 0\]
+  where the real part of \(C_R\) is bounded above
+  and \(|f|\) is bounded.
+\end{proposition}
+
+\begin{proposition}
+  \[\int_{C_R} \frac{1}{az + \varepsilon(z)} \simeq \int_{C_R} \frac{1}{az}\]
+  for sufficient large \(R\) where the integral are equal for all sufficient large \(R\).
+\end{proposition}
+
+\section{Introduction to Conformal Mapping}
+
+\begin{theorem}(13.4)
+  If \(f\) is analytic at \(z_0\) and has non-zero derivative \(f'\) at \(z_0\),
+  then \(f\) is conformal and locally 1-1 at \(z_0\).
+\end{theorem}
+
+\begin{theorem}(13.6)
+  For integer \(k\),
+  \(z^k\) magnifies angles at \(0\) by a factor of \(k\),
+  and maps \(D(0; r)\) onto \(D(0; r^k)\).
+\end{theorem}
+
+\begin{theorem}(13.7)
+  Suppose \(f\) is analytic at \(z_0\) with \(f'(z_0) = 0\).
+  If \(f\) is non-constant,
+  there is some small open neighborhood of \(z_0\)
+  where \(f\) is a \(k\)-to-1 mapping
+  and \(f\) magnifies angles at \(z_0\) by a factor of \(k\),
+  where \(k\) is the least positive integer of which \(f^{(k)}(z_0) \neq 0\).
+\end{theorem}
+
+\begin{theorem}(13.8)
+  Suppsoe \(f\) is a 1-1 analytic function in a region \(D\).
+  Then \(f^{-1}\) exists an analytic in \(f(D)\),
+  and \(f\) and \(f^{-1}\) are conformal in \(D\) and \(f(D)\) respectively.
+\end{theorem}
+
+\begin{theorem}(13.9)
+  Conformal equivalence (existency of conformal mapping between two region)
+  is an equivalence relation.
+\end{theorem}
+
+\begin{definition}
+  Bilinear transformation
+  \[\omega = \frac{az + b}{cz + d}\]
+  where \(ad - bc \neq 0\).
+  (\(\because\) \(\omega' = \frac{ad - bc}{(cz + d)^2}\), which must be non-zero for conformal mapping)
+\end{definition}
+
+\begin{lemma}(13.10)
+  \(1/z\) maps circle/line to circle/line.
+\end{lemma}
+
+\begin{theorem}(13.11)
+  The image of circle/line by a bilinear transformation is a circle/line.
+\end{theorem}
+
+\begin{theorem}(13.13)
+  For a given conformal mapping \(f: D_1 \to D_2\),
+
+  If there is a conformal mapping \(h: D_1 \to D_2\),
+  there is a conformal automorphism \(g: D_1 \to D_1\) such that \(h = g \circ f\). (which is \(g = h \circ f^{-1})\).
+
+  If \(h\) is a conformal automorphism of \(D\),
+  \(h = f^{-1} \circ g \circ f\) for some conformal automorphism \(g\) of \(D_2\).
+\end{theorem}
+
+\begin{lemma}(13.14)
+  The only automorphisms of the unit disc with \(f(0) = 0\) are given by \(f(z) = e^{i\theta z}\).
+\end{lemma}
+
+\begin{theorem}(13.15)
+  The automorphisms of the unit disc are of the form \(f(z) = e^{i\theta z} \left( \frac{z - \alpha}{1 - \overline{\alpha}{z}} \right)\).
+\end{theorem}
+
+\begin{theorem}(13.16)
+  The conformal mappings \(h\) of the upper half plane onto the unit disc are of the form
+  \[h(z) = e^{i\theta} \left(\frac{z - \alpha}{z-\overline\alpha}\right)\]
+  where \(\Im \alpha > 0\).
+\end{theorem}
+
+\begin{theorem}(13.17)
+  The automorphisms of the upper half-plane of the form
+  \[h(z) = \frac{az + b}{cz + d}\]
+  with \(a, b, c, d \in \bbR\) and \(ad - bc > 0\).
+\end{theorem}
+
+\begin{theorem}(13.19)
+  A non-identity bilinear transformatoin has a tmost two fixed points.
+\end{theorem}
+
+\begin{lemma}(13.20)
+  The unique bilinear mapping sending \(z_1, z_2, z_3\) into \(\infty, 0, 1\)
+  respectively, is given by
+  \[T(z) = \frac{(z - z_2)(z_3 - z_1)}{(z - z_1)(z_3 - z_2)}\]
+\end{lemma}
+
+\begin{definition}(13.21)
+  The \emph{cross-ratio} of four complex \(z_1, z_2, z_3, z_4\) is
+  \[(z_1, z_2, z_3, z_4) = \frac{(z_4 - z_2)(z_3 - z_1)}{(z_4 - z_1)(z_3 - z_2)}\]
+\end{definition}
+
+\begin{theorem}(13.22)
+  Bilinear transformation preserves cross-ratio
+\end{theorem}
+
+\begin{theorem}(13.23)
+  The unique bilinear transformation \(\omega = f(z)\)
+  mapping \(z_1, z_2, z_3\)
+  into \(\omega_1, \omega_2, \omega_3\) respectively, is given by
+  \[\frac{(\omega - \omega_2)(\omega_3 - \omega_1)}{(\omega - \omega_1)(\omega_3 - \omega_2)} = \frac{(z - z_2)(z_3 - z_1)}{(z - z_1)(z_3 - z_2)}\]
+\end{theorem}
+
+\begin{proposition}
+  \(f(z) = \sin z\) maps semi-infinite strip
+  \[\frac{-\pi}{2} < \Re z < \frac{\pi}{2}; \Im z > 0\]
+  conformally onto the upper half-plane by considering its behavior on the ractangle \(R\):
+  \[\frac{-\pi}{2} < \Re z < \frac{\pi}{2}; 0 \le \Im z \le N\]
+\end{proposition}
+
+Note \[\sin z = \sin x \cosh N + i \cos x \sinh N\]
+
+\section{The Riemann Mapping Theorem}
+
+\begin{theorem}(Riemann Mapping Theorem)
+  For any simply connected domain \(R (\neq \bbC)\)
+  and \(z_0 \in R\),
+  there exists a unique conformal mapping \(\varphi\) of \(R\) onto \(U\) (unit disk)
+  such that \(\varphi(z_0) = 0\) and \(\varphi'(z_0) > 0\).
+
+  Note,
+  \[\varphi(z) = c \frac{z - z_0}{1 - \overline{z_0}z}\]
+\end{theorem}
+
+% --- Put all contents above, using \input{<FILE>} or \include{<FILE>}
+\end{document}

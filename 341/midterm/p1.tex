@@ -1,0 +1,22 @@
+\maketitle
+
+\section*{Problem 1}
+
+Prove that \(\sum_{n=1}^{\infty} e^{-n^2}z^n\) is an entire function.
+
+\subsection*{Proof}
+
+Let \(f(z) = \sum_{n=1}^{\infty} e^{-n^2}z^n\).
+
+Let \(L = \limsup_{n \to \infty} |e^{-n^2}|^{1/n}\).
+Since \(e^x\) is strictly increasing positive function
+and \(-n\) is strictly decreasing as \(n\) increases,
+\(|e^{-n^2}|^{1/n} = e^{-n^2 / n} = e^{-n}\)
+and \(0 < e^{- (n+1)} < e^{-n}\) for every \(n \in \bbN\).
+It implies \(L = \limsup_{n \to \infty} |e^{-n^2}|^{1/n} = \lim_{n \to \infty} e^{-n} = 0\).
+By Theorem 2.8, the given power series \(f(z)\) converges everywhere in \(\bbC\).
+
+By Corollary 2.10, \(f(z)\) is infinitely differentiable its convergence domain.
+And since \(f(z)\) converges in \(\bbC\), \(f(z)\) is infinitely differentiable in every point of \(\bbC\).
+Thus \(f(z)\) is entire.
+\qedsq

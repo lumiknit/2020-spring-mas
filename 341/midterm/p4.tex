@@ -1,0 +1,172 @@
+\section*{Problem 4}
+
+Find all entire functions \(f\) which satisfies the property that for \(R\),
+\(C > 0\), and nonnegative integer \(n\),
+\(\left|f(z)\right| \ge \frac{C}{\left|z\right|^n}\)
+when \(\left|z\right| \ge R\).
+
+Note: Two constants \(R > 0\), \(C > 0\), and \(n \in \bbZ^{\ge 0}\) are fixed.
+
+\subsection*{Answer}
+\[
+  \left\{
+  z \mapsto s(z - t_1) \cdots (z - t_m)
+  \mid
+  m \in \bbZ^{\ge 0};
+  s \in \bbC \bs \{0\};
+  t_1, \cdots, t_m \in D(0; R);
+  |s| \ge \max_{|\zeta| = R} \left| \frac{C}{R^n (\zeta - t_1) \cdots (\zeta - t_n)} \right|
+  \right\}
+\]
+(for \(m = 0\), \((z - t_1) \cdots (z - t_m) = 1\).)
+
+Note that
+\(\max_{|\zeta| = R} \left| \frac{C}{R^n (\zeta - t_1) \cdots (\zeta - t_n)} \right|\)
+exists, because \(\{z \in \bbC \mid |z| = R\}\) is non-empty and compact
+(\(\because\) \(\{z \in \bbC \mid |z| = R\}\) is bounded and closed),
+\(\frac{C}{R^n (z - t_1) \cdots (z - t_n)}\) is continuous in \(\{z \in \bbC \mid |z| = R\}\)
+(\(\because\) \(t_1, \cdots, t_m \in D(0; R)\), each of \(z - t_k\) is non-zero and analytic for \(z \in \bbC\) such that \(|z| = R\), \(\frac{C}{R^n (z - t_1) \cdots (z - t_n)}\) is analytic and continuous in \(\{z \in \bbC \mid |z| = R\}\)), \(|\cdot|\) is continuous, continuous image of compact set is compact, and non-empty compact set has maximum.
+
+\subsection*{Proof}
+Let \(R > 0\), \(C > 0\), \(n \in \bbZ^{\ge 0}\) be fixed.
+\newline
+
+\noindent
+Suppose that \(f\) is entire and \(|f(z)| \ge \frac{C}{|z|^n}\) for every \(z \in \bbC\) such that \(|z| \ge R\).
+
+First of all, \(f \not\equiv 0\).
+(\(\because\) If \(f \equiv 0\), \(0 = |f(R)| \ge \frac{C}{R^n} > 0\) and it's a contradiction.)
+Thus, let's assume that \(f\) is not zero.
+
+For \(|z| \ge R\), we obtain
+\begin{gather*}
+  |f(z)| \ge \frac{C}{|z|^n} \\
+  |z^{n + 1} f(z)| = |z|^{n + 1} \cdot |f(z)| \ge C |z|
+\end{gather*}
+
+Then, if \(|z| = r \ge R\), \(|z^{n + 1} f(z)| \ge C |z| = Cr\).
+Thus, \(\lim_{|z| \to \infty} |z^{n + 1} f(z)| \ge \lim_{|z| \to \infty} C |z| = \infty\).
+As \(f\) is entire and \(z^{n + 1}\) is entire (\(\because\) \(z^{n + 1}\) is an analytic polynomial since \(n + 1 \ge 1\)), \(z^{n + 1}f(z)\) is entire.
+By Theorem 6.11, \(z^{n + 1} f(z)\) is polynomial.
+
+Since \(z^{n + 1} f(z)\) is a polynomial,
+let \(z^{n + 1}f(z) = \sum_{k = 0}^{m'} a_k z^k\)
+where \(m' \in \bbZ^{\ge 0}\) and
+\(a_0, \cdots, a_{m'} \in \bbC\) and \(a_{m'} \neq 0\).
+(\(\because\) we assumed that \(f\) is not a zero function.)
+Then, for \(z \neq 0\), by dividing by \(z^{n + 1}\),
+\[f(z) = \sum_{k = 0}^{m'} a_k z^{k - n - 1}\]
+But if one of \(a_0, \cdots, a_{n}\) is non-zero,
+\(\lim_{x \in \bbR, x \to 0} f(x)\) diverges.
+(\(\because\) if \(a_j\) is non-zero with minimum index such that \(j \le n\),
+ for \(x\) with enough small absolute value, \(|f(x)| = |a_j x^{j - n - 1}| + \epsilon(x)\) and \(|f(x)| \to \infty\) as \(x \to 0\).)
+Then, \(f(z)\) cannot be continuous, and cannot be entire.
+Thus, \(a_0 = \cdots = a_{n} = 0\).
+
+Let's reindex \(f(z)\) as,
+\[f(z) = \sum_{k = 0}^{m} b_k z^{k}\]
+where \(m = m' - n - 1\), \(b_k = a_{k + n + 1}\) for each \(k = 0, \cdots, m\).
+
+Because \(b_m = a_{m'} \neq 0\), \(f(z)\) is degree \(m\) polynomials.
+By Fundamental Theorem of Algebra, \(f(z)\) has \(m\) roots in \(\bbC\).
+Let \(t_1, \cdots, t_m\) be roots of \(f(z)\) (allowing repetition).
+Then, \(f(t_k) = 0\) for each \(k = 1, \cdots, m\).
+However, if \(|t_k| \ge R\),
+\(0 = |f(t_k)| \ge \frac{C}{|t_k|^n} > 0\) and it's a contradiction.
+Therefore, \(t_1, \cdots, t_m\) must be in the open set \(D(0; R)\).
+
+Let \(s = b_m\). Then,
+\[f(z) = s(z - t_1) \cdots (z - t_m)\]
+(If \(m = 0\), \(f(z) = s\).)
+
+Since \(z - t_1, \cdots, z - t_m\) are continuous and non-zero at \(z\) where \(|z| = R\),
+\(|\cdot|\) is continuous,
+\(\{z \in \bbC \mid |z| = R\}\) is compact as closed and bounded,
+\(M = \max_{|\zeta| = R} \frac{C}{R^n |\zeta - t_1| \cdots |\zeta - t_m|}\)
+exists.
+(\(\because\) continuous image of compact set is compact and non-empty compact real-value set contains the maximum value.)
+
+Because, for each \(z \in \bbC\) such that \(|z| = R\),
+\[|s| \cdot |z - t_1| \cdots |z - t_m| = |s(z - t_1) \cdots (z - t_m)|
+  = |f(z)| \ge \frac{C}{|z|^n} = CR^{-n}\]
+and since \(t_1, \cdots, t_m \in D(0; R)\) and \(|z| = R\), \(|z - t_1|, \cdots, |z - t_m|\) are non-zero, and,
+\[|s| \ge \frac{C}{R^n |z - t_1| \cdots |z - t_m|}\]
+Thus,
+\[|s| \ge M = \max_{|\zeta| = R} \frac{C}{R^n |\zeta - t_1| \cdots |\zeta - t_m|}\]
+
+In conclusion at this point, if \(f\) is entire, and \(|f(z)| \ge \frac{C}{|z|^n}\) for every \(z \in \bbC\) such that \(|z| \ge R\), at least the below conditions are satisfied:
+\begin{itemize}
+\item \(f(z) = s(z - t_1) \cdots (z - t_m)\) for some \(m \in \bbZ^{\ge 0}\), \(s \in \bbC \bs \{0\}\), \(t_1, \cdots, t_m \in D(0; R)\).
+\item \(|s| \ge \max_{|\zeta| = R} \frac{C}{R^n |\zeta - t_1| \cdots |\zeta - t_m|}
+    = \max_{|\zeta| = R} \left| \frac{C}{R^n (\zeta - t_1) \cdots (\zeta - t_m)} \right|\)
+\end{itemize}
+
+Conversely, let \(f\) be a function satisfying the above two conditions.
+
+First, since \(f\) is a non-zero polynomial, \(f\) is entire.
+
+Note that for \(z \in \bbC\) such that \(|z| \ge R\), \(|z - t_k| \neq 0\) for each \(k = 1, \cdots, m\) because \(|t_k| < R\).
+
+Also, for \(z \in \bbC\) such that \(|z| = R\),
+\begin{align*}
+  |f(z)|
+  &= |s| \cdot |z - t_1| \cdots |z - t_m|
+  \\&\ge \left( \max_{|\zeta| = R} \frac{C}{R^n |\zeta - t_1| \cdots |\zeta - t_m|} \right)
+    \cdot |z - t_1| \cdots |z - t_m|
+  \\&\ge \frac{C}{R^n |z - t_1| \cdots |z - t_m|}
+    \cdot |z - t_1| \cdots |z - t_m|
+  \\&= \frac{C}{R^n} = \frac{C}{|z|^n}
+\end{align*}
+
+Let \(z \in \bbC\) such that \(|z| > R\).
+Then, let \(z_0 = z \cdot \frac{R}{|z|}\).
+Note that \(|z_0| = R\), and \(z_0\) is the nearest point from \(z\) in \(\partial D(0; R)\).
+For every \(t \in D(0; R)\),
+\(|z - t| > |z_0 - t|\).
+(\(\because\) Let \(a = \overline{z} / |z|\). Then, multiplicating by \(a\) preserves modulus.
+Let \(z' = az = |z|\), \(z_0' = az_0 = R\), \(t' = at = x + iy\) for some \(x, y \in \bbR\).
+Then, \(|z - t| = |z' - t'| = \sqrt{(|z| - x)^2 + y^2}\)
+and \(|z_0 - t| = |z_0' - t'| = \sqrt{(R - x)^2 + y^2}\).
+Since \(|z| > R\), \(|z| - x > R - x\) and
+\(|z - t| = \sqrt{(|z| - x)^2 + y^2} > \sqrt{(R - x)^2 + y^2} = |z_0 - t|\).
+)
+Since \(t_1, \cdots, t_m \in D(0; R)\), \(|z - t_k| \ge |z_0 - t_k|\) for each \(k = 1, \cdots, m\).
+Thus,
+\begin{align*}
+  |f(z)|
+  &= |s| \cdot |z - t_1| \cdots |z - t_m|
+  \\&\ge |s| \cdot |z_0 - t_1| \cdots |z_0 - t_m|
+  \\&\ge \left( \max_{|\zeta| = R} \frac{C}{R^n |\zeta - t_1| \cdots |\zeta - t_m|} \right)
+    \cdot |z_0 - t_1| \cdots |z_0 - t_m|
+  \\&\ge \frac{C}{R^n |z_0 - t_1| \cdots |z_0 - t_m|} \cdot |z_0 - t_1| \cdots |z_0 - t_m|
+  \\&= \frac{C}{R^n}
+  \ge \frac{C}{|z|^n}
+\end{align*}
+
+Therefore, for every \(z \in \bbC\) such that \(|z| \ge R\), \(|f(z)| \ge \frac{C}{|z|^n}\).
+\newline
+
+The conclusion.
+Let \(R > 0\), \(C > 0\), \(n \in \bbZ^{\ge 0}\) are fixed.
+If \(f\) is entire and \(\left|f(z)\right| \ge \frac{C}{\left|z\right|^n}\)
+for every \(z \in \bbC\) such that \(\left|z\right| \ge R\),
+then, below holds:
+\begin{itemize}
+\item \(f(z) = s(z - t_1) \cdots (z - t_m)\) for some \(m \in \bbZ^{\ge 0}\), \(s \in \bbC \bs \{0\}\), \(t_1, \cdots, t_m \in D(0; R)\).
+\item \(|s| \ge \max_{|\zeta| = R} \frac{C}{R^n |\zeta - t_1| \cdots |\zeta - t_m|}
+    = \max_{|\zeta| = R} \left| \frac{C}{R^n (\zeta - t_1) \cdots (\zeta - t_m)} \right|\)
+\end{itemize}
+Also, if \(f\) satisfies above two properties,
+\(f\) is entire and
+\(\left|f(z)\right| \ge \frac{C}{\left|z\right|^n}\)
+for every \(z \in \bbC\) such that \(\left|z\right| \ge R\).
+Therefore,
+\[\left\{
+  z \mapsto s(z - t_1) \cdots (z - t_m) \mid
+  m \in \bbZ^{\ge 0};
+  s \in \bbC \bs \{0\};
+  t_1, \cdots, t_m \in D(0; R);
+  |s| \ge \max_{|\zeta| = R} \left| \frac{C}{R^n (\zeta - t_1) \cdots (\zeta - t_n)} \right|
+  \right\}\]
+is a set consisting of all functions which satisfies all properties in the problem.
+\qedsq

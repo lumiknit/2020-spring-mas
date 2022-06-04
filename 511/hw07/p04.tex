@@ -1,0 +1,303 @@
+\section*{Problem 4}
+
+Let \(L\) be a Lie algebra over a field \(F\).
+
+\begin{enumerate}[label=(\arabic*)]
+\item
+  For an \(F\)-vector space \(M\),
+  find the natural definition of an \(L\)-module over the Lie algebra \(L\).
+  (Hint: you need something similar to that of the Jacobi identity.)
+\item
+  Prove that an \(L\)-module \(M\) is naturally an \(U(L)\)-module
+  for the associative \(F\)-algebra \(U(L)\) in the ordinary sense.
+\item
+  Prove that there is a natural equivalence of categories
+  \(L-\Mod \leftrightarrow U(L)-\Mod\)
+\end{enumerate}
+
+\subsection*{Proof of (1)}
+
+Note: \(M\) is an abelian group, \(F\) acts of \(M\).
+\(L\) is a \(F\)-vector space.
+
+For a ring \(R\), we know that \(R\)-module \(M\)
+with an action \(\cdot: R \times M \to M\) should satisfies,
+for \(r, s \in R\), \(m, n \in M\),
+\[r \cdot (s \cdot m) =  (rs) \cdot m\]
+\[(r + s) \cdot m = r \cdot m + s \cdot m\]
+\[r \cdot (m + n) = r \cdot m + r \cdot n\]
+
+The below two are linearly, and the first one is associativity.
+
+Let \(L\) be a Lie algebra over a field \(F\)
+and \(M\) be an \(F\)-vector space.
+Then, if \(M\) can be called as a \(L\)-module,
+it may need to satisfy linearlity and associativity.
+
+However, \(L\) is not associative.
+More specifically, there is a Jacobi identity: for \(\bfj, \bfk, \bfl \in L\),
+\[[\bfj, [\bfk, \bfl]] + [\bfk, [\bfl, \bfj]] + [\bfl, [\bfj, \bfk]] = 0\]
+Suppose that \(\bfm \in M\) and \(\cdot: L \times M \to M\) is an action.
+We want to replace \(\bfl\) to \(\bfm\).
+To achieve this, make above terms into the form of \([-, \bfl]\).
+\begin{align*}
+  0 =
+  [\bfj, [\bfk, \bfl]] + [\bfk, [\bfl, \bfj]] + [\bfl, [\bfj, \bfk]]
+  &= [\bfj, [\bfk, \bfl]] + [\bfk, -[\bfj, \bfl]] - [[\bfj, \bfk], \bfl]
+  \\&= [\bfj, [\bfk, \bfl]] - [\bfk, [\bfj, \bfl]] - [[\bfj, \bfk], \bfl]
+\end{align*}
+Then, change \(\bfl\) to \(\bfm \in M\)
+and \([-, \bfn]\) into \(- \cdot \bfn\) for any \(\bfn \in M\):
+\begin{align*}
+  0
+  &= [\bfj, [\bfk, \bfl]] - [\bfk, [\bfj, \bfl]] - [[\bfj, \bfk], \bfl]
+  \\&= [\bfj, \bfk \cdot \bfm] - [\bfk, \bfj \cdot \bfm] - [\bfj, \bfk] \cdot \bfm
+  \\&= \bfj \cdot (\bfk \cdot \bfm) - \bfk \cdot (\bfj \cdot \bfm) - [\bfj, \bfk] \cdot \bfm
+\end{align*}
+By add \([\bfj, \bfk] \cdot \bfm\) to the both side, we obtain
+\[[\bfj, \bfk] \cdot \bfm = \bfj \cdot (\bfk \cdot \bfm) - \bfk \cdot (\bfj \cdot \bfm)\]
+This is a property looks like associativity for \(L\)-module.
+
+Linearity is almost same as the \(R\)-module.
+
+Thus, we can say that
+a \(F\)-vector space \(M\) is a \(L\)-module
+for an action \(\cdot: L \times M \to M\)
+if it satisfies
+\[[\bfk, \bfl] \cdot \bfm = \bfk \cdot (\bfl \cdot \bfm) - \bfl \cdot (\bfk \cdot \bfm)\]
+\[(\bfk + \bfl) \cdot \bfm = \bfk \cdot \bfm + \bfl \cdot \bfm\]
+\[\bfl \cdot (\bfm + \bfn) = \bfl \cdot \bfm + \bfl \cdot \bfn\]
+\[f (\bfl \cdot \bfm) = (f \bfl) \cdot \bfm = \bfl \cdot (f \bfm)\]
+for every \(f \in F\), every \(\bfk, \bfl \in L\) and every \(\bfm, \bfn \in M\).
+
+\subsection*{Proof of (2)}
+
+Suppose that some structure \(A\) over a field \(F\) acts on some module \(M\) with \(\cdot: A \times M \to M\).
+In this case, we want to extend the action to
+\(*: (A \otimes_F A) \times M \to M\).
+Maybe, the most natural way to defined \(*\) is,
+\[(a \otimes b) * m = a \cdot (b \cdot m) \]
+for each generator \((a \otimes b)\) of \(A \otimes_F A\).
+Since \(\otimes\) and \(\cdot\) satisfies linearity, \(*\) also have
+linearity.
+But tensor product itself does not have any product between them,
+thus we cannot say anything about associativity of \(*\).
+
+However, in the tensor algebra \(T_F(A)\),
+we have a concatenation product.
+Let \(a_1 \otimes \cdots \otimes a_n \in T_F^n(A)\)
+and \(\overline{a_1 \otimes \cdots \otimes a_n}\) be an embedded image of \(a_1 \otimes \cdots \otimes a_n\)
+in \(T_F(A)\).
+In this case, let 
+\[\overline{a_1 \otimes \cdots \otimes a_n} * m = a_1 \cdot ( \cdots (a_n \cdot m))\]
+Then,
+for \(a_1 \otimes \cdots \otimes a_n \in T_F^n(A)\)
+and \(b_1 \otimes \cdots \otimes b_l \in T_F^l(A)\),
+\begin{align*}
+  \overline{a_1 \otimes \cdots \otimes a_n} * (\overline{b_1 \otimes \cdots \otimes b_l} * m)
+  &= a_1 * (a_2 * (\cdots (a_n * (b_1 * (\cdots (b_l * m))))))
+  \\&=
+  \overline{a_1 \otimes \cdots \otimes a_n \otimes b_1 \otimes \cdots \otimes b_l} * m
+  \\&=
+  \left(\overline{a_1 \otimes \cdots \otimes a_n} \cdot \overline{b_1 \otimes \cdots \otimes b_l} \right) * m
+\end{align*}
+Thus, this action is associative as an action of associative structure.
+\br
+\noindent
+Let \(L\) be a Lie algebra, and \(M\) be a \(L\)-module (See (1)).
+Note that each element of \(U(L)\) can be represented as:
+\[\sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}}\]
+for \(n, l_j \in \bbZ^{\ge 0}\), \(a_{j,k} \in L\).
+(If \(l_j = 0\), \(\bigotimes_{k=1}^{l_j} a_{j,k}\) is some element of \(F = T^0(L)\).
+Overline means embedded image into the \(U(L)\).)
+Then, let's define an action of \(U(L)\) on \(M\) as,
+\[\left(\sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}}\right) \cdot m
+= \sum_{j=1}^{n} (a_{j,1} \cdot (\cdots ( a_{j,l_j} \cdot m)))\]
+
+First, we should check this is well-defined.
+Note that there are some equivalence relation of \(U(L)\):
+\begin{itemize}
+\item
+  \(a \otimes b + a \otimes c = a \otimes (b + c)\).
+  For \(m \in M\),
+  \begin{align*}
+    \overline{a \otimes b + a \otimes c} \cdot m
+    &= \overline{a \otimes b} \cdot m + \overline{a \otimes c} \cdot m
+    \\&= a \cdot (b \cdot m) + a \cdot (c \cdot m)
+    \\&= a \cdot (b \cdot m + c \cdot m)
+    \\&= a \cdot (b \cdot m + c \cdot m)
+    \\&= a \cdot ((b + c) \cdot m)
+    = \overline{a \otimes (b + c)} \cdot m
+  \end{align*}
+\item
+  \(a \otimes c + b \otimes c = (a + b) \otimes c\).
+  In the similar way above, we can show that
+  \[\overline{a \otimes c + b \otimes c} \cdot m
+  = \overline{(a + b) \otimes c} \cdot m\]
+  for \(m \in M\).
+\item
+  \(f (a \otimes b) = (fa) \otimes b = a \otimes (fb)\) for \(f \in F\).
+  Then, by linearity of action of \(L\) on \(M\), for any \(m \in M\),
+  \begin{align*}
+    \overline{(fa) \otimes b} \cdot m
+    &= fa \cdot (b \cdot m)
+    \\&= f (a \cdot (b \cdot m))
+    = f (\overline{a \otimes b} \cdot m)
+    \\&= a \cdot (fb \cdot m)
+    \\&= \overline{a \otimes fb} \cdot m
+  \end{align*}
+\item
+  \(\overline{a \otimes b - b \otimes a - [a, b]} = 0\).
+  In this case, Jacobi-identity-like associativity of \(L\)-action helps us:
+  for \(m \in M\),
+  \begin{align*}
+    \overline{a \otimes b - b \otimes a - [a, b]} \cdot m
+    &= \overline{a \otimes b} \cdot m - \overline{b \otimes a} \cdot m - \overline{[a, b]} \cdot m
+    \\&= a \cdot (b \cdot m) - b \cdot (a \cdot m) - [a, b] \cdot m
+    \\&= [a, b] \cdot m - [a, b] \cdot m
+    = 0
+  \end{align*}
+\end{itemize}
+Therefore, by properties of tensor product and pseudo associativity(?)
+of \(L\)-action, the \(U(L)\)-action is well-defined.
+
+Then, it satisfies all properties of associative algebra action:
+\begin{itemize}
+\item
+  \(\bfa \cdot (\bfb \cdot \bfm) = (\bfa \bfb) \cdot \bfm\)
+  for \(\bfa, \bfb \in U(L)\), \(\bfm \in M\).
+  It holds because as we shown at the top of the proof,
+  for the concatenation product of \(U(L)\),
+  this kind of associativity hold.
+\item
+  \((\bfa + \bfb) \cdot \bfm = \bfa \cdot \bfm + \bfb \cdot \bfm\) 
+  for \(\bfa, \bfb \in U(L)\), \(\bfm \in M\).
+  This is directly from the definition of the action.
+  (Since the \(U(L)\)-action takes a sum of embedded images of tensor products
+  into a sum of value of module which obtained from \(L\)-action.)
+\item
+  \(\bfa \cdot (\bfm + \bfn) = \bfa \cdot \bfm + \bfa \cdot \bfn\) 
+  for \(\bfa \in U(L)\), \(\bfm, \bfn \in M\).
+  Let \(\bfa = \sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}}\).
+  Then,
+  \begin{align*}
+    \bfa \cdot (\bfm + \bfn)
+    &= \left(\sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}}\right) \cdot (\bfm + \bfn)
+    \\&= \sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}} \cdot (\bfm + \bfn)
+    \\&= \sum_{j=1}^{n} a_{j,1} ( \cdots ( a_{j,l_j}\cdot (\bfm + \bfn))) 
+    \\&= \sum_{j=1}^{n} a_{j,1} ( \cdots ( a_{j,l_j-1} \cdot ( a_{j,l_j} \cdot \bfm + a_{j,l_j} \cdot \bfn)))
+    \\&= \cdots
+    \\&= \sum_{j=1}^{n} \left( a_{j,1} ( \cdots ( a_{j,l_j}\cdot \bfm)) + a_{j,1} ( \cdots ( a_{j,l_j}\cdot \bfn))  \right)
+    \\&= \sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}}  \cdot \bfm + \sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}} \cdot \bfn
+    \\&= \bfa \cdot \bfm + \bfa \cdot \bfn
+  \end{align*}
+\item
+  \(f(\bfa \cdot \bfm) = f \bfa \cdot \bfm = \bfa \cdot f\bfm\)
+  for \(f \in F\), \(\bfa \in U(L)\), \(\bfm \in M\).
+  It can be shown as:
+  first, express \(f \bfa \cdot \bfm\) as a sum of form of
+  \(f(a_1 \otimes \cdots \otimes a_p) \cdot \bfm\),
+  then it's,
+  \(f(a_1 \cdot (\cdots (a_p \cdot \bfm)))\) by the definition,
+  use the property of \(L\)-action such that
+  \(f \bfl \cdot \bfm = \bfl \cdot f \bfm\)
+  \(p\)-times,
+  then we obtain
+  \((a_1 \cdot (\cdots (a_p \cdot f \bfm)))\)
+  and it can be resoted into
+  \(\bfa \cdot f\bfm\)
+\end{itemize}
+
+Thus, we can extend \(L\)-module \(M\) to the \(U(L)\)-module.
+
+Note that this is a unique extension of \(L\)-module to the \(U(L)\)-module.
+Because, if \(F: L-\Mod \to U(L)-\Mod\) is a extension,
+\(F\) should preserve all objects
+and \(F\) preserve the behavior of action for the elements of
+\(T_F^1(L) = L\) on \(M\).
+Then, because of associativity,
+for \(a, b \in L\),
+\(\overline{a} \overline{b} = \overline{a \otimes b} \in T_F^2(L)\) holds,
+and \(\overline{a} \cdot (\overline{b} \cdot m) = (\overline{a} \overline{b}) \cdot m = \overline{a \otimes b} \cdot m\)
+should holds.
+Repeating this process, we obtain the above definition of action.
+
+The proof of naturality is in the next part.
+
+\subsection*{Proof of (3)}
+
+Let \(F: L-\Mod \to U(L)-\Mod\) be a functor
+such that \(F\) maps each \(L\)-module into the \(U(L)\)-module
+preserving every object and morhpisms,
+but just changing the action as in the proof of (2).
+
+In other words,
+for every \(M, N \in L-\Mod\)
+and every homomorhpism \(\varphi: M \to N\),
+\(F(M) = M\) in the sense of a set
+and
+\(F(\varphi) = \varphi\)
+in the sense of a set map.
+
+First, \(F\) is well-defeined as a map of objects,
+because we showed that for every \(L\)-module \(M\),
+\(M\) is a \(U(L)\)-module.
+
+Also, \(F\) is essentially surjective.
+Let \(M\) be an \(U(L)\)-module.
+Then, we can define a \(L\)-module action as,
+\[\bfl \cdot \bfm = \overline{\bfl} \cdot \bfm\]
+where \(\bfl \in L\), \(\bfm \in M\) and overline means the embeded image into the \(U(L)\).
+Then, we can easily show that this action satisfies all properties which 
+\(L\)-module must satisfy:
+linearity is trivial,
+\([\bfk, \bfl] \cdot \bfm = \bfk \cdot (\bfl \cdot \bfm) - \bfl \cdot (\bfk \cdot \bfm)\) is hold because
+\(\overline{[\bfk, \bfl]} = \overline{\bfk \otimes \bfl - \bfl \otimes \bfk}\)
+and \(\overline{\bfk \otimes \bfl} \cdot \bfm = \bfk \cdot (\bfl \cdot \bfm)\).
+Thus, \(M\) is in \(L-\Mod\).
+And in this case, \(F(M)\) is the given \(M\), because we showed that
+\(L\)-module is extended to the \(U(L)\)-module in the unique way.
+This shows that \(F\) is essentially surjective.
+
+\(F\) as a map of morphisms is well-defined.
+It's because \(U(L)\)-action is just a sum of results of \(L\)-actions.
+More specifically, let \(\varphi: M \to N\) be an \(L\)-module homomorphism.
+Then, for \(m, n \in M\) \(\varphi(m + n) = \varphi(m) + \varphi(n)\) holds.
+For \(m \in M\) and \(\sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}} \in U(L)\)
+\begin{align*}
+  \varphi\left(\left(\sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}}\right) \cdot m\right)
+  &= \varphi\left(\sum_{j=1}^{n} a_{j, 1} \cdot ( \cdots ( a_{j,l_j} \cdot m ))\right)
+  \\&= \sum_{j=1}^{n} a_{j, 1} \cdot ( \cdots ( a_{j,l_j} \cdot \varphi(m)))
+  \\&= \left(\sum_{j=1}^{n} \overline{\bigotimes_{k=1}^{l_j} a_{j,k}}\right) \cdot \varphi(m)
+\end{align*}
+Thus, every \(L\)-module homomorphism is a \(U(L)\)-module homomorphism.
+Suppsoe that \(\varphi: M \to N\) is an \(U(L)\)-module homomorphism.
+Then, for \(m, n \in M\) \(\varphi(m + n) = \varphi(m) + \varphi(n)\) holds trivially.
+For \(m \in M\) and \(l \in L\),
+\[
+  \varphi(l \cdot m) = \varphi(\overline{l} \cdot m)
+  = \overline{l} \cdot \varphi(m) = l \cdot \varphi(m)
+\]
+Thus every \(U(L)\)-module homomorphism is a \(L\)-module homomorphism.
+
+Also, the above shows that there is 1-1 correspondence between
+\(L\)-module homomorphism and \(U(L)\)-module homomorphism.
+Therefore, \(F\) is fully faithful.
+
+Then, this \(F\) is a functor because,
+\begin{itemize}
+\item \(F(\Id_M) = \Id_{F(M)}\).
+  Note \(F\) preserved every object and morphism.
+  Thus, image of identity function by \(F\) is an identity function.
+  (\(F(\Id_M) = \Id_M = \Id_{F(M)}\))
+\item \(F(f \circ g) = F(f) \circ F(g)\).
+  Composition of homomorphisms is same to the composition of set functions.
+  Since \(F\) preserved morhpisms,
+  \(F(f \circ g) = f \circ g = F(f) \circ F(g)\)
+  holds.
+\end{itemize}
+
+Therefore, we find a fully faithful and essentially surjective functor
+from \(L-\Mod\) to \(U(L)-\Mod\).
+Therefore, \(F\) is an equivalenec between \(L-\Mod\) and \(U(L)-\Mod\).
+\qedsq

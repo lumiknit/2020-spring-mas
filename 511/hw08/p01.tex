@@ -1,0 +1,333 @@
+\section*{Problem 1}
+
+%-----------------------------------------------------------
+\subsection*{P1(1)}
+When \(R\) is a field,
+prove that the projective dimensions of all \(R\)-modules are 0.
+
+\subsection*{Answer for P1(1)}
+
+Let \(M\) be an arbitrary \(R\)-module.
+Let \(I \subseteq R\) be a left ideal and \(g: I \to M\) is a homomorphism.
+Since \(R\) is a field, \(I = (0)\) or \(I = R\).
+(By commutativity of \(R\), left ideal is two-sided,
+and simple as a field.)
+Suppose that \(I = (0)\).
+Then, \(g(0) = 0\).
+Then, we can extend \(g\) to \(\tilde g: R \to M\) such that \(\tilde g \equiv 0\).
+Suppose that \(I = R\).
+Then \(g\) is already a function \(R \to M\).
+Then, just take a \(\tilde g = g\).
+It's an extension of \(g\).
+Therefore, for every left ideal \(I \subseteq R\),
+any homomorphisms \(g: I \to M\) can be extended to the map \(R \to M\).
+Thus, by Baer's Criterion, \(M\) is injective.
+Therefore, every \(R\)-module is injective.
+This shows that any field is semisimple.
+
+Then, by Wedderburn's Theorem,
+every \(R\)-module is projective.
+(See Problem 2 \((2) \Rightarrow (1)\))
+
+Let \(M\) be an arbitrary \(R\)-module.
+Then, \(M\) is projective.
+Take
+\[0 \to M \xrightarrow{\Id_M} M \to 0\]
+This is an exact sequence since \(\Id_M\) is a bijective homomorphism.
+And since \(M\) is projective,
+it's a projective resolution of \(M\).
+Therefore, the projective dimensions of \(M\) is at most 0.
+Since projective dimension is laid on \(\bbZ^{\ge 0} \cup \{\infty\}\),
+\(pd_R M = 0\).
+\qedsq
+
+%-----------------------------------------------------------
+\subsection*{P1(2)}
+Let \(R\) be a PID.
+Let \(M\) be a finitely generated \(R\)-module.
+Prove that \(M\) always has a projective resolution
+of length \(\le 1\).
+(Hint: Theorem A)
+
+\subsection*{Answer for P1(2)}
+
+Let \(M\) be a finitely generaetd \(R\)-module.
+Then, there is a generator \(\calB = \{b_1, \cdots, b_n\} \subseteq M\).
+In other words, for any element \(m\) of \(M\),
+there are \(r_1, \cdots, r_n \in R\) such that
+\[m = \sum_{k=1}^n r_k b_k\]
+
+Then, let \(\varphi: R^n \to M\) such that
+\[\varphi(r_1, \cdots, r_n) = \sum_{k=1}^n r_k b_k\]
+Then, it's well-defined and surjective, since \(\im \varphi\) takes
+every possible linear combinations of the basis \(\calB\) of \(M\).
+
+Note that \(\varphi\) is a homomorphism:
+Let \(\bfr = (r_1, \cdots, r_n) \in R^n\),
+\(\bfs = (s_1, \cdots, s_n) \in R^n\)
+and \(a \in R\).
+Then,
+\begin{align*}
+  \varphi(\bfr + \bfs)
+  &= \sum_{k=1}^n (r_k + s_k) b_k
+  \\&= \sum_{k=1}^n (r_k b_k + s_k b_k)
+  \\&= \sum_{k=1}^n r_k b_k  + \sum_{k=1}^n s_k b_k
+  = \varphi(\bfr) + \varphi(\bfs)
+\end{align*}
+\begin{align*}
+  \varphi(a \bfr)
+  &= \sum_{k=1}^n (a r_k)  b_k
+  \\&= a \sum_{k=1}^n r_k  b_k
+  = a \varphi(\bfr)
+\end{align*}
+This shows that \(\varphi\) is an homomorphism.
+
+Let \(K = \ker \varphi\).
+Then, we know two facts:
+First, there is a canonical injective homomorhpism \(\iota\) from \(K\) to \(R^n\),
+which is an identity for every element of \(K\).
+In this case, \(\im \iota = K = \ker \varphi\).
+Second, since \(R\) is PID, \(R^n\) is a free \(R\)-module of rank \(n\)
+and \(K\) is a \(R\)-submodule of \(R^n\),
+\(K\) is also free by the Theorem (A).
+
+Then, we can construct an short exact sequence:
+\[\begin{tikzcd}
+  0 \ar{r} & K \ar["\iota"]{r} & R^n \ar["\varphi"]{r} & M \ar{r} & 0
+\end{tikzcd}\]
+because \(\iota\) is injective, \(\im \iota = K = \ker \varphi\), and \(\varphi\) is surjective.
+Since \(K\) and \(R^n\) are free, they are projective.
+Thus, \(\cdots \to 0 \to K \to R^n \to M\)
+is a projective resolution of length 1.
+Thus, the projective dimension of \(M\) should be less or equal to \(1\).
+\qedsq
+
+%-----------------------------------------------------------
+\subsection*{P1(3)}
+Give an example of a concrete PID \(R\)
+and a finitely generated \(R\)-module
+\(M\) such that \(pd_R M\) is precisely 1.
+
+\subsection*{Answer for P1(3)}
+
+Since every finitely generated \(R\)-module for PID \(R\) has a projective dimension \(0\) or \(1\),
+we need to find a PID \(R\) and a finitely generated \(R\)-modlue
+which does not have a projective resolution of length 0.
+
+Let \(R\) be a PID and \(M\) be an arbitrary finitely generaetd \(R\)-module.
+Suppose that \(pd_R M = 0\).
+Then, there is a projective resolution
+\[\cdots \to 0 \to N \xrightarrow{\epsilon} M \to 0\]
+In this case, \(\epsilon\) must be injective and surjective.
+Thus, \(\epsilon\) is an isomorphism between \(N\) and \(M\).
+Since \(M\)'s isomorphic image, \(N\), is projective,
+\(M\) should be projective too.
+
+In other words, if \(M\) is not projective,
+\(pd_R M > 0\).
+Therefore, it's enough to find some non-projectiev \(R\)-module.
+
+Let \(R = \bbZ\).
+\(\bbZ\) is an ED thus a PID, but not a field since \(2^{-1} \in \bbQ \bs \bbZ\).
+Let \(M = \bbZ_2 = \bbZ / 2\bbZ\).
+
+\(\bbZ_2\) is not projective.
+Because, if we take
+\[\begin{tikzcd}
+  \bbZ \ar["f"]{r} & \bbZ_2 \ar{r} & 0
+  \\
+  & \bbZ_2 \ar[dashed, "\tilde g"]{ul} \ar["g"]{u}
+\end{tikzcd}\]
+where \(f: \bbZ \to \bbZ_2\) is a canonical surjection such that \(x \mapsto x + 2\bbZ\),
+and \(g\) is an identity map.
+If \(\bbZ_2\) is projective, since \(f\) is surjective,
+ther should be a lift \(\tilde g\) of \(g\)
+such that \(g = f \circ \tilde g\).
+Note that \(\tilde g\) must be a \(R\)-module homomorphism.
+Because module homomorphism maps \(0\) to \(0\),
+\(\tilde g(0) = 0\).
+Also,
+\[0 = \tilde g(0) = \tilde g(1 + 1) = \tilde g(1) + \tilde g(1)\]
+However, for \(n \in \bbZ\), \(n + n = 0\) iff \(n = 0\).
+Thus, \(\tilde g(1) = 0\).
+This shows that there is only one homomorphism from \(\bbZ_2\) to \(\bbZ\),
+which is a zero map.
+Thus, \(\tilde g \equiv 0\).
+However, in this case
+\(0 = (f \circ \tilde g)(1) \neq g(1) = 1\).
+Thus, there cannot be a lift of \(g\) by \(f\).
+
+\(\bbZ_2\) is finitely generated.
+More specifically, the basis of \(\bbZ_2\) is \(\{1\}\).
+(\(\because\)
+Since \(\bbZ_2\) is non-zero, the generating set of \(\bbZ_2\)
+must contains at least one non-zero element.
+Since \(0 = 0 \cdot 1\), \(1 = 1 \cdot 1\),
+\(1\) generates every element of \(\bbZ_2\).)
+
+Therefore,
+the projective dimension of \(\bbZ_2\) as a \(\bbZ\)-module
+must be greater than 0 since \(\bbZ_2\) is not projective,
+and the projective dimension of \(\bbZ_2\) as a \(\bbZ\)-module
+must be less or equal to 1 since \(\bbZ_2\) is a finitely generated module of PID.
+Thus, the projection dimension of \(\bbZ_2\) as a \(\bbZ\)-module is 1.
+\qedsq
+
+Note that we can easily find a projective resolution of \(\bbZ_2\) of length 1,
+which is,
+\[\cdots \to 0 \to \bbZ \xrightarrow{f} \bbZ \xrightarrow{g} \bbZ_2 \to 0\]
+where \(f: \bbZ \to \bbZ\) is a map such that \(x \mapsto 2x\)
+and \(g: \bbZ \to \bbZ_2\) is a canonical surjection such that
+\(x \mapsto x + 2\bbZ\).
+In this case, \(f\) is injective, \(g\) is surjective,
+\(\im f = 2\bbZ = \ker g\).
+Thus, the above sequence is exact.
+Also, since \(\bbZ\) is a free \(\bbZ\)-module of rank 1, it's projective.
+Thus the above sequence gives a projective resolution of \(\bbZ_2\).
+
+%-----------------------------------------------------------
+\subsection*{P1(4)}
+Let \(R = k[y_1, y_2]\).
+Give an example of a finitely generated \(R\)-module \(M\),
+such that \(pd_R M \ge 2\).
+
+\subsection*{Answer for P1(4)}
+
+For convinience let's change the indeterminates \(y_1\) and \(y_2\) to \(x\) and \(y\).
+Since \(k\) is a field, \(k[x]\) is an ED and \(k[x, y]\) is a UFD.
+
+\(M = k[x, y] / (x, y) \simeq k\).
+
+First, I'll introduce a lemma:
+\begin{definition}
+  \(R\)-module \(M\) is torsion free,
+  if for any non-zero element \(m\) of \(M\),
+  \(rm = 0\) if and only if \(r = 0\) for \(r \in R\).
+\end{definition}
+\begin{lemma}
+  Let \(R\) be an integral domain.
+  Every flat \(R\)-module is torsion-free.
+\end{lemma}
+\begin{proof}
+  Suppose that \(M\) is flat but not a torsion-free.
+  Then there is a non-zero \(m \in M\) and non-zero \(r \in R\)
+  such that \(rm = 0\).
+
+  Note that \(r\) is a non-unit.
+  (If not, \(m = r^{-1}rm = r^{-1} 0 = 0\) and it gives a contradiction.)
+  This shows that
+  if \(sm = 0\) for \(s \in R\)
+  then \(s = 0\) or \(s\) is a non-unit.
+
+  Let \(f: R \to R\) such that \(x \mapsto xr\).
+  Then, \(f\) is injective, because
+  if \(f(x) = f(y)\) for \(x, y \in R\),
+  \(xr = yr\) and \(x = y\) by cancellation law.
+
+  Take a exact sequence
+  \[0 \to R \xrightarrow{f} R \to \coker f \to 0\]
+  Because \(M\) is flat,
+  \[0 \to R \otimes_R M \xrightarrow{f \otimes_R M} R \otimes_R M \to \coker f \otimes_R M \to 0\]
+  is exact.
+  It means, \(f \otimes_R M = f \otimes \Id_M\) is injective.
+
+  Note that \(1 \otimes m\) is non-zero.
+  (\(\because\)
+  If \(1 \otimes m = 0\), there should be some \(s \in S^\times\)
+  such that \(sm = 0\)
+  so that \(1 \otimes m = s^{-1} \otimes sm = s^{-1} \otimes 0 = 0\).
+  However, since \(s\) is a unit, \(sm\) cannot be zero.)
+
+  However, \((f \otimes_R M)(1 \otimes m) = r \otimes m = 1 \otimes rm = 1 \otimes 0\).
+  Thus, \(\ker (f \otimes_R M)\) contains a non-zero element \(1 \otimes m\).
+  Therefore, \(f \otimes_R M\) cannot be injective
+  and it's an contradiction.
+
+  Therefore, if \(M\) is flat, it must be torsion-free.
+\end{proof}
+
+Since \(R\) is an ID and every projective \(R\)-module is flat,
+projective \(R\)-module is torsion-free.
+
+\(M = k[x, y] / (x, y)\) is not projective,
+because it's not torsion-free.
+(e.g. \(x \cdot \overline{1} = \overline{x} = 0\))
+Therefore, \(pd_R M > 0\).
+(Because \(pd_R M = 0\) then \(M\) should be projective.
+See the Proof of (3).)
+\br
+\noindent
+Let's show that there cannot be a projective resolution of length 1.
+Suppose that there is a exact sequence with projective \(R\)-modules \(P, Q\):
+\[0 \to P \to Q \xrightarrow{f} k[x, y] / (x, y) \to 0\]
+where \(P\) is non-zero.
+Then, because the injectivity of \(P \to Q\),
+\(P \simeq \im (P \to Q) = \ker f\) and we obtain an exact sequence
+\[0 \to \ker f \to Q \xrightarrow{f} k[x, y] / (x, y) \to 0\]
+
+For each \(q \in Q\), if there is \(r \in Q\) such that
+\(q = xr\),
+then \(f(xr) = xf(r) = \overline{xr} = \overline{0}\).
+Thus, \(q \in \ker f\).
+In the same way, if there is \(r \in Q\) such that
+\(q = yr\),
+\(q \in \ker f\).
+Thus, \((x, y) \cdot Q = \{pq \mid q \in Q, p \in (x, y)\} \subseteq \ker f\).
+
+Since \(f\) is surjective, there is \(q \in Q\)
+such that \(f(q) = \overline{1}\).
+Note that since this \(q\) is not in \(\ker f\),
+\(xq, yq \in \ker f\)
+has a special property that there is no \(r \in \ker f\)
+such that \(xr = xq\) or \(yr = yq\).
+(It's because, if such \(r\) exists,
+since \(R\) is UFD,
+we can use Cancellation Law to obtain \(r = q\).
+It makes a contradiction since \(r \in \ker f\) but \(q \not\in \ker f\).)
+
+Then, make a exact sequence:
+\[0 \to (x, y) \xrightarrow{g} k[x, y] = R \xrightarrow{h} k[x,y]/(x,y) \to 0\]
+where \(g\) is an injection, and \(h\) is a canonical surjection.
+Then, apply \(- \otimes_{R} \ker f\) functor.
+\[0 \to
+(x, y) \otimes_{R} \ker f \xrightarrow{g \otimes_{R} \ker f}
+k[x, y] \otimes_{R} \ker f \xrightarrow{h \otimes_{R} \ker f}
+k[x,y]/(x,y) \otimes_{R} \ker f \to 0\]
+Since \(\ker f\) is projective, thus flat, the above sequence must exact.
+
+Note that \(x \otimes (y \cdot q) \neq y \otimes (x \cdot q)\)
+in \((x, y) \otimes_R \ker f\).
+Because there are no other representation of \(x \otimes (yq)\).
+In other words, for a single tensor product term,
+there are only one equivalence relation such that
+\(ar \otimes b = a \otimes rb\) for \(r \in R\).
+However, for \(x \otimes (yq)\),
+If \(x = ar\) where \(a \in (x, y)\), since the degree of \(a\) must be greater
+than 0, \(\deg r\) must be 0.
+Thus, in this case, only the element of \(k\) can be passed from left to right.
+Also, since \(q\) is not in \(\ker f\),
+polynomial with degree greater than 0 cannot be passed from right to left.
+Thus, we cannot make any common terms between
+\(x \otimes (y \cdot q)\) and \(y \otimes (x \cdot q)\).
+And they cannot be equal.
+
+However,
+\begin{align*}
+  (g \otimes_R \ker f)(x \otimes (y \cdot q) - y \otimes (x \cdot q))
+  &= x \otimes (y \cdot q) - y \otimes (x \cdot q)
+  \\&= 1 \otimes (xy \cdot q) - 1 \otimes (yx \cdot q)
+  \\&= 1 \otimes (xy \cdot q) - 1 \otimes (xy \cdot q)
+  \\&= 0 \otimes (xy \cdot q) = 0
+\end{align*}
+This shows that \(\ker (g \otimes_R \ker f)\)
+contains a non-zero element \(x \otimes (y \cdot q) - y \otimes (x \cdot q)\)
+Thus, \(g \otimes_R \ker f\) is not injective.
+But it's a contradiction,
+because \(g \otimes_R \ker f\) is injective by the flatness of \(\ker f\).
+
+Therefore, \(\ker f\) cannot be projective,
+and \(P\) cannot be projective too.
+
+Therefore, the length of any projective resolution of \(k[x, y]/(x, y)\)
+over \(k[x, y]\) must be at least \(2\) (or infinity).
+\qedsq

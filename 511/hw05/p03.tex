@@ -1,0 +1,168 @@
+\section*{Problem 3}
+
+Give a rigorous proof of the below theorem:
+
+\begin{theorem}
+(Pseudo-universal property)
+Let \(M, N\) be \(R\)-modules, and let \(f^{-1}: M \to N\) be a \(R\)-module homomorphism.
+Let \(M \to E^\bullet\) and \(N \to I^\bullet\) be injective resolutions.
+Then there is a chain map \(f^\bullet : E^\bullet \to I^\bullet\)
+that extends \(f^{-1}\).
+Furthermore, this \(f^\bullet\) is unique up to chain homotopy.
+\end{theorem}
+
+\subsection*{Proof}
+
+The below diagram shows the ingrediants given in the problem.
+Dashed arrows are what we should construct.
+
+\[\begin{tikzcd}
+  0 \ar{r} & M \ar["f^{-1}"]{d} \ar["g^{-1}"]{r} & E^0 \ar[dashed, "f^0"]{d} \ar["g^0"]{r} & E^1 \ar[dashed, "f^1"]{d} \ar{r} & \cdots \\
+  0 \ar{r} & N \ar["h^{-1}"]{r} & I^0 \ar["h^0"]{r} & I^1 \ar{r} & \cdots
+\end{tikzcd}\]
+
+We'll denote \(E^{-1} = M\), \(I^{-1} = N\), \(E^{-2} = I^{-2} = 0\), \(g^{-2}: 0 \to M, h^{-2}: 0 \to N\) are zero functions.
+
+\subsubsection*{Existence of \(f^\bullet\)}
+
+Suppose that we already have \(f^{-1}, \cdots, f^{k}\) for some \(k \in \bbZ^{\ge -1}\),
+such that \(f^{j + 1} g^{j} = h^{j} f^j\) for every \(j \in \{-1, 0, \cdots, k - 1\}\) (i.e. they commute as the above diagram).
+
+Then, we can make induced homomorphisms
+\(\tilde g^{k}: \coker g^{k - 1} = E^{k} / \im g^{k - 1} \to E^{k + 1}\) such that \(\tilde g^{k}(x + \im g^{k - 1}) = g^{k}(x)\),
+\(\tilde h^{k}: \coker h^{k - 1} = I^{k} / \im h^{k - 1} \to I^{k + 1}\) such that \(\tilde h^{k}(x + \im h^{k - 1}) = h^{k}(x)\),
+and
+\(\tilde f^{k}: \coker g^{k - 1} \to \coker h^{k - 1}\) such that
+\(\tilde f^{k}(x + \im g^{k - 1}) = f^{k}(x) + \im h^{k - 1}\).
+
+Note that above isomorphisms are well defined
+Because
+if \(x + \im g^{k - 1} = y + \im g^{k - 1}\),
+then \(x - y \in \im g^{k - 1} = \ker g^{k}\),
+and \(g^{k}(x) - g^{k}(y) = g^{k}(x - y) = 0\).
+In the same way, \(\tilde h^{k}\) is well-defined.
+If \(x + \im g^{k - 1} = y + \im g^{k - 1}\),
+\(x - y \in \im g^{k - 1}\).
+Let \(t \in E^{k - 1}\) such that \(g^{k - 1}(t) = x - y\).
+\(f^k(x - y) = h^{k - 1}(f^{k - 1}(t))\).
+Thus, \(f^k(x - y) \in \im h^{k - 1}\).
+This shows \(\tilde f^k\) is well-defined.
+
+\(\tilde g^{k}\) is injective.
+Because \(\ker g^{k} = \im g^{k - 1}\) because of exactness of seqneuce,
+if \(x + \im g^{k - 1} \in \ker \tilde g^{k}\),
+\(g^{k}(x) = \tilde g^{k}(x + \im g^{k - 1}) = 0\)
+and
+\(x \in \ker g^{k} = \im g^{k - 1}\).
+But in this case, \(x + \im g^{k - 1} = \im g^{k - 1}\),
+which is an additive identity of \(\coker g^{k - 1}\).
+This shows that \(\ker \tilde g^{k}\) contains only an additive identity
+and \(\tilde g^{k}\) is injective.
+In the same way, we can show that \(\tilde h^{k}\) is also injective.
+
+Then, rows of the below diagram are exact.
+\[\begin{tikzcd}
+  0 \ar{r} & \coker g^{k - 1} \ar["\tilde f^{k}"]{d} \ar["\tilde g^{k}"]{r} & E^{k + 1} \ar[dashed, "f^{k + 1}"]{d} \ar{r} & \cdots \\
+  0 \ar{r} & \coker h^{k - 1} \ar["\tilde h^{k}"]{r} & I^{k + 1} \ar{r} & \cdots
+\end{tikzcd}\]
+
+Since \(\tilde g^{k - 1}\) is injective,
+by injectivity of \(I^{k + 1}\),
+we can extend \(\tilde h^k \circ \tilde f^k\) to \(f^{k + 1}: E^{k + 1} \to I^{k + 1}\).
+Then, because \(f^{k + 1}\) is an extension,
+\(\tilde h_{k} \circ \tilde f^{k} = f^{k + 1} \circ \tilde g_{k}\).
+
+Lastly, let's check \(h_{k} \circ f^{k} = f^{k + 1} \circ g_{k}\).
+Note that
+\(g^{k - 1}(x) = \tilde g^{k - 1}(x + \im g^{k})\)
+and
+\(h^{k - 1}(x) = \tilde h^{k - 1}(x + \im h^{k})\).
+In other words,
+\((f^{k + 1} \circ \tilde g^{k})(x + \im g^{k}) = (f^{k + 1} \circ g^{k})(x)\)
+,
+\((\tilde h^{k} \circ \tilde f^{k})(x + \im g^{k}) = \tilde h^{k}(f^{k}(x) + \im h^{k}) = (h^{k} \circ f^{k})(x)\)
+thus,
+\[(h^{k} \circ f^{k})(x) = (\tilde h^{k} \circ \tilde f^{k})(x + \im g^{k}) =
+  (f^{k + 1} \circ \tilde g^{k})(x + \im g^{k}) = (f^{k + 1} \circ g^{k})(x) \]
+Therefore, \(h^{k} \circ f^{k} = f^{k + 1} \circ g^{k}\).
+
+The above process constructs \(f^{k + 1}\) from \(f^{k}\) such that
+\(h^{k} \circ f^{k} = f^{k + 1} \circ g^{k}\) holds.
+Because \(f^{-1}\) was given,
+we can construct \(f^\bullet\) by repeating above process.
+\qedsq
+
+%-------------------------------------------------------------------------------
+
+\subsubsection*{Uniqueness of \(f^\bullet\)}
+
+Suppose that there are two extensions \(f^\bullet\) and \(f'^\bullet\) from \(f\).
+Let \(\varphi^\bullet = f^\bullet - f'^\bullet\).
+Note that \(\varphi^{-1}\) is a zero map.
+
+\[\begin{tikzcd}
+  0 \ar{r} & M \ar[swap, "\varphi^{-1} = 0"]{d} \ar["g^{-1}"]{r} & E^0 \ar["\varphi^{0}"]{d} \ar["g^{0}"]{r} \ar[dashed, "s^0"]{ld} & E^1 \ar{r} \ar[dashed, "s^1"]{ld} & \cdots \\
+  0 \ar{r} & N \ar[swap,"h^{-1}"]{r} & I^0 \ar{r} &  \cdots
+\end{tikzcd}\]
+
+If we find \(s^\bullet: E^{\bullet} \to I^{\bullet - 1}\) such that
+\(\varphi^k = s^{k + 1} g^k + h^k s^k\), \(f\) and \(f'\) are chain homotopy equivalence by \(s\).
+
+First, let \(\cdots, s^{-2}, s^{-1}\) are zero maps.
+
+Let \(s^{0} = 0\).
+Then, \(0 = \varphi^{-1} = h^{-2}s^{-1} + s^{0}g^{-1} = 0 + 0 = 0\) holds.
+
+Suppose that for \(k \in \bbN\), for every integer \(n < k\),
+\(\varphi^{n} = h^{n - 1}s^{n} + s^{n + 1}g^{n}\) holds.
+
+Let \(\psi^{k} = \varphi^k - h^{k - 1}s^{k}\)
+
+Let \(x \in \ker g^k = \im g^{k - 1}\). Then, there is \(y \in E^{k - 1}\) such that \(g^{k - 1}(y) = x\). Then, because \(h^{k - 1} \circ h^{k - 2} = 0\),
+\begin{align*}
+  \psi^k (x)
+  = (\varphi^k - h^{k - 1}s^{k}) (x)
+  &= (\varphi^k g^{k - 1} - h^{k - 1}s^{k}g^{k - 1}) (y)
+  \\&= ( h^{k - 1} \varphi^{k - 1} - h^{k - 1}s^{k}g^{k - 1}) (y)
+  \\&= ( h^{k - 1}(h^{k - 2}s^{k - 1} + s^{k}g^{k - 1}) - h^{k - 1}s^{k}g^{k - 1}) (y)
+  \\&= ( h^{k - 1}h^{k - 2}s^{k - 1} + h^{k - 1}s^{k}g^{k - 1} - h^{k - 1}s^{k}g^{k - 1}) (y)
+  \\&= ( h^{k - 1}h^{k - 2}s^{k - 1}) (y)
+  \\&= ( 0 \circ s^{k - 1}) (y) = 0
+\end{align*}
+
+Therefore, \(\ker g^k \subseteq \ker \psi^k\).
+
+In this case, if \(x + \im g^{k - 1}, y + \im g^{k - 1} \in \coker g^{k - 1}\) satisfies
+\(x + \im g^{k - 1} = y + \im g^{k - 1}\),
+\(x - y \in \im g^{k - 1} = \ker g^k\) and \(\psi^k(x - y) = 0\).
+Therefore, if we make an induced homomorphism \(\tilde \psi^k: \coker g^{k - 1} \to I^k\)
+such that \(\tilde \psi^{k}(x + \im g^{k - 1}) = \psi^k(x)\),
+it's well-defined.
+
+Also, note that we showed that there is
+an induced injective homomorphism \(\tilde g^{k - 1}: \coker g^{k - 1} \to E^{k + 1}\)
+in the proof of ``Existence of \(f^\bullet\)''.
+
+\[\begin{tikzcd}
+  0 \ar{r} & \coker g^{k - 1} \ar[swap, "\tilde \psi^k"]{d} \ar["\tilde g^{k}"]{r} & E^{k + 1} \ar[dashed, "s^{k + 1}"]{ld} \\
+  & I^{k} & 
+\end{tikzcd}\]
+
+Therefore, by injectivity of \(I^k\),
+we can extend \(\tilde \psi^{k}\) to \(s^{k + 1}\) such that \(\tilde \psi^{k} = s^{k + 1} \circ \tilde g^{k}\).
+
+Let's check \(\psi^k = s^{k + 1} \circ g^k\).
+Because \(\psi^k(x) = \tilde \psi^k(x + \im g^{k - 1})\) and \(g^k(x) = \tilde g^k(x + \im g^{k - 1})\), for any \(x \in E^k\),
+\[\psi^k(x) = \tilde\psi^k(x + \im g^{k - 1}) = s^{k + 1}(\tilde g^k(x + \im g^{k - 1})) = s^{k + 1}(g^k(x))\].
+
+Therefore, we obtained \(s^{k + 1}\) such that
+\[\psi^k = \varphi^k - h^{k - 1}s^k = s^{k + 1}g^k\]
+
+Then, by induction, we can find \(s^\bullet\) which satisfies above equation.
+In other words, for every \(k \in \bbZ^{\ge 0}\),
+\[f^k - f'^k = \varphi^k = h^{k - 1}s^k + s^{k + 1}g^k\]
+holds.
+Thus, we can construct a chain homotopy for two extensions \(f^\bullet\) and \(f'^\bullet\) which extended from \(f^{-1}\).
+
+Therefore, \(f^k\) are unique up to chain homotopy.
+\qedsq

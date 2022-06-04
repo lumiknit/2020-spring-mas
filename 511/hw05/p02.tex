@@ -1,0 +1,51 @@
+\section*{Problem 2}
+
+Let \(M_\bullet\) be a bounded above complex of \(R\)-modules.
+Then give a rigorous proof that there is a projective resolution
+\(P_\bullet \to M_\bullet\).
+
+(Hint: Use the existence for a single module case
+and break down \(M_\bullet\) into short exact seqnuences.
+If needed, use the above horseshoe lemma.)
+
+(Note, bounded above complex \(K^-(R)\), such that \(\cdots \to M_2 \to M_1 \to M_0 \to \cdots\) holds \(M_{n} = 0\) for every \(n > N\) for some \(N \in \bbN\))
+
+\subsection*{Solution}
+
+Let a bounded above chain complex \(M_\bullet\) of \(R\)-modules is given.
+And let \(f_\bullet\) be differentials of \(M_\bullet\).
+Let \(N \in \bbZ\) such that \(M_n = 0\) for every integer \(n \ge N\).
+
+Note that \(0\) is a projective module.
+Let all of \(\cdots, P_{N + 2}, P_{N + 1}, P_N\) are zero modules.
+Since \(\cdots, M_{N + 2}, M_{N + 1}, M_N\) are zero modules,
+\(H_k(M_\bullet) = \ker 0 / \im 0 = 0\)
+and \(H_k(P_\bullet) = \ker 0 / \im 0 = 0\) for integer \(k > N\).
+Thus, \(H_k(M_\bullet) \simeq H_k(P_\bullet)\) for every \(k > N\).
+
+As the induction step,
+for \(n < N\),
+suppose that we found projective \(R\)-modules \(\cdots, P_{n + 3}, P_{n + 2}, P_{n + 1}\),
+with differentials \(g_\bullet\),
+such that \(H_k(P_\bullet) \simeq H_k(M_\bullet)\) for every integer \(k \ge n + 1\),
+and \(h_\bullet: M_\bullet \to P_\bullet\) be a quasi-isomorphism.
+
+\[\begin{tikzcd}
+  \cdots \ar{r} & M_{n + 2} \ar["h_{n + 2}"]{d} \ar["f_{n + 2}"]{r} & M_{n + 1} \ar["h_{n + 2}"]{d} \ar["f_{n + 1}"]{r} & M_n \ar[dashed, "h_n"]{d} \ar{r} & \cdots \\
+  \cdots \ar{r} & P_{n + 2} \ar["g_{n + 2}"]{r} & P_{n + 1} \ar[dashed, "g_{n + 1}"]{r} & P_n
+\end{tikzcd}\]
+
+Since \(0 \to M_n \to M_n \oplus P_{n + 1} \to P_{n+1} \to 0\) is exact,
+there is a projective resolution \(Q_\bullet \to M_n\), \(R_\bullet \to P_{n + 1}\) such that \(0 \to Q_\bullet \to Q_\bullet \oplus R_\bullet \to R_\bullet \to 0\) is exact.
+
+\[\begin{tikzcd}
+  & \vdots \ar{d} & \vdots \ar{d} & \vdots \ar{d} & \\
+  0 \ar{r} & Q_1 \ar[->>]{d} \ar{r} & Q_1 \oplus R_1 \ar[->>]{d} \ar{r} & R_1 \ar[->>]{d} \ar{r} & 0 \\
+  0 \ar{r} & \ker f \ar[>->]{d} \ar{r} & \ker h \ar[>->]{d} \ar{r} & \ker g \ar[>->]{d} \ar{r} & 0 \\
+  0 \ar{r} & Q_0 \ar["f"]{d} \ar{r} & Q_0 \oplus R_0 \ar["h"]{d} \ar{r} & R_0 \ar["g"]{d} \ar{r} & 0 \\
+  0 \ar{r} & M_n \ar{d} \ar{r} & M_n \oplus P_{n + 1} \ar{d} \ar{r} & P_{n + 1} \ar{d} \ar{r} & 0 \\
+  & 0 & 0 & 0 &
+\end{tikzcd}\]
+
+Take \(P_n = Q_{1} \oplus R_{1}\).
+In this case, 

@@ -1,0 +1,87 @@
+\section*{Problem 2}
+
+Prove that when
+\[0 \to A^\bullet \to B^\bullet \to C^\bullet \to 0\]
+is a s.e.s of cohomological complexes in degree \(\ge 0\),
+we have the associated long exact sequence of the cohomology modules.
+
+\subsection*{Proof}
+
+Use Snake Lemma.
+
+First, for each integer \(k\), we have,
+\[\begin{tikzcd}
+  0 \ar{r} & A^k \ar["f^k"]{d} \ar{r} & B^k \ar["g^k"]{d} \ar{r} & C^k \ar["h^k"]{d} \ar{r} & 0 \\
+  0 \ar{r} & A^{k+1} \ar{r} & B^{k+1} \ar{r} & C^{k+1} \ar{r} & 0
+  \end{tikzcd}\]
+By Snake Lemma, we obtain the below exact sequence:
+\[\begin{tikzcd}
+  0 \ar{r}
+  & \ker f^k \ar{r}
+  & \ker g^k \ar{r}
+  & \ker h^k \ar["\partial"]{r}
+  & \coker f^k \ar{r}
+  & \coker g^k \ar{r}
+  & \coker h^k \ar{r}
+  & 0
+  \end{tikzcd}\]
+Note that \(\coker f^k = A^{k + 1} / \im f^k\).
+
+In this case, we can define
+\(\tilde f^k: A^k / \im f^{k - 1} \to \ker f^{k + 1}\)
+as
+\(\tilde f^k(x + \im f^{k-1}) = f^k(x)\).
+It's well-defined because,
+if \(x + \im f^{k-1} = y + \im f^{k-1}\),
+\(x - y \in \im f^{k-1} \subseteq \ker f^k\)
+thus \(f^k(x - y) = 0\)
+and \(f^k(x) = f^k(x) - f^k(x - y) = f^k(x - x + y) = f^k(y)\).
+Also, because \(\im f^k \subseteq \ker f^{k + 1}\), the image of \(\tilde f^k\) is in \(\ker f^{k+1}\).
+
+Then, we have:
+\[\begin{tikzcd}
+  & \coker f^{k-1} \ar["\tilde f^k"]{d} \ar{r} & \coker g^{k-1} \ar["\tilde g^k"]{d} \ar{r} & \coker h^{k-1} \ar["\tilde h^k"]{d} \ar{r} & 0 \\
+  0 \ar{r} & \ker f^{k + 1} \ar{r} & \ker g^{k + 1} \ar{r} & \ker h^{k + 1} &
+  \end{tikzcd}\]
+and each rows of above diagram are exact because of the result of Snake Lemma.
+
+Suppose that \(\tilde f^k(x + \im f^{k-1}) = 0\).
+Then, \(x \in \ker f^k\), and \(x + \im f^{k-1} \in \ker f^k / \im f^{k-1}\).
+The converse is also true,
+because \(x + \im f^{k-1} \in \ker f^k / \im f^{k-1}\)
+implies \(x \in \ker f^k\) and \(\tilde f^k(x + \im f^{k-1}) = f^k(x) = 0\).
+Thus, \(\ker \tilde f^k = \ker f^k / \im f^{k - 1} = H^k(A^\bullet)\).
+
+Also, \(\coker \tilde f^k = \cod(\tilde f^k) / \im \tilde f^k = \ker f^{k+1} / \im f^k = H^{k + 1}(A^\bullet)\).
+
+In the same way, we can show that
+\(H^k(B^\bullet) = \ker\tilde g^k = \coker\tilde g^{k - 1}\),
+\(H^k(C^\bullet) = \ker\tilde h^k = \coker\tilde h^{k - 1}\).
+
+Thus, by Snake Lemma,
+\[\begin{tikzcd}
+  H^k(A^\bullet) \ar{r}
+  & H^k(B^\bullet) \ar{r}
+  & H^k(C^\bullet) \ar["\partial"]{r}
+  & H^{k+1}(A^\bullet) \ar{r}
+  & H^{k+1}(B^\bullet) \ar{r}
+  & H^{k+1}(C^\bullet)
+  \end{tikzcd}\]
+Repeating this for every integer \(k\), we obtain:
+\[\begin{tikzcd}
+  \cdots \ar{r}
+  & H^{k - 1}(C^\bullet) \ar{r}
+  & H^k(A^\bullet) \ar{r}
+  & H^k(B^\bullet) \ar{r}
+  & H^k(C^\bullet) \ar{r}
+  & H^{k+1}(A^\bullet) \ar{r}
+  & \cdots
+  \end{tikzcd}\]
+\qedsq
+
+Note: \(\partial\) is defined as below (the proof is in HW5 Problem 7)
+Let \(x \in \ker\coker h^{k-1} = \im\coker g^{k-1}\).
+Then, there is \(x'\) which is mapped to \(x\) by \(\coker g^{k-1} \to \coker h^{k-1}\).
+Then, let \(y'\) be an image of \(x'\) into \(\ker g^{k+1}\).
+Then, let \(y \in \ker f^{k+1}\) which is mapped to \(y'\) in \(\ker g^{k+1}\).
+\(\partial(x) = y + \im (\coker f^{k-1} \to \ker f^{k+1})\).

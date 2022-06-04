@@ -1,0 +1,112 @@
+\section*{Problem 5}
+
+Find all entire functions \(f\) satisfies \(\limsup_{\left| x + iy \right| \to \infty} \left|f(x + iy) \right| e^{x^3 - 3xy^2} < \infty\).
+
+\subsection*{Answer}
+
+\[\{z \mapsto K e^{-z^3} \mid K \in \bbC\}\]
+
+\subsection*{Proof}
+
+Suppose that \(f\) is entire and \(\limsup_{\left| x + iy \right| \to \infty} \left|f(x + iy) \right| e^{x^3 - 3xy^2} < \infty\).
+
+Let \(z = x + iy\) for \(x, y \in \bbR\).
+\[z^3 = (x + iy)^3 = x^3 + 3ix^2y - 3xy^2 - iy^3 = (x^3 - 3xy^2) + i(3x^2y - y^3)\]
+And \(\text{Re } z^3 = x^3 - 3xy^2\).
+
+For some \(a, b \in \bbR\),
+\[e^{a + ib} = e^a (\cos b + i \sin b)\]
+and
+\begin{align*}
+  \left| e^{a + ib} \right|
+  &= \left| e^a \right| \cdot \left| \cos b + i \sin b \right |
+  \\&= |e^a|
+\end{align*}
+And for \(a \in \bbR\), since exponential function is always positive,
+\[\left| e^a \right| = e^a\]
+Because \(x^3 - 3xy^2 \in \bbR\) and \(3x^2y - y^3 \in \bbR\),
+\begin{align*}
+  e^{x^3 - 3xy^2}
+  &= \left| e^{x^3 - 3xy^2} \right|
+  = \left| e^{(x^3 - 3xy^2) + i(3x^2y - y^3)} \right|
+  = \left| e^{z^3} \right|
+\end{align*}
+And,
+\[ \left| f(x + iy) \right| e^{x^3 - 3xy^2}
+  = \left| f(z) \right| \cdot \left| e^{z^3} \right|
+  = \left| f(z) e^{z^3} \right|
+  \]
+Thus,
+\begin{align*}
+  L 
+  &= \limsup_{\left| z \right| \to \infty} \left| f(z) e^{z^3} \right|
+  \\&= \limsup_{\left| x + iy \right| \to \infty} \left|f(x + iy) \right| e^{x^3 - 3xy^2}
+  < \infty
+\end{align*}
+
+Because \(e^z\), \(z^3\), \(f(z)\) are entire, \(f(z) e^{z^3}\) is entire and continuous.
+
+Because \(L = \limsup_{\left| z \right| \to \infty} \left| f(z) e^{z^3} \right| \),
+for every \(\epsilon > 0\), there is \(R > 0\) which satisfies
+for every \(z \in \bbC\) such that \(|z| > R\),
+\(\left| f(z) e^{z^3} \right| < L + \epsilon\).
+Let \(\epsilon = 1\) and obtain \(R > 0\) such that
+for every \(z \in \bbC\) such that \(|z| > R\),
+\(\left| f(z) e^{z^3} \right| < L + 1\).
+Then, in \(\{z \in \bbC \mid |z| > R\}\), \(f(z) e^{z^3}\) is bounded by \(L + 1\).
+
+Let \(S = \overline{D(0; R)}\).
+Since \(S\) is non-empty and compact (\(\because\) \(S\) is bounded, closed),
+and \(\left| f(z) e^{z^3} \right|\) is continuous
+(\(\because\) \(f(z) e^{z^3}\) and \(\left| \cdot \right|\) are continuous),
+\(V = \left\{ \left| f(z) e^{z^3} \right| \mid z \in S \right\}\) is non-empty and compact set of real values.
+(\(\because\) continuous image of compact set is compact.)
+Therefore, \(\max V\) exists.
+Then, \(f(z) e^{z^3}\) is bounded by \(\max V\) in \(S\).
+
+Let \(M = 1 + \max(\max V, L + 1)\).
+Then, 
+\(\left| f(z)e^{z^3} \right| \le \max V < M\)
+for \(z \in S\) (i.e. \(|z| \le R\)),
+and
+\(\left| f(z)e^{z^3} \right| < L + 1 < M\)
+for \(z \in \bbC \bs S\) (i.e. \(|z| > R\)).
+Thus, for every \(z \in \bbC\), \(\left| f(z)e^{z^3} \right| < M\).
+In other words, \(f(z)e^{z^3}\) is bounded in \(\bbC\).
+
+Since \(f(z)e^{z^3}\) is entire and bounded,
+by Liouville's Theorem,
+\(f(z)e^{z^3}\) is a constant function.
+In other words, there is \(K \in \bbC\) such that \(K = f(z) e^{z^3}\) for every \(z \in \bbC\).
+Then, since \(e^{z^3}\) is nowhere zero,
+\(f(z) = K e^{-z^3}\).
+Therefore, if \(f\) is entire and \(\limsup_{|x+iy| \to \infty} \left| f(x + iy) \right| e^{x^3 - 3xy^2} < \infty\), then \(f\) should be in a form of \(f(z) = K e^{-z^3}\) for some \(K \in \bbC\).
+\newline
+
+Let \(K \in \bbC\) and \(f(z) = K e^{-z^3}\).
+Since \(f\) is entire (\(\because\) \(e^z\) and \(-z^3\) are entire),
+it's enough to check that \(\limsup_{|x+iy| \to \infty} \left| f(x + iy) \right| e^{x^3 - 3xy^2} < \infty\).
+
+As we shown above, for \(z = x + iy\),
+\begin{align*}
+  \left| f(x + iy) \right| e^{x^3 - 3xy^2}
+  &= \left| f(z) e^{z^3} \right|
+  \\&= \left| Ke^{-z^3} e^{z^3} \right|
+  \\&= \left| K \right|
+\end{align*}
+Then,
+\begin{align*}
+  \limsup_{|x + iy| \to \infty} \left| f(x + iy) \right| e^{x^3 - 3xy^2}
+  &= \limsup_{z \to \infty} \left| K \right|
+  \\&= |K|
+  < \infty
+\end{align*}
+
+Thus, this \(f(z)\) satisfies \(\limsup_{|x + iy| \to \infty} \left| f(x + iy) \right| e^{x^3 - 3xy^2} < \infty\).
+\newline
+
+In conclusion,
+\(\{z \mapsto K e^{-z^3} \mid K \in \bbC\}\)
+is a set consisting of all functions
+satisfying all properties in the problem.
+\qedsq

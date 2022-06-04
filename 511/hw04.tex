@@ -1,0 +1,826 @@
+% MAS511 HW#04
+
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{centernot}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+\usepackage{subfig}
+\usepackage{kotex}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{principle}{Principle}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{axiom}{Axiom}
+
+\newcommand{\bs}{\char`\\}
+\newcommand{\br}{\vspace*{10px}\\}
+\newcommand{\qedsq}{\hfill$\square$}
+
+\newcommand{\triangleleftneq}{\mathrel{\ooalign{$\lneq$\cr\raise.22ex\hbox{$\lhd$}\cr}}}
+
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calf}{\mathcal{f}}
+\newcommand{\calg}{\mathcal{g}}
+\newcommand{\calh}{\mathcal{h}}
+
+\newcommand{\scrP}{\mathscr{P}}
+
+\newcommand{\Ab}{\textnormal{Ab}}
+\newcommand{\Aut}{\textnormal{Aut}}
+\newcommand{\Cod}{\textnormal{Cod}}
+\newcommand{\Dom}{\textnormal{Dom}}
+\newcommand{\Gal}{\textnormal{Gal}}
+\newcommand{\Grp}{\textnormal{Grp}}
+\newcommand{\Set}{\textnormal{Set}}
+\newcommand{\Syl}{\textnormal{Syl}}
+\newcommand{\op}{\textnormal{op}}
+\newcommand{\Ob}{\textnormal{Ob}}
+\newcommand{\Hom}{\textnormal{Hom}}
+\newcommand{\Id}{\textnormal{Id}}
+\newcommand{\im}{\textnormal{im}\,}
+
+\title{MAS511 Spring 2020 Homework \#04}
+\author{}
+
+\begin{document}
+\maketitle
+
+% =============================================================================
+\section*{Problem 1}
+
+Determine whether \(\bbQ\) satisfies each of the following properties as a \(\bbZ\)-module:
+(1) finitely generated,
+(2) free,
+(3) projective,
+(4) flat,
+(5) injective.
+
+\subsection*{Solution}
+
+(1) Not finitely generated.
+
+Suppose that \(\bbQ\) is finitely generated. Then, there is \(a_1, \cdots, a_n \in \bbQ\) which satisfies that for any given \(q \in \bbQ\), there is \(z_1, \cdots, z_n \in \bbZ\) such that
+\[q = \sum_{k=1}^n z_k a_k\]
+Let's assume that each \(a_1, \cdots, a_n\) are non-zero.
+(If \(a_i = 0\), \(z_i a_i = 0\) for any \(z_i \in \bbZ\). Thus, \(\sum_{k=1}^n z_k a_k\) does not change even if we ignore the term of \(a_i\).)
+Because every non-zero elemtent of \(\bbQ\) can be expressed as \(\frac{p}{q}\) where \(p \in \bbZ\bs\{0\}\), \(q \in \bbN\) and \(p\) and \(q\) are relatively prime, let \(p_1, \cdots, p_n \in \bbZ\bs\{0\}\) and \(q_1, \cdots, q_n \in \bbN\) such that \((p_k, q_k) = 1\) and \(a_k = p_k/q_k\) for each \(k \in \{1, 2, \cdots, n\}\).
+
+Let \[t = \frac{1}{2 \cdot q_1 \cdot q_2 \cdot \cdots \cdot q_n}\]
+Trivially, it's a number obtained from \(1\) by dividing a natural number, and \(t \in \bbQ\).
+Thus, there should be some \(z_1, \cdots, z_n \in \bbZ\) such that,
+\[t
+  = \frac{1}{2 \cdot q_1 \cdot q_2 \cdot \cdots \cdot q_n}
+  = \sum_{k=1}^n z_k a_k
+  = \sum_{k=1}^n \frac{z_k p_k}{q_k}
+\]
+By multiplicating \(2 \cdot q_1 q_2 \cdots q_n\) in both sides,
+\[1 = \sum_{k=1}^{n} t_k \text{  where } t_k = 2 z_k p_k \prod_{j \in \{1, \cdots, n\} \bs \{k\}} q_j\]
+
+Since \(z_k, p_k, q_j\) are integers, \(\sum_{k=1}^{n} t_k\) should be an integer, which can be divided by 2. But, \(\sum_{k=1}^{n} t_k = 1\) and it cannot be divided by 2. Thus, it's a contradiction.
+
+Therefore, \(\bbQ\) cannot be finitely generated as a \(\bbZ\)-module.
+\qedsq
+\newline
+
+\noindent
+(2) Not free. It's because \(\bbQ\) is not projective as a \(\bbZ\)-module. See (3).
+\qedsq
+\newline
+
+\noindent
+(3) Not projective.
+
+\[\begin{tikzcd}
+  \bbZ[x_1, x_2, \cdots] \ar[->>, "f"]{r} & \bbQ \ar[->]{r} & 0
+  \\
+  & \bbQ \ar[->, swap, "\Id_\bbQ"]{u} \ar[->, dashed, "g"]{ul} &
+\end{tikzcd}\]
+
+Let \(f\) be a homomorphism such that \(f(z) = z\) for every \(z \in \bbZ\) and \(f(x_k) = \frac{1}{k}\) for every \(k \in \bbN\).
+Then, \(f\) is surjective since for any \(q/p \in \bbQ\) where \(q, p \in \bbZ\), \(f(q x_p) = q/p\).
+
+Suppose that there is a homomorphism \(g: \bbQ \to \bbZ[x_1, x_2, \cdots]\)
+such that \(\Id_\bbQ = f \circ g\).
+Let \(q \in \bbQ \bs \{0\}\).
+Then, \(g(q) \neq 0\).
+(If not, \(0 \neq q = \Id_\bbQ(q) = f(g(q)) = f(0) = 0\) and it's a contradiction.)
+Then, \(g(q) = \sum_{j=0}^n \sum_{k=0}^{m_j} a_{j, k} x_j^k\)
+for some \(n, m_k \in \bbZ^{\ge 0}, a_{j, k} \in \bbZ\)
+where \(a_{n, m_n} \neq 0\).
+(For convinience, let \(x_0 = 1\).)
+And, \(f(\sum_{j=0}^n \sum_{k=0}^{m_j} a_{j,k} x_j^k) = q\).
+In the similar way, there are \(p, q_k \in \bbZ^{\ge 0}, b_{j, k} \in \bbZ\) such that
+\[g(\frac{q}{2a_{n, m_n}}) = \sum_{j=0}^p \sum_{k=0}^{q_j} b_{j, k} x_j^k \]
+Then,
+\[\sum_{j=0}^n \sum_{k=0}^{m_j} a_{j,k} x_j^k
+  = g(q)
+  = 2a_{n, m_n} g(\frac{q}{2a_{n, m_n}})
+  = \sum_{j=0}^p \sum_{k=0}^{q_j} 2a_{n, m_n} b_{j, k} x_j^k 
+\]
+Let \(\alpha\) be the coefficient of \(x_j^k\)-term of \(g(q)\) and \(\beta\) be the coefficient of \(x_j^k\)-term of \(g(\frac{q}{2a_{n, m_n}})\).
+Then,
+\[\alpha = a_{n, m_n},
+  \beta = \left\{ \begin{array}{ll} b_{n, m_n} & n \le p, m_n \le q_n \\ 0 & \text{Otherwise} \end{array} \right.\]
+Note that \(\alpha, \beta \in \bbZ\).
+Since \(g(q) = 2a_{n, m_n} g(\frac{q}{2a_{n, m_n}})\), \(\alpha = 2a_{n, m_n} \beta\).
+Then,
+\[\beta = \frac{\alpha}{2a_{n, m_n}} = \frac{a_{n, m_n}}{2a_{n, m_n}} = \frac{1}{2}\]
+It's a contradiction since \(\beta \in \bbZ\) but \(\frac{1}{2} \not\in \bbZ\).
+
+Therefore, there is no \(g\) such that \(\Id_\bbQ = f \circ g\), and it shows that \(\bbQ\) is not projective as a \(\bbZ\)-module.
+\qedsq
+\newline
+
+\noindent
+(4) Flat.
+
+To show that \(\bbQ\) is flat, \(\bbQ \otimes_\bbZ -\) and \(- \otimes_\bbZ \bbQ\) are right exact fucntor.
+
+Let's show that \(\bbQ \otimes_\bbZ -\) is right exact. Then, \(- \otimes_\bbZ \bbQ\) can be shown that it's also right exact in the similar method.
+
+\[\begin{tikzcd}
+  0 \ar[->]{r} & M \ar[>->, "f"]{r} \ar[Rightarrow, "\bbQ \otimes_\bbZ -"]{d} & N
+  \\
+  0 \ar[->]{r} & \bbQ \otimes_\bbZ M \ar[->, "\varphi"]{r} & \bbQ \otimes_\bbZ N
+\end{tikzcd}\]
+
+Let \(f: M \to N\) be an injective \(\bbZ\)-module homomorphism.
+Let \(\varphi: \bbQ \otimes_\bbZ M \to \bbQ \otimes_\bbZ N\) such that \(\varphi = \bbQ \otimes_\bbZ f\) (note, \(\varphi(q \otimes m) = q \otimes f(m)\)).
+Then, it's enough to show that \(\varphi\) is injective.
+
+First, note that for arbitrary left \(\bbZ\)-module \(K\):
+\begin{itemize}
+\item \(0 \otimes 0\) is an (additive) identity of \(\bbQ \otimes_\bbZ K\).
+\item \(0 \otimes k = 0 \otimes 0\).
+  It's because \(0 \otimes k = (0 \cdot 0) \otimes k = 0 \otimes (0 \cdot k) = 0 \otimes 0\).
+\item If \(k\) is an (additive) identity of \(K\), \(k = 0 \cdot k\) and \(q \otimes k = q \otimes (0 \cdot k) = (q \cdot 0) \otimes k = 0 \otimes k = 0 \otimes 0\) for any \(q \in \bbQ\).
+\item For every \(q \in \bbQ \bs \{0\}\) and \(k \in K\), there is \(n \in \bbN\) such that \(q \otimes k = \frac{1}{n} \otimes k'\) for some \(k' \in K\). Because, let \(q = \frac{m}{n}\) for some \(n \in \bbN\) and \(m \in \bbZ\),
+\(q \otimes k = (\frac{1}{n} \otimes m) \otimes k = \frac{1}{n} \otimes (m \cdot k)\)
+\item Every non-zero element of \(\bbQ \otimes_\bbZ K\) can be expressed as \(\frac{1}{n} \otimes k\) for some \(n \in \bbN\) and \(k \in K\).
+
+Let \(t \in \bbQ \otimes_\bbZ K\) is non-zero (i.e. not an additive identity). 
+Then, there are \(q_1, \cdots, q_m \in \bbQ\) and \(k_1, \cdots, k_m \in K\)
+such that
+\[t = \sum_{i=1}^m q_i \otimes k_i\]
+If some \(q_i \otimes k_i\) are an additive identity, the sum does not change even if we ignore the terms.
+Thus, let's assume that every \(q_i \otimes k_i\) is non-zero.
+(If every \(q_i \otimes k_i\) are zero, \(t\) should be zero. But as we assumed that \(t\) is non-zero, \(t\) must be a sum of at least one non-zero \(q_i \otimes k_i\).)
+But as we showed above, there are \(n_1, \cdots, n_m \in \bbN\) and \(k'_1, \cdots, k'_m \in K\) such that \(q_i \otimes k_i = \frac{1}{n_i} \otimes k'_i\).
+Also, let \(n = \prod_{i = 1}^m n_i\) and \(\kappa_i = \frac{n}{n_i} \cdot k'_i\).
+Then,
+\[\frac{1}{n_i} \otimes k_i = \frac{1}{n} \otimes (\frac{n}{n_i} \cdot k_i) = \frac{1}{n} \otimes \kappa_i\]
+and
+\[t = \sum_{i=1}^m q_i \otimes k_i = \sum_{i=1}^m \frac{1}{n} \otimes \kappa_i = \frac{1}{n} \otimes (\sum_{i=1}^m \kappa_i)\]
+Let \(k = \sum_{i=1}^m \kappa_i\) then we obtain \(t = \frac{1}{n} \otimes k\).
+\end{itemize}
+
+Let \(t\) is a non-zero element of \(\bbQ \otimes_\bbZ M\),
+and suppose that \(\varphi(t) = 0_{\bbQ \otimes_\bbZ N}\).
+As we showed above, there is \(n \in \bbN\) and \(m \in M\) such that \(t = \frac{1}{n} \otimes m\).
+Then, \(\varphi(t) = \varphi(\frac{1}{n} \otimes m) = \frac{1}{n} \otimes f(m) = 0_{\bbQ \otimes_\bbZ N}\).
+Then, since there is no \(z \in \bbZ\) such that \(\frac{z}{n} = 0\), there should be some \(z \in \bbZ\) such that \(zf(m) = f(zm) = 0\).
+Since \(f\) is injective, \(zm = 0\).
+Then,
+\[t = \frac{1}{n} \otimes m = \frac{1}{nz} \otimes zm = \frac{1}{nz} \otimes 0_M = 0_{\bbQ \otimes M}\]
+It's a contradiction since we assumed that \(t\) is non-zero.
+
+Thus, \(\ker \varphi = \{0_{\bbQ \otimes_\bbZ M}\}\) and \(\varphi = \bbQ \otimes_\bbZ f\) is injective. In the same way \(f \otimes_\bbZ \bbQ\) is injective for a \(\bbZ\)-module homomorphism \(f: M \to N\) where \(M\) and \(N\) are right \(\bbZ\)-module homomorphism. Thus, \(\bbQ\) is a flat \(\bbZ\)-module.
+\qedsq
+\newline
+
+\noindent
+(5) Injective
+
+Use Baer Criterion.
+Since \(\bbZ\) is a Euclidean domain, PID, every ideal of \(\bbZ\) is principal.
+Let \(n \in \bbZ\) and take an ideal \((n)\).
+Let \(g: (n) \to \bbQ\) be a \(\bbZ\)-module homomorphism.
+
+If \(n = 0\), \(g(0) = 0\).
+(Otherwise, \(2g(0) = g(2 \cdot 0) = g(0)\) should hold and \(0 \neq g(0) = 2g(0) - g(0) = 0\). It's a contradiction.)
+Thus, if we define \(\tilde{g}: \bbZ \to \bbQ\) as \(\tilde{g} = 0\), it's a extension of \(g\) and a \(\bbZ\)-module homomorphism (more specifically, zero homomorphism).
+
+For \(n \neq 0\), every element \(m\) of \(\bbZ\) can be expressed as \(\frac{mn}{n}\). Then, let's define \(\tilde{g}: \bbZ \to \bbQ\) as
+\[\tilde{g}(m) = \frac{g(mn)}{n}\]
+
+Then,
+\begin{itemize}
+\item \(\tilde g\) is well-defined.
+  For \(m \in \bbZ\), \(mn \in n\bbZ = (n) = \Dom(g)\).
+\item \(\tilde g\) is an extension of \(g\).
+  Let \(m \in (n)\).
+  Then, \(\tilde{g}(m) = \frac{g(mn)}{n} = \frac{ng(m)}{n} = g(m)\).
+\item \(\tilde g\) is a \(\bbZ\)-module homomorphism.
+  Let \(x, y \in \bbZ\), then,
+  \[\tilde{g}(x + y) = \frac{g((x + y)n)}{n} = \frac{g(xn) + g(yn)}{n} = \tilde{g}(x) + \tilde{g}(y)\]
+  \[\tilde{g}(xy) = \frac{g(xyn)}{n} = \frac{xg(yn)}{n} = x \tilde{g}(y)\]
+\end{itemize}
+
+Thus, by Baer's Criterion, \(\bbQ\) is a injective \(\bbZ\)-module.
+\qedsq
+
+\newpage
+% =============================================================================
+\section*{Problem 2}
+
+Let \(R\) be a ring
+and let
+\[0 \rightarrow K_P \xrightarrow{f_1} P \xrightarrow{f_0} M \rightarrow 0\]
+\[0 \rightarrow K_Q \xrightarrow{g_1} Q \xrightarrow{g_0} M \rightarrow 0\]
+be exact sequences of left \(R\)-modules such that \(P\) and \(Q\) are projective.
+Prove that there exists an isomorphism of left \(R\)-modules
+\[K_P \oplus Q \simeq K_Q \oplus P\]
+
+\subsection*{Solution}
+\[\begin{tikzcd}
+  \ker f_0 \simeq \im f_1 \simeq K_P
+  \arrow[dd, dashed, shift left, "\exists h"]
+  \ar[>->, "f_1"]{r} & P \ar[->>, "f_0"]{rd}
+  \arrow[dd, dashed, shift left, "\exists\tilde{f_0}"]
+  & \\
+  & & M \\
+  \ker g_0 \simeq \im g_1 \simeq K_Q
+  \ar[>->, swap, "g_1"]{r} & Q \ar[->>, swap, "g_0"]{ru}
+  \arrow[uu, dashed, shift left, "\exists\tilde{g_0}"]
+  & 
+\end{tikzcd}\]
+Since \(P\) and \(Q\) are projective, there are liftings \(\tilde{f_0}: P \to Q\) and \(\tilde{g_0}: Q \to P\).
+And, \(f_0 = g_0 \circ \tilde{f_0}\) and \(g_0 = f_0 \circ \tilde{g_0}\).
+
+Since \(f_1\) and \(g_1\) are injective homomorphisms, \(K_P \simeq \im f_1\) with an isomorphism \(f_1\) and \(K_Q \simeq \im g_1\) with an isomorphism \(g_1\).
+Note that \(f_1\) is an isomorphism by restricting its codomain to \(\im f_1 = \ker f_0\) and \(g_1\) is an isomorpihsm by restricting its codomain to \(\im g_1 = \ker g_0\).
+
+Let \(x \in K_P\). Then, \(0 = f_0(f_1(x)) = g_0((\tilde{f_0} \circ f_1)(x))\).
+Thus, \((\tilde{f_0} \circ f_1)(x) \in \ker g_0 = \im g_1\).
+Let \(h: K_P \to K_Q\) be a map such that
+\[h(x) = g_1^{-1}(\tilde{f_0}(f_1(x)))\]
+Since \(\im (\tilde{f_0} \circ f_1) \subseteq \im g_1\), it's well-defined, and it's a homomorphism since \(g_1\) is an isomorphism and \(\tilde{f_0} \circ f_1\) is a homomorphism from \(K_P\) to \(\im g_1\).
+
+Then, let \(\varphi: K_P \to K_Q \oplus P\) such that \(\varphi(k) = (h(k), f_1(k))\) for \(k \in K_P\),
+and \(\psi: K_Q \oplus P \to Q\) such that \(\psi(k, p) = g_1(k) - \tilde{f_0}(p)\).
+Then,
+\begin{itemize}
+\item \(\varphi\) is injective. If \(k \in \ker\varphi\), \(\varphi(k) = (0, 0)\). Then, \(f_1(k) = 0\) Since \(f_1\) is injective, \(k\) should be \(0\).
+\item \(\psi\) is surjective.
+  Let \(q \in Q\).
+  Then, \(q - (\tilde{f_0} \circ \tilde{g_0})(q) \in \ker g_0 = \im g_1\),
+  because
+  \(g_0(q - (\tilde{f_0} \circ \tilde{g_0})(q))
+    = g_0(q) - f_0(\tilde{g_0}(q))
+    = g_0(q) - g_0(q) = 0\).
+  Take \(k = g_1^{-1}(q - (\tilde{f_0} \circ \tilde{g_0})(q))\)
+  and \(p = -\tilde{g_0}(q)\).
+  Then,
+  \[\psi(k, p) =
+    g(g_1^{-1}(q - (\tilde{f_0} \circ \tilde{g_0})(q))) - (- \tilde{f_0}(\tilde{g_0}(q))) = q\]
+\item \(\ker \psi = \im \varphi\).
+  Let \(k \in K_P\).
+  Then,
+  \begin{align*}
+    \psi(h(k), f_1(k))
+    &= g_1(h(k)) - \tilde{f_0}(f_1(k))
+    \\&= g_1(g_1^{-1}(\tilde{f_0}(f_1(k)))) - \tilde{f_0}(f_1(k))
+    \\&= \tilde{f_0}(f_1(k)) - \tilde{f_0}(f_1(k))
+    = 0
+  \end{align*}
+\end{itemize}
+Thus, the below is a short exact sequence:
+\[\begin{tikzcd}
+  0 \ar{r} &
+  K_P \ar["\varphi"]{r} &
+  K_Q \oplus P \ar["\psi"]{r} &
+  Q \ar{r} &
+  0
+\end{tikzcd}\]
+Since \(Q\) is projective, above sequence is split.
+Therefore, \(K_Q \oplus P \simeq K_P \oplus Q\).
+\qedsq
+
+\newpage
+% =============================================================================
+\section*{Problem 3}
+
+Let \(n \ge 2\) be an integer.
+We define two complexes of \(\bbZ\)-modules \(A_\bullet\), \(B_\bullet\) by
+\[A_\bullet = \left(
+  \cdots
+  \longrightarrow A_3 = 0
+  \longrightarrow A_2 = 0
+  \longrightarrow A_1 = \bbZ
+  \xrightarrow{\times n} A_0 = \bbZ
+  \longrightarrow A_{-1} = 0
+  \longrightarrow \cdots
+  \right)\]
+\[B_\bullet = \left(
+  \cdots
+  \longrightarrow B_3 = 0
+  \longrightarrow B_2 = 0
+  \longrightarrow B_1 = 0
+  \longrightarrow B_0 = \bbZ/n\bbZ
+  \longrightarrow B_{-1} = 0
+  \longrightarrow \cdots
+  \right)\]
+Prove that \(A_\bullet\) and \(B_\bullet\) are quasi-isomorphic but \emph{not} chain homotopy equivalent.
+
+\subsection*{Solution}
+
+\[H_k(A_\bullet) = \frac{\ker f_k}{\im f_{k + 1}} \text{ where } f_k: A_k \to A_{k - 1}\]
+
+Note that
+\[\ker (0 \rightarrow M) = \im (M \rightarrow 0) =
+  \im (0 \rightarrow M) = 
+  \{0\}\]
+\[\ker (M \rightarrow 0) = M\]
+\[\ker (\bbZ \xrightarrow{\times n} \bbZ) = \{0\}\]
+\[\im (\bbZ \xrightarrow{\times n} \bbZ) = n\bbZ\]
+where \(M\) is a \(\bbZ\)-module. And,
+\[H_0(A_\bullet) = H_0(B_\bullet) = \bbZ_n\]
+\[H_k(A_\bullet) = H_k(B_\bullet) = 0 \text{ for } k \in \bbZ\bs\{0\}\]
+
+\subsection*{Quasi-isomorphic}
+
+\[\begin{tikzcd}
+  A_\bullet = & \cdots \ar{r} & A_2 = 0 \ar{r} & A_1 = \bbZ \ar["\times n"]{r} & A_0 = \bbZ \ar{r} & A_{-1} = 0 \ar{r} & \cdots \\
+  C_\bullet \ar["f_\bullet"]{u} \ar[swap, "g_\bullet"]{d} = & \cdots \ar{r} & C_2 = 0 \ar{r} \ar["f_2"]{u} \ar[swap, "g_2"]{d} & C_1 = \bbZ \ar["f_1"]{u} \ar[swap, "g_1"]{d} \ar["\times n"]{r} & C_0 = \bbZ \ar["f_0"]{u} \ar[swap, "g_0"]{d} \ar{r} & C_{-1} = 0 \ar["f_{-1}"]{u} \ar[swap, "g_{-1}"]{d} \ar{r} & \cdots \\
+  B_\bullet = & \cdots \ar{r} & B_2 = 0 \ar{r} & B_1 = 0 \ar{r} & B_0 = \bbZ_n \ar{r} & B_{-1} = 0 \ar{r} & \cdots
+\end{tikzcd}\]
+
+Take \(f_k, g_k\) are identity maps except \(g_1\) which is a zero map and \(g_0\) which is a canonical injection (\(g_0: x \mapsto x + n\bbZ\)).
+
+Since all of \(H_k(A_\bullet), H_k(B_\bullet), H_k(C_\bullet)\) are \(0\) for \(k \in \bbZ \bs \{0\}\), the homomorphism induced from \(f_k, g_k\) for this \(k\) is a zero map, which is an isomorphism between zero modules.
+
+Since \(H_0(A_\bullet) = H_0(C_\bullet) = \bbZ / n\bbZ\) and \(f_0\) is an identity map, the homomorphism induced from \(f_0\) is an identity map between \(\bbZ / n\bbZ\). Thus it's an isomorphism between \(H_0(A_\bullet) = H_0(C_\bullet) = \bbZ / n\bbZ\).
+
+Since \(g_0\) is a canonical injection from \(\bbZ\) to \(\bbZ / n\bbZ\), it induces an identity map from \(\bbZ / n\bbZ\) to itself.
+Thus, \(g_0\) is also an isomorphism between \(H_0(B_\bullet) = H_0(C_\bullet) = \bbZ / n\bbZ\).
+
+Therefore, there is a \(C_\bullet\) and chain maps from \(C_\bullet\) to \(A_\bullet\) and \(B_\bullet\) which induces isomorphisms betwene homology groups.
+Thus, \(A_\bullet\) and \(B_\bullet\) are quasi-isomorphic.
+\qedsq
+
+\subsection*{Not chain homotopy equivalent}
+
+Suppose that there are chain maps \(f_\bullet: A_\bullet \to B_\bullet\) and \(g_\bullet: B_\bullet \to A_\bullet\) such that \(f_\bullet \circ g_\bullet \sim \Id_{B_\bullet}\) and \(g_\bullet \circ f_\bullet \sim \Id_{A_\bullet}\).
+
+\begin{tikzcd}
+  A_\bullet \ar["f_\bullet", shift left]{d} = & \cdots \ar{r} & A_2 = 0 \ar{r} \ar["f_2", shift left]{d} & A_1 = \bbZ \ar{r} \ar["f_1", shift left]{d} & A_0 = \bbZ \ar{r} \ar["f_0", shift left]{d} & A_{-1} = 0 \ar{r} \ar["f_{-1}", shift left]{d} & \cdots \\
+  B_\bullet \ar["g_\bullet", shift left]{u} = & \cdots \ar{r} & B_2 = 0 \ar{r} \ar["g_2", shift left]{u} & B_1 = 0 \ar{r} \ar["g_1", shift left]{u} & B_0 = \bbZ_n \ar{r} \ar["g_0", shift left]{u} & B_{-1} = 0 \ar{r} \ar["g_{-1}", shift left]{u} & \cdots
+\end{tikzcd}
+
+Note that there are only one homomorphism from some \(\bbZ\)-module to \(0\), which is a zero map, and a zero map is the only homomorphism from \(0\) to some \(\bbZ\)-module. Thus, \(f_k \equiv 0\) and \(g_k \equiv 0\) for \(k \in \bbZ \bs \{0\}\).
+
+Also, \(g_0\) should be zero.
+(Because the order of \(g_0(1)\) should be \(n\) since \(n g_0(1) = g_0(n) = g_0(0) = 0\), but every element of \(\bbZ\) has an infinite order.)
+
+Then, \(f_0 \circ g_0\) is a zero map. Also, since every \(f_k, g_k\) for \(k \in \bbZ \bs \{0\}\) are zero maps, \(f \circ g\) is a zero chain map.
+
+Suppose that \(f \circ g\) is homotopic to \(\Id_B\).
+Then there is a maps \(s_k: B_k \to B_{k + 1}\) for each \(k \in \bbZ\) such that \(\Id_B - (f \circ g) = sd + ds\), where \(d_k: B_k \to B_{k - 1}\) are maps of chain complex \(B_\bullet\).
+Let \(h = \Id_B - (f \circ g)\) (i.e. \(h_k = \Id_{B_k} - (f_k \circ g_k)\)). Then, \(h_k = \Id_{B_k}\) since \(f_k \circ g_k = 0\) for each \(k \in \bbZ\). And,
+\[\begin{tikzcd}
+  \cdots \ar{r} &
+  B_{1} = 0 \ar["d_1"]{r} \ar[swap, "\Id_{B_{1}}"]{d} &
+  B_{0} = \bbZ_n \ar["d_0"]{r} \ar["s_0"]{ld} \ar["\Id_{B_0}"]{d} &
+  B_{-1} = 0 \ar{r} \ar["s_{-1}"]{ld} \ar["\Id_{B_{-1}}"]{d} &
+  \cdots \\
+  \cdots \ar{r} &
+  B_{1} = 0 \ar[swap, "d_1"]{r} &
+  B_{0} = \bbZ_n \ar[swap, "d_0"]{r} &
+  B_{-1} = 0 \ar{r} &
+  \cdots
+\end{tikzcd}\]
+Since \(s_0\) and \(d_0\) are homomorphisms to a zero module, \(s_0 = d_0 = 0\).
+Since \(s_{-1}\) and \(d_1\) are homomorphisms from a zero module, \(s_{-1} = d_1 = 0\).
+Thus, \(d_1s_0 + s_{-1}d_0 = 0\).
+Since \(\Id_{B_0} = \Id_{\bbZ_n} \neq 0\), \(\Id_{\bbZ_n} = d_1s_0 + s_{-1}d_0 = 0\) cannot hold.
+Thus, it's a contradiction.
+
+Therefore, \(f \circ g\) cannot be chain homotopic to \(\Id_B\).
+It implies that \(A\) and \(B\) cannot be chain homotopy equivalent.
+\qedsq
+
+\newpage
+% =============================================================================
+\section*{Lemmata}
+
+\begin{lemma}\label{lem-char}
+  Let \(G\) be an abelian group, and \(K \le G\) be a subgroup.
+  Let \(\varphi: K \to \bbQ / \bbZ\) is a group homomorphism.
+  Then, there is a group homomorphism \(\tilde{\varphi}: G \to \bbQ / \bbZ\)
+  such that \(\left. \tilde{\varphi} \right|_K = f\).
+\end{lemma}
+\begin{proof}
+
+Let
+\[\calP = \{(H, f) \mid H \le G, \text{homomorphism} f: H \to \bbQ/ \bbZ\}\]
+Note that \(\calP\) is non-empty since \((K, \varphi) \in \calP\).
+Then, let \(\prec\) be a relation of \(\calP\) such that
+\((H, f) \prec (H', f')\) if and only if \(H \le H'\) and \(\left. f' \right|_H = f\).
+It's a partial order since,
+\begin{itemize}
+\item Reflexive. Because \(H \le H\) and \(\left. f \right|_H = f\).
+\item Antisymmertic. If \((H, f) \prec (H', f')\) and \((H, f) \succ (H', f')\),
+\(H \le H' \le H\) implies \(H = H'\), and \(f = \left. f' \right|_H = \left. f' \right|_{H'} = f'\) holds. Thus, \((H, f) = (H', f')\).
+\item Transitive. If \((H, f) \prec (H', f')\) and \((H', f') \prec (H'', f'')\), \(H \le H' \le H''\) and \(f = \left. f' \right|_H = \left. \left. f'' \right|_{H'} \right|_{H} = \left. f'' \right|_{H}\). Thus \((H, f) \prec (H'', f'')\).
+\end{itemize}
+
+If a chain of the relation \(\prec\) is finite, there is a maximum element of the chain.
+Let \(\{(H_\alpha, f_\alpha)\}_{\alpha \in \Lambda}\) be a infinitely long chain of the relation \(\prec\).
+Then, we can construct a element \((M, g) \in \calP\):
+\[M = \bigcup_{\alpha \in \Lambda} H_\alpha\]
+\[g(x) = f_\alpha(x) \text{ for some } \alpha \text { such that } x \in H_\alpha\]
+\(M \subseteq G\), because each \(H_\alpha \subseteq G\).
+\(M\) is a group, because, (1) Since each \(H_\alpha\) contains \(0_G\), \(0_G \in M\); (2) for \(a, b \in M\), there is \(\alpha, \beta \in \Lambda\) such that \(a \in H_\alpha\) and \(b \in H_\beta\), WLOG if we supppose that \((H_\alpha, f_\alpha) \prec (H_\beta, f_\beta)\), \(a + b \in H_\beta \subseteq M\), thus \(M\) is closed under addition; (3) for \(a, b, c \in M\), \((a + b) + c = a + (b + c)\) because there is \(\alpha, \beta, \gamma \in \Lambda\) such that \(a \in H_\alpha\), \(b \in H_\beta\), and \(c \in H_\gamma\), and WLOG if we assumed that \((H_\beta, f_\beta), (H_\gamma, f_\gamma) \prec (H_\alpha, f_\alpha)\), \((a + b) + c\) and \(a + (b + c)\) are operations in \(H_\alpha\) and they are equal since \(H_\alpha\) is a group; (4) if \(a \in M\), there is \(\alpha \in \Lambda\) such that \(a \in H_\alpha\), and since \(a^{-1} \in H_\alpha\), \(a^{-1} \in M\).
+Therefore, \(M \le G\).
+\(g\) is well-defined because if \(x \in H_\alpha\) and \(x \in H_\beta\) for some \(\alpha, \beta \in \Lambda\), WLOG if we assumed that \((H_\alpha, f_\alpha) \prec (H_\beta, f_\beta)\), \(f_\beta(x) = \left. f_\beta\right|_{H_\alpha}(x) = f_\alpha(x)\) holds.
+\(g\) is a homomorphism from \(M\) to \(\bbQ/\bbZ\), because if \(x_\alpha \in H_\alpha, x_\beta \in H_\beta\), WLOG if we assumed that \((H_\alpha, f_\alpha) \prec (H_\beta, f_\beta)\), \(g(x_\alpha + x_\beta) = f_\beta(x_\alpha + x_\beta) = f_\beta(x_\alpha) + f_\beta(x_\beta) = g(x_\alpha) + g(x_\beta)\).
+And \((M, g)\) is the maximum of the chain since \(H_\alpha \le \bigcup_{\alpha \in \Lambda} H_\alpha = M\) for any \(\alpha \in \Lambda\) and \(g(x) = f_\alpha(x)\) for any \(x \in H_\alpha\).
+It implies that \((M, g)\) is the maximum element of the chain, which is contained in \(\calP\).
+
+Since \(\calP\) is non-empty,
+by Zorn's Lemma, there is a maximal element of \(\calP\).
+\newline
+
+Let \((M, \tilde\varphi)\) be a maximal element of \((K, \varphi)\) in \(\calP\).
+
+Suppose that \(M \lneq G\).
+Then, there is \(x \in G \bs M\).
+In this case, there may be some \(k \in \bbN\) such that \(k \cdot x \in M\).
+If such \(k\) exists, let \(p\) be a minimum \(k\) and \(z = \frac{\alpha(p \cdot x)}{p}\).
+If there is no such \(k\), let \(p = 0\) and \(z = 0 + \bbZ\).
+And define \(M' = \langle x \rangle + M\) and \(\beta: M' \to \bbQ / \bbZ\) such that
+\[\beta(k \cdot x + y) = kz + \tilde\varphi(y)\]
+where \(k \in \bbZ\), \(y \in M\).
+
+\(\beta\) is well-defined, because if \(k \cdot x + y = k' \cdot x + y'\) for \(k, k' \in \bbZ\) and \(y, y', \in M\), \((k - k') \cdot x = y' - y\).
+Since \(y' - y \in M\), \((k - k') \cdot x \in M\).
+Then, \(\tilde\varphi(y') - \tilde\varphi(y) = \tilde\varphi((k - k') \cdot x)\)
+and \(\tilde\varphi(y') = \tilde\varphi(y) + \tilde\varphi((k - k') \cdot x)\).
+\begin{itemize}
+\item If \(p > 0\), \(p \mid k - k'\). Let \(q \in \bbZ\) such that \(k - k' = pq\). Then,
+\begin{align*}
+  \beta(k' \cdot x + y')
+  = k'z + \tilde\varphi(y')
+  &= k'z + \tilde\varphi(y) + \tilde\varphi((k - k') \cdot x)
+  \\&= k'z + \tilde\varphi(y) + \tilde\varphi(qp \cdot x)
+  \\&= k'z + \tilde\varphi(y) + q \tilde\varphi(p \cdot x)
+  \\&= k'z + \tilde\varphi(y) + q pz
+  \\&= k'z + \tilde\varphi(y) + (k - k')z
+  = kz + \tilde\varphi(y)
+  = \beta(k \cdot x + y)
+\end{align*}
+\item If \(p = 0\), \(k - k'\) should be \(0\). Thus \((k - k') \cdot x = 0\) and \(k = k'\). Then,
+\begin{align*}
+  \beta(k' \cdot x + y')
+  &= k'z + \tilde\varphi(y')
+  \\&= k'z + \tilde\varphi(y) + \tilde\varphi((k - k') \cdot x)
+  \\&= kz + \tilde\varphi(y) + \tilde\varphi(0 \cdot x)
+  = kz + \tilde\varphi(y)
+  = \beta(k \cdot x + y)
+\end{align*}
+\end{itemize}
+
+Also, \(\beta\) is a homomorphism, because for \(k, k' \in \bbZ\) and \(y, y' \in M\),
+\begin{align*}
+  \beta((k \cdot x + y) + (k' \cdot x + y'))
+  &= \beta((k + k') \cdot x + (y + y'))
+  \\&= (k + k')z + \tilde\varphi(y + y')
+  \\&= kz + \tilde\varphi(y) + k'z + \tilde\varphi(y')
+  = \beta(k \cdot x + y) + \beta(k' \cdot x + y')
+\end{align*}
+
+And, \(\left. \beta \right|_M = \tilde\varphi\) because for \(y \in M\),
+\[\beta(y) = 0z + \tilde\varphi(y) = \tilde\varphi(y)\]
+
+However, it's a contradiction since we assumed that \((M, \tilde\varphi)\) is maximal, but there is \((M', \beta)\) such that \((M, \tilde\varphi) \prec (M' \beta)\) but \((M, \tilde\varphi) \neq (M', \beta)\).
+
+Therefore, \(M\) should be \(G\).
+In this case, \(\tilde\varphi:G \to \bbQ / \bbZ\) is a homomorphism and, 
+\[\tilde\varphi(k) = \left. \tilde\varphi \right|_{K} (k) = \varphi(k)\]
+for every \(k \in K\).
+
+Thus, there is a homomorphism from \(G\) to \(\bbQ / \bbZ\) which is extended from the given homomorphism \(\varphi\).
+\end{proof}
+
+\newpage
+% =============================================================================
+\section*{Problem 4}
+
+Let \(R\) be a ring with unity
+and \(M\) be a left \(R\)-module.
+We equip the abelian group \(M^* := \Hom_\bbZ(M, \bbQ/\bbZ)\)
+with right \(R\)-module structure via
+\((\varphi r)(m) := \varphi(rm)\) for \(r \in R\), \(\varphi \in M^*\) and \(m \in M\).
+\begin{enumerate}[label=(\arabic*)]
+\item
+  Let \(G\) be an abelian group.
+  Prove that for any nonzero \(g \in G\), there is a group homomorphism \(\alpha: G \to \bbQ / \bbZ\) such that \(\alpha(g) \neq 0\).
+\item
+  Suppose that \(M^*\) is an injective right \(R\)-module.
+  For any injective (in the set-theoretical sense) homomorphism of right \(R\)-modules \(f: A \to B\), prove that
+  \[\Hom_\bbZ(B \otimes_R M, \bbQ/\bbZ)
+    \xrightarrow{- \circ (f \otimes_R \Id_M)}
+    \Hom_\bbZ(A \otimes_R M, \bbQ/\bbZ)
+    \longrightarrow
+    0\]
+  is an exact sequence of abelian groups.
+  Using this and (1), prove also that \(M\) is a flat left \(R\)-module.
+\end{enumerate}
+
+\subsection*{Solution of (1)}
+
+Let \(G\) be an abelian group and \(g \in G\) be a non-zero element.
+
+First of all, we can easily make a homomorphism from \(\langle g \rangle\)
+to \(\bbQ/\bbZ\).
+Let \(n = |\langle g \rangle|\) if \(|\langle g \rangle| < \infty\),
+ \(n = 2\) otherwise.
+Then, let \(f: \langle g \rangle \to \bbQ/\bbZ\) such that:
+\[f(k \cdot g) = \frac{k}{n} + \bbZ\]
+for every \(k \in \bbZ\).
+
+\(f\) is well-defined. Because if \(k \cdot g = l \cdot g\) for \(k \neq l\), \((l - k) \cdot g = 0\).
+If \(|\langle g \rangle| = \infty\), it's not possible.
+Thus \(n = |\langle g \rangle| < \infty\) and \(n \mid l - k\).
+Then, \(\frac{l - k}{n} \in \bbZ\) and
+\[f(k \cdot g) = \frac{k}{n} + \bbZ = \frac{k}{n} + \frac{l - k}{n} + \bbZ
+  = \frac{l}{n} + \bbZ = f(l \cdot g)\]
+
+Also, \(f\) is a homomorphism since, for \(k, l \in \bbZ\),
+\[f(k \cdot g + l \cdot g) = f((k + l) \cdot g) = \frac{k + l}{n} + \bbZ = \left(\frac{k}{n} + \bbZ\right) + \left(\frac{l}{n} + \bbZ\right) = f(k \cdot g) + f(l \cdot g)\]
+
+In addition \(f(g) = \frac{1}{n} + \bbZ \neq 0 + \bbZ\). Thus, it maps \(g\) to some non-zero element.
+
+Therefore, \(f\) is a homomorphism maps \(g\) to some non-zero element.
+\newline
+
+Since \(\langle g \rangle \le G\), by Lemma \ref{lem-char},
+there is a group homomorphism \(\alpha: G \to \bbQ / \bbZ\)
+such that \(\left. \alpha \right|_{\langle g \rangle} = f\).
+It implies, \(\alpha\) is a homomorphism such that,
+\[\alpha(g) = f(g) = \frac{1}{n} + \bbZ \neq 0 + \bbZ\]
+Therefore, for an arbitrary abelian group \(G\) and some non-zero element \(g \in G\), there is a group homomorphism \(\alpha\) which maps \(g\) to a non-zero element.
+\qedsq
+
+\subsection*{Solution of (2)}
+
+Suppose that \(M^*\) be an injective right \(R\)-module.
+And let \(f: A \hookrightarrow B\) is an injective \(R\)-module homomorphism.
+
+Then, we can construct an exact sequence:
+\[\begin{tikzcd}
+  0 \ar{r} &
+  A \ar["f"]{r} &
+  B
+\end{tikzcd}\]
+Since \(M^*\) is injective, the contravariant functor \(\Hom_R(-, M^*)\) is exact.
+Note that \(\Hom_R(h, M) = - \circ h\) for a \(R\)-module homomorphism \(h\).
+Thus,
+\[\begin{tikzcd}
+  \Hom_R(B, M^*) \ar["- \circ f"]{r} &
+  \Hom_R(A, M^*) \ar{r} &
+  0
+\end{tikzcd}\]
+is an exact sequence.
+
+Since \(M^* = \Hom_\bbZ(M, \bbQ/\bbZ)\),
+by adjuction formula,
+for right \(R\)-module \(N\),
+\[\Hom_\bbZ(N \otimes_R M, \bbQ/\bbZ)
+  \simeq \Hom_R(N, \Hom_\bbZ(M, \bbQ/\bbZ))
+  = \Hom_R(N, M^*)\]
+Thus,
+\[\begin{tikzcd}
+  \Hom_\bbZ(B \otimes_R M, \bbQ/\bbZ) \ar["\varphi"]{r} &
+  \Hom_\bbZ(A \otimes_R M, \bbQ/\bbZ) \ar{r} &
+  0
+\end{tikzcd}\]
+is exact, where \(\varphi\) was induced from \(f\).
+
+Let \(\eta_N: \Hom_R(N, \Hom_\bbZ(M, \bbQ/\bbZ)) \to \Hom_\bbZ(N \otimes_R M, \bbQ/\bbZ)\) be a natural isomorphism for a \(\bbR\)-module \(N\), such that
+\[\eta(f)(n \otimes m) = f(n)(m)\]
+Then, \(\varphi = \eta_A \circ (- \circ f) \circ \eta_B^{-1}\) and,
+\begin{align*}
+  \varphi(g)(a \otimes m)
+  &= (\eta_A \circ (- \circ f) \circ \eta_B^{-1})(g)(a \otimes m)
+  \\&= \eta_A(\eta_B^{-1}(g) \circ f)(a \otimes m)
+  \\&= (\eta_B^{-1}(g) \circ f)(a)(m)
+  \\&= \eta_B^{-1}(g)(f(a))(m)
+  \\&= g(f(a) \otimes m)
+\end{align*}
+for \(g \in \Hom_\bbZ(B \otimes_R M, \bbQ/\bbZ)\), \(a \in A\) and \(m \in M\),  therefore,
+\[\varphi = - \circ (f \otimes_R \Id_M)\]
+(Since \(A \otimes_R M\) is generated by \(a \otimes m\) for \(a \in A\) and \(m \in M\), and \(\varphi\) is a homomorphism as a composition of homomorphisms, it's enough to check only for the case of generator \(a \otimes m\).)
+
+Therefore,
+\[
+  \Hom_\bbZ(B \otimes_R M, \bbQ/\bbZ)
+  \xrightarrow{- \circ (f \otimes_R \Id_M)}
+  \Hom_\bbZ(A \otimes_R M, \bbQ/\bbZ)
+  \rightarrow
+  0
+\]
+is exact.
+\qedsq
+
+\subsection*{\(M\) is flat}
+
+Suppose that \(M^* = \Hom_\bbZ(M, \bbQ/\bbZ)\) is injective.
+
+To show that \(M\) is flat, it's enough to check that \(- \otimes_R M\) is left exact.
+
+In other words, for right \(R\)-modules \(A, B, C\) and \(f: A \to B\)  such that
+\[
+  0
+  \rightarrow
+  A
+  \xrightarrow{f}
+  B
+  \rightarrow
+  C
+  \rightarrow
+  0
+\]
+the below should be exact:
+\[
+  0
+  \rightarrow
+  A \otimes_R M
+  \xrightarrow{f \otimes_R M}
+  B \otimes_R M
+  \rightarrow
+  C \otimes_R M
+  \rightarrow
+  0
+\]
+
+Suppose that \(\ker (f \otimes_R M) \neq \{0\}\).
+In other words, there is a non-zero
+\(a \in \ker (f \otimes_R M) \subseteq \Dom (f \otimes_R M) = A \otimes_R M\).
+Since \(A \otimes_R M\) is an abelian group,
+there is a group homomorphism \(\alpha: A \otimes_R M \to \bbQ / \bbZ\)
+such that \(\alpha(a) \neq 0\).
+Note that an abelian group is \(\bbZ\)-module and the group homomrphism \(\alpha\) is a \(\bbZ\)-module homomorphism such that:
+\[\alpha(n \cdot x) = n \cdot \alpha(x)\]
+where \(n \in \bbZ\), \(x \in A \otimes_R M\).
+Thus, \(\alpha \in \Hom_\bbZ(A \otimes_R M, \bbQ / \bbZ)\).
+
+As we showed above,
+\[
+  \Hom_\bbZ(B \otimes_R M, \bbQ/\bbZ)
+  \xrightarrow{- \circ (f \otimes_R \Id_M)}
+  \Hom_\bbZ(A \otimes_R M, \bbQ/\bbZ)
+  \rightarrow
+  0
+\]
+is exact.
+In other words, \(- \circ (f \otimes_R \Id_M) = - \circ (f \otimes_R M)\)
+is surjective.
+Because \(\alpha \in \Hom_\bbZ(A \otimes_R M, \bbQ/\bbZ)\),
+there is \(\beta \in \Hom_\bbZ(B \otimes_R M, \bbQ/\bbZ)\)
+such that
+\(\beta \circ (f \otimes_R \Id_M) = \alpha\).
+Then,
+\begin{align*}
+  \alpha(a)
+  &= \beta ((f \otimes_R \Id_M)(a))
+  \\&= \beta(0) = 0
+\end{align*}
+since \(a \in \ker (f \otimes_R \Id_M)\).
+However, it's a contradiction, because \(\alpha\) is a homomorphism such that \(\alpha(a) \neq 0\).
+
+Thus, \(\ker (f \otimes_R M)\) must be \(\{0\}\),
+and \(M\) is flat.
+\qedsq
+
+\newpage
+% =============================================================================
+\section*{Problem 5}
+
+Let \(R\) be a ring with unity and \(M\) be a left \(R\)-module.
+Prove that \(M\) is a flat left \(R\)-module
+if and only if
+for any right ideal \(I\) of \(R\),
+\[I \otimes_R M \to IM: \sum_{j} a_j \otimes m_j \mapsto \sum_{j} a_j m_j\]
+is an isomorphism of abelian groups.
+(Hint: Try to use Baer's criterion.)
+
+\subsection*{Solution}
+
+Note that \(R \otimes_R M \simeq M\). because for every \(r \in R\) and \(m \in M\), \(r \otimes m = 0_R \otimes (rm)\),
+and
+\[\sum_j r_j \otimes m_j = \sum_j 1_R \otimes (r_jm_j) = 1_R \otimes \sum_j r_jm_j\]
+It implies, every element of \(R \otimes_R M\) can be expressed as \(1_R \otimes m\) for some \(m \in M\).
+Thus \(R \otimes_R M \simeq M\), with an isomorphism \(\psi: R \otimes_R M \to M\) such that \(\psi(1_R \otimes m) = m\).
+
+\subsection*{(\(\Longrightarrow\))}
+
+Suppose that \(M\) is a flat left \(R\)-module.
+
+Let \(I\) be an ideal of \(R\).
+
+Then, take a short exact sequence,
+\[\begin{tikzcd}
+  0 \ar[->]{r} &
+  I \ar[->, "\iota"]{r} &
+  R \ar[->, "\pi"]{r} &
+  R/I \ar[->]{r} &
+  0
+\end{tikzcd}\]
+where \(\iota: I \to R\) is an injection, and \(\pi: R \to R/I\) be a \(R\) homomorphism such that \(\pi: r \mapsto r + I\).
+
+Since \(M\) is flat, the below is exact:
+\[\begin{tikzcd}
+  0 \ar[->]{r} &
+  I \otimes_R M \ar[->, "\iota \otimes_R M"]{r} &
+  R \otimes_R M \ar[->, "\pi \otimes_R M"]{r} &
+  R/I \otimes_R M \ar[->]{r} &
+  0
+\end{tikzcd}\]
+
+Since \(\iota \otimes_R M = \iota \otimes_R \Id_M\), it's a map from \(I \otimes_R M\) to \(R \otimes_R M \simeq M\).
+And because of the exactness, \(\iota \otimes_R M\) is injective.
+
+Since \(\psi\) we defined above is an isomorphism, \(\eta = \psi \circ (\iota \otimes_R M)\) is an injective homomorphism, such that
+\[\eta(\sum_j a_j \otimes m_j) = \psi(\sum_j a_j \otimes m_j) = \psi(1_R \otimes \sum_j a_j m_j) = \sum_j a_j m_j\]
+where \(a_j \in I\) and \(m_j \in M\).
+
+Also,
+because, for each \(a_j \in I\) and \(m_j \in M\),
+\(a_jm_j \in IM\)
+and
+\(\sum_j a_j m_j \in IM\),
+and \(\eta(\sum_j a_j \otimes m_j) = \sum_j a_j m_j \in IM\).
+And, for each \(\sum_j a_j m_j \in I M\),
+there is \(\sum_j a_j \otimes m_j \in I \otimes_R M\) such that
+\(\eta(\sum_j a_j \otimes m_j) = \sum_j a_j m_j\).
+It means, the image of \(\eta\) is \(IM\).
+
+Therefore, \(\tilde{\eta}: I \otimes_R M \to IM\), which obtained from \(\eta\) by restricting the codomain to \(IM\), which given in the problem, is an isomorphism.
+\qedsq
+
+\subsection*{(\(\Longleftarrow\))}
+Suppose that for every right idel \(I \subseteq R\),
+\[I \otimes_R M \to IM: \sum_{j} a_j \otimes m_j \mapsto \sum_{j} a_j m_j\]
+is an isomorphism of abelian groups.
+It means, \(I \otimes_R M \simeq IM\) for every right ideal \(I \subseteq R\).
+
+Let \(M^* = \Hom_\bbZ(M, \bbQ/\bbZ)\) be \(R\)-module.
+Then, by adjunction formula and above isomorphism relations,
+\[\Hom_R(I, M^*)
+  = \Hom_R(I, \Hom_\bbZ(M, \bbQ / \bbZ))
+  \simeq \Hom_\bbZ(I \otimes_R M, \bbQ / \bbZ)
+  \simeq \Hom_\bbZ(I M, \bbQ / \bbZ)
+\]
+\[\Hom_R(R, M^*)
+  = \Hom_R(R, \Hom_\bbZ(M, \bbQ / \bbZ))
+  \simeq \Hom_\bbZ(R \otimes_R M, \bbQ / \bbZ)
+  \simeq \Hom_\bbZ(M, \bbQ / \bbZ)
+\]
+
+(Note: in this part, for any abelian group \(A\), \(A\) is a \(\bbZ\)-module such that \(n \cdot a\) is sum of \(a\) \(n\)-times.
+Then, group homomorphisms between abelian groups are \(\bbZ\)-module homomorphisms.
+)
+
+Let \(g \in \Hom_R(I, M^*)\).
+Then, there is \(h \in \Hom_\bbZ(IM, \bbQ / \bbZ)\), which is the isomorphic image of \(g\).
+Since \(h\) is a group homomorphism from \(IM \le M\) to \(\bbQ / \bbZ\),
+by Lemma \ref{lem-char},
+there is an extension \(\tilde{h} \in \Hom_\bbZ(M, \bbQ / \bbZ)\) of \(h\).
+Note that since \(M\) and \(\bbQ / \bbZ\) are abelian groups, \(\tilde{h}\) is a \(\bbZ\)-module homomorphism.
+And, let \(\tilde{g} \in \Hom_R(R, M^*)\) be an isomorphic image of \(\tilde{h}\).
+Then, \(\tilde{g}\) is an extension of \(g\).
+
+In other words, for every \(R\)-module homomorphism \(g: I \to M^*\),
+there is a homomorphism \(\tilde{g}: R \to M^*\) which extends \(g\).
+Thus, by Baer's Criterion,
+\(M^*\) is an injective module.
+
+As we proved in Problem 4, since \(M^*\) is injective, \(M\) is flat
+\qedsq
+\end{document}

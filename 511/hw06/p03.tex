@@ -1,0 +1,283 @@
+\section*{Problem 3}
+
+Let \(M, N\) be \(R\)-modules.
+And let
+\(P_\bullet \xrightarrow{\epsilon} M\) be a projective resolution
+and
+\(N \xrightarrow{\iota} I^\bullet\) be an injective resolution
+
+Let \(T^\bullet := \Tot(\Hom_R(P_\bullet, I^\bullet)) = \{T^n\}_{n \ge 0}\)
+with
+\(T^n = \Tot(\Hom_R(P_\bullet, I^\bullet))) = \bigoplus_{i + j = n} \Hom_R(P_i, I^j)\).
+We note that we have two natural morphisms of complexes:
+\[\begin{tikzcd}
+  & \Hom_R(P_\bullet, N) \ar["\iota_*"]{d} \\
+  \Hom_R(M, I^\bullet) \ar["\epsilon^*"]{r} & T^*
+\end{tikzcd}\]
+
+Prove that the above \(\iota_*\) and \(\epsilon^*\) are both quasi-isomorphisms.
+
+(Hint:
+Show that \(\Hom_R(P_\bullet, -)\) preserves quasi-isomorphisms between cohomological complexes
+and \(\Hom_R(-, I^\bullet)\) preserved quasi-isomorphisms between
+homological complexes.)
+
+\subsection*{Lemmata}
+
+\begin{lemma}
+  Let \(F\) be a covariant exact functor.
+  \(F\) preserves (1) kernels; (2) images; (3) cokernels; (4) (co)homology; (5) quasi-isomorphisms.
+\end{lemma}
+\begin{proof}
+  (1)
+  Let \(f: A \to B\) be a homomorphism.
+  Let's show \(F(\ker f) = \ker F(f)\).
+  Take \(0 \to \ker f \to A \xrightarrow{f} \im f \to 0\).
+  This is exact.
+  We obtain \(0 \to F(\ker f) \to F(A) \xrightarrow{F(f)} F(\im f) \to 0\).
+  Because \(F\) is an exact functor,
+  that is exact.
+  Thus, \(\ker F(f) = \im (F(\ker f) \to F(A)) = F(\ker f)\).
+  It means \(F\) preserves kernels.
+
+  (2)
+  Let \(f: A \to B\) be a homomorphism.
+  \(\im F(f) = F(f)(F(A)) = F(f(A)) = \im F(f)\).
+  It means \(F\) preserves images.
+
+  (3)
+  Let \(f: A \to B\) be a homomorphism.
+  Then, we can construct an exact sequence
+  \(0 \to \coim f \xrightarrow{f} B \to \coker f \to 0\).
+  By \(f\), we obtain an exact sequence
+  \(0 \to F(\coim f) \xrightarrow{F(f)} F(B) \to F(\coker f) \to 0\).
+  and,
+  \(F(\coker f) \simeq F(B) / \im F(f) = \coker F(f)\).
+
+  (4)
+  Let \(A_\bullet\) be a chain complex with differentials \(\partial_\bullet\).
+  Take an exact sequence
+  \(0 \to \im\partial_{k - 1} \xrightarrow{f} \ker\partial_k \to \coker f \to 0\) where \(f\) is an injection.
+  Then,
+  \(0 \to \im F(\partial_{k - 1}) = F(\im\partial_{k - 1}) \xrightarrow{F(f)} \ker F(\partial_k) = F(\ker\partial_k) \to F(\coker f) \to 0\) is exact.
+  Then,
+  \(\coker f = \ker\partial_k / \im f \simeq \ker\partial_k / \im \partial_{k - 1} = H_k(A_\bullet)\),
+  \(F(\coker f) \simeq \coker F(f) = \ker F(\partial_k) / \im F(f) \simeq \ker F(\partial_k) / \im F(\partial_{k - 1}) = H_k(F(A_\bullet))\).
+  Thus, \(F(H_k(A_\bullet)) = F(\coker f) = H_k(F(A_\bullet))\).
+
+  (5)
+  Let \(A_\bullet\), \(B_\bullet\) be (co)chain complexes and \(f_\bullet: A_\bullet \to B_\bullet\) be a quasi-isomorphism.
+  Then, \(f_k\) restricted to \(H_k(A_\bullet) \to H_k(B_\bullet)\) is an isomorphism (bijective homomorphism).
+  In this case, \(0 \to H_k(A_\bullet) \xrightarrow{f_k} H_k(B_\bullet) \to 0 \to 0\) is a short exact sequence.
+  By \(F\),
+  \(0 \to F(H_k(A_\bullet)) \xrightarrow{F(f_k)} F(H_k(B_\bullet)) \to 0 \to 0\)
+  is exact.
+  Since \(F\) preserve (co)homologies, we obtain an exact sequence
+  \(0 \to H_k(F(A_\bullet)) \xrightarrow{F(f_k)} H_k(F(B_\bullet)) \to 0 \to 0\).
+  This shows, \(F(f_\bullet)\) is a quasi-isomorphism from \(F(A_\bullet)\) to \(F(B_\bullet)\).
+\end{proof}
+
+\begin{lemma}
+  Let \(F\) be a contravariant exact functor.
+  \(F\) preserves a quasi-isomorphism.
+\end{lemma}
+\begin{proof}
+  It's a dual of above lemma.
+\end{proof}
+
+\begin{lemma}\label{lem-pres}
+  \(\Hom_R(P_k, -)\) preserves a quasi-isomorphism.
+  \(\Hom_R(-, I^k)\) preserves a quasi-isomorphism.
+\end{lemma}
+\begin{proof}
+  Note that \(\Hom_R(P_k, -)\) and \(\Hom_R(-, I^k)\) are exact.
+\end{proof}
+
+\begin{lemma}\label{lem-comp}
+  Let \(A_j^\bullet\) and \(B_j^\bullet\) be cochain complexes for each \(j \in \bbN\).
+  And let \(f_j^\bullet: A_j^\bullet \to B_j^\bullet\) be a quasi-isomorphism for each \(j \in \bbN\).
+  Let
+  \(A_\bbN^\bullet = \bigoplus_{j \in \bbN} A_j^\bullet\)
+  \(B_\bbN^\bullet = \bigoplus_{j \in \bbN} B_j^\bullet\)
+  and \(f_\bbN^\bullet = \bigoplus_{j \in \bbN} f_j^\bullet\).
+  Then, \(f_\bbN^\bullet: A_\bbN^\bullet \to B_\bbN^\bullet\) is a quasi-isomorphism.
+\end{lemma}
+\begin{proof}
+  Let
+  \(\alpha_j^\bullet\) be a differential of \(A_j^\bullet\)
+  \(\beta_j^\bullet\) be a differential of \(B_j^\bullet\).
+
+  Note that
+  \(f_\bbN^\bullet\) maps
+  \(j\)-th entry of \(A_\bbN^\bullet\)
+  which is an element of \(A_j^\bullet\)
+  to the \(j\)-th entry of \(B_\bbN^\bullet\)
+  which is an element of \(B_j^\bullet\).
+
+  Since \(f_\bbN^\bullet\) maps zero entries to zero entries,
+  \(f_\bbN^\bullet\) is a well-defined homomorphism
+  even it's a direct sum of infinitely many modules.
+
+  Note that \(\ker \alpha_\bbN^k = \bigoplus_{j \in \bbN} \ker \alpha_j^k\)
+  for each \(k \in \bbZ\),
+  because for \(a \in A_\bbN^k\), \(\alpha_\bbN^k(a) = 0\) iff each \(j\)-th entry of \(a\) is in \(\ker \alpha_j^k\).
+
+  Also, \(\im \alpha_\bbN^k = \bigoplus_{j \in \bbN} \im \alpha_j^k\)
+  for each \(k \in \bbZ\),
+  because for \(b \in A_\bbN^{k+1}\), there is \(a \in A_\bbN^k\)
+  such that \(\alpha_\bbN^k(a) = b\)
+  iff each \(j\)-th entries of \(a\) are mapped to the \(j\)-th entry of \(b\) by \(f_j^k\).
+
+  In the same way,
+  \(\ker \beta_\bbN^k = \bigoplus_{j \in \bbN} \ker \beta_j^k\)
+  and
+  \(\im \beta_\bbN^k = \bigoplus_{j \in \bbN} \im \beta_j^k\).
+
+  Thus,
+  \(H^k(A_\bbN^\bullet)
+    = \ker \alpha_\bbN^k / \im \alpha_\bbN^{k-1}
+    \bigoplus_{j \in \bbN} \ker \alpha_j^k / \im \alpha_j^k \)
+  and
+  \(H^k(B_\bbN^\bullet)
+    = \ker \beta_\bbN^k / \im \beta_\bbN^{k-1}
+    \bigoplus_{j \in \bbN} \ker \beta_j^k / \im \beta_j^k \)
+
+  Because \(f_\bbN^\bullet\) is an isomorphism
+  between each \(j\)-th entry of \(H^\bullet(A_\bbN^\bullet)\) and \(H^\bullet(B_\bbN^\bullet)\).
+  Therefore, \(f_\bbN^\bullet\) is an isomorphism between \(H^\bullet(A_\bbN^\bullet)\) and \(H^\bullet(B_\bbN^\bullet)\).
+
+  This shows \(f_\bbN^\bullet\) is a quasi-isomorphism.
+\end{proof}
+
+\subsection*{Proof}
+
+Because \(P_\bullet \to M\) is a projective resolution,
+we have a quasi isomorphism:
+\[\begin{tikzcd}
+  \cdots \ar{r} & P_2 \ar{d} \ar{r} & P_1 \ar{d} \ar{r} & P_0 \ar["\epsilon"]{d} \ar{r} & 0 \ar{d} \ar{r} & \cdots \\
+  \cdots \ar{r} & 0 \ar{r} & 0 \ar{r} & M \ar{r} & 0 \ar{r} & \cdots
+\end{tikzcd}\]
+Then, \(\Hom_R(-, I^n)\) maps above as
+\[\begin{tikzcd}
+  \cdots \ar{r} & 0 \ar{d} \ar{r} & \Hom_R(M, I^n) \ar["\Hom_R(\epsilon{,}I^n)"]{d} \ar{r} & 0 \ar{d} \ar{r} & 0 \ar{d} \ar{r} & \cdots \\
+  \cdots \ar{r} & 0 \ar{r} & \Hom_R(P_0, I^n) \ar{r} & \Hom_R(P_1, I^n) \ar{r} & \Hom_R(P_2, I^n) \ar{r} & \cdots
+\end{tikzcd}\]
+where the chain map between two rows is a quasi-isomorphism by Lemma \ref{lem-pres}.
+
+Let \(A_n^{\bullet - n}\) be the above rows and \(B_n^{\bullet - n}\) be the below rows of the above diagram.
+In other words,
+\[A_n^k = \left\{\begin{array}{ll}
+\Hom_R(M, I^k) & (k = n) \\
+0 & (k \neq n) \\
+\end{array}\right.
+,
+B_n^k = \left\{\begin{array}{ll}
+\Hom_R(P_{k - n}, I^k) & (k \ge n) \\
+0 & (k < n) \\
+\end{array}\right.
+\text{ where }
+k \in \bbZ
+\]
+Let \(f_n^\bullet: A_n^\bullet \to B_n^\bullet\) be a quasi-isomorphism
+such that
+\(f_n^n = \Hom_R(\epsilon, I^n)\), \(f_n^k = 0\) for \(k \neq n\).
+
+Let
+\(A_\bbN^\bullet = \bigoplus_{j\in\bbN} A_j^\bullet\),
+\(B_\bbN^\bullet = \bigoplus_{j\in\bbN} B_j^\bullet\),
+and
+\(f_\bbN^\bullet = \bigoplus_{j\in\bbN} f_j^\bullet\).
+
+Then,
+\[A_\bbN^k = \left\{\begin{array}{ll}
+\Hom_R(M, I^k) & (k \ge 0) \\
+0 & (k < 0) \\
+\end{array}\right.
+,
+B_\bbN^k = \left\{\begin{array}{ll}
+\bigoplus_{i+j=k} \Hom_R(P_i, I^j) & (k \ge 0) \\
+0 & (k < 0) \\
+\end{array}\right.
+\text{ where }
+k \in \bbZ
+\]
+Note that
+\(A_\bbN^k = \Hom_R(M, I^k)\),
+and
+\(B_\bbN^k = T^k\) since \(P_\bullet, I^\bullet\) of negative degree are zero.
+In other words \(f_\bbN^\bullet\) is a chain map
+from \(\Hom_R(M, I^\bullet)\)
+to \(T^k\).
+
+By Lemma \ref{lem-comp},
+\(f_\bbN^\bullet = \bigoplus_{j \in \bbN} f_j^\bullet: A_\bbN^\bullet \to B_\bbN^\bullet\)
+is a quasi-isomorphism.
+Let \(\epsilon^* = f_\bbN^\bullet\).
+
+%-----------------------------------------------------------
+\br
+\noindent
+In the same way, we have a quasi-isomorphism from an injective resolution:
+\[\begin{tikzcd}
+  \cdots \ar{r} & 0 \ar{d} \ar{r} & N \ar["\iota"]{d} \ar{r} & 0 \ar{d} \ar{r} & 0 \ar{d} \ar{r} & \cdots \\
+  \cdots \ar{r} & 0 \ar{r} & I^0 \ar{r} & I^1 \ar{r} & I^2 \ar{r} & \cdots
+\end{tikzcd}\]
+and we obtain the below diagram:
+\[\begin{tikzcd}
+  \cdots \ar{r} & 0 \ar{d} \ar{r} & \Hom_R(P_n, N) \ar["\Hom_R(P_n{,} \iota)"]{d} \ar{r} & 0 \ar{d} \ar{r} & 0 \ar{d} \ar{r} & \cdots \\
+  \cdots \ar{r} & 0 \ar{r} & \Hom_R(P_n, I^0) \ar{r} & \Hom_R(P_n, I^1) \ar{r} & \Hom_R(P_n, I^2) \ar{r} & \cdots
+\end{tikzcd}\]
+where the chain map between two rows is a quasi-isomorphism
+by \ref{lem-pres}.
+
+Define \(C_n^{\bullet - n}\), \(D_n^{\bullet - n}\) as:
+\[C_n^k = \left\{\begin{array}{ll}
+\Hom_R(P_k, N) & (k = n) \\
+0 & (k \neq n) \\
+\end{array}\right.
+,
+D_n^k = \left\{\begin{array}{ll}
+\Hom_R(P_k, I^{k - n}) & (k \ge n) \\
+0 & (k < n) \\
+\end{array}\right.
+\text{ where }
+k \in \bbZ
+\]
+Let \(g_n^\bullet: C_n^\bullet \to D_n^\bullet\) be a quasi-isomorphism
+such that
+\(g_n^n = \Hom_R(P_n, \iota)\), \(g_n^k = 0\) for \(k \neq n\).
+
+Let
+\(C_\bbN^\bullet = \bigoplus_{j\in\bbN} C_j^\bullet\),
+\(D_\bbN^\bullet = \bigoplus_{j\in\bbN} D_j^\bullet\),
+and
+\(g_\bbN^\bullet = \bigoplus_{j\in\bbN} g_j^\bullet\).
+
+Then,
+\[C_\bbN^k = \left\{\begin{array}{ll}
+\Hom_R(P_k, N) & (k \ge 0) \\
+0 & (k < 0) \\
+\end{array}\right.
+,
+D_\bbN^k = \left\{\begin{array}{ll}
+\bigoplus_{i+j=k} \Hom_R(P_i, I^j) & (k \ge 0) \\
+0 & (k < 0) \\
+\end{array}\right.
+\text{ where }
+k \in \bbZ
+\]
+Note that
+\(C_\bbN^k = \Hom_R(P_k, N)\),
+\(D_\bbN^k = T^k\).
+Also, by Lemma \ref{lem-comp},
+\(g_\bbN^\bullet = \bigoplus_{j \in \bbN} g_j^\bullet: C_\bbN^\bullet \to D_\bbN^\bullet\)
+is a quasi-isomorphism.
+Let \(\iota^* = g_\bbN^\bullet\).
+\br
+\noindent
+Therefore,
+\(\epsilon_* = f_\bbN^\bullet: \Hom_R(M, I^\bullet) \to T^\bullet\)
+and
+\(\iota_* = g_\bbN^\bullet: \Hom_R(P_\bullet, N) \to T^\bullet\)
+are quasi-isomorphisms.
+\qedsq

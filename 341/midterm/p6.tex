@@ -1,0 +1,137 @@
+\section*{Problem 6}
+
+Let \(f = u + iv\) be an entire function. Prove that
+\[
+\det
+\begin{pmatrix}
+u_{xx} & u_{xy} \\ u_{yx} & u_{yy}
+\end{pmatrix}
+=
+\det
+\begin{pmatrix}
+v_{xx} & v_{xy} \\ v_{yx} & v_{yy}
+\end{pmatrix}
+\le 0
+\]
+
+\subsection*{Lemmata}
+
+Note that if \(f = u + iv\) is entire, \(f_x = u_x + iv_x\), \(f_y = u_y + iv_y\) exists by Proposition 3.1.
+\begin{lemma}\label{lem-6-exist-pd}
+  Let \(f = u + iv\) be an entire function where \(u, v : \bbC \to \bbR\).
+  \(f' = u_x + iv_x = v_y - iu_y\).
+\end{lemma}
+\begin{proof}
+  Because \(f\) is analytic, \(f'\) is equal to every directional derivation.
+  Thus,
+  \begin{align*}
+    f'(z)
+    &= \lim_{h \to 0} \frac{f(z + h) - f(z)}{h}
+    \\&= \lim_{h \in \bbR, h \to 0} \frac{f(z + h) - f(z)}{h}
+    \\&= \lim_{h \in \bbR, h \to 0} \frac{u(z + h) - u(z) + i(v(z + h) - v(z))}{h}
+    \\&= u_x(z) + iv_x(z)
+  \end{align*}
+  And by Cauchy-Riemann Equation, \(f' = u_x + iv_x = v_y - iu_y\).
+\end{proof}
+\begin{lemma}\label{lem-6-2nd-class}
+  Let \(f = u + iv\) be an entire function where \(u, v : \bbC \to \bbR\).
+  Then, at least \(u, v \in \calC^2(\bbC)\) (i.e. \(u, v\) are complex functions which have the second derivatives which are continuous).
+\end{lemma}
+\begin{proof}
+  Since \(f\) is entire, \(f' = u_x + iv_x\).
+  Also, derivative of entire function is entire.
+  Thus, \(f'\) is entire.
+  Then, \(f'' = u_{xx} + iv_{xx}\).
+  In the similar way, there is \(f^{(3)}\) with \(f''_x\) and \(f''_y\).
+  Because \(f''_x = u_{xxx} + iv_{xxx}\) and \(f''_y = u_{xxy} + iv_{xxy}\),
+  \(u_{xxx}, v_{xxx}, u_{xxy}, v_{xxy}\) exists.
+  It means \(u_{xx}\) and \(v_{xx}\) are differentiable and continuous.
+
+  Because Cauchy-Riemann Equation holds as \(if'_x = f'_y\),
+  we can take \(f'' = v_{xy} - iu_{xy}\) instead of \(u_{xx} + iv_{xx}\).
+  Then, in the similar way, we can conclude that \(v_{xy}, u_{xy}\) are differentiable and continuous.
+  
+  Also, using Cauchy-Riemann Equation,
+  for \(f' = v_y - iu_y\) instead of \(u_x + iv_x\),
+  by following above processes, we can conclude that
+  \(v_{yx}, u_{yx}, v_{yy}, u_{yy}\) are differentiable and continuous.
+
+  Thus, \(u, v \in \calC^{2}(\bbC)\).
+\end{proof}
+
+\subsection*{Proof}
+
+Note that,
+\[
+\det
+\begin{pmatrix}
+u_{xx} & u_{xy} \\ u_{yx} & u_{yy}
+\end{pmatrix}
+= u_{xx} u_{yy} - u_{xy} u_{yx},\ \ 
+\det
+\begin{pmatrix}
+v_{xx} & v_{xy} \\ v_{yx} & v_{yy}
+\end{pmatrix}
+= v_{xx} v_{yy} - v_{xy} v_{yx}
+\]
+
+Since \(f\) is entire,
+\(u_x = v_y\) and \(u_y = -v_x\) by Cauchy-Riemann Equation.
+Thus,
+\begin{gather*}
+   u_{xx} = \frac{\partial u_x}{\partial x} 
+   = \frac{\partial v_y}{\partial x} = v_{yx}
+\\ u_{xy} = \frac{\partial u_x}{\partial y} 
+   = \frac{\partial v_y}{\partial y} = v_{yy}
+\\ u_{yx} = \frac{\partial u_y}{\partial x} 
+   = \frac{\partial (-v_x)}{\partial x} = -v_{xx}
+\\ u_{yy} = \frac{\partial u_y}{\partial y} 
+   = \frac{\partial (-v_x)}{\partial y} = -v_{xy}
+\end{gather*}
+
+Therefore,
+\begin{align*}
+\det
+\begin{pmatrix}
+u_{xx} & u_{xy} \\ u_{yx} & u_{yy}
+\end{pmatrix}
+  = u_{xx} u_{yy} - u_{xy} u_{yx}
+  &= v_{yx} (- v_{xy}) - v_{yy} (- v_{xx})
+  \\&= -v_{yx}v_{xy} + v_{yy} v_{xx}
+  = v_{xx}v_{yy} - v_{xy} v_{yx}
+  =
+  \det
+\begin{pmatrix}
+v_{xx} & v_{xy} \\ v_{yx} & v_{yy}
+\end{pmatrix}
+\end{align*}
+holds.
+
+Lemma \ref{lem-6-2nd-class} shows that \(u, v \in \calC^{2}(\bbC)\).
+It means, we can change the order of partial derivatives like:
+\[ u_{xy} = u_{yx}, v_{xy} = v_{yx} \]
+Thus,
+\begin{align*}
+  u_{xx}u_{yy} - u_{xy}u_{yx}
+  &= -v_{yx}v_{xy} - u_{xy}u_{yx}
+  \\&= -v_{xy}^2 - u_{xy}^2
+\end{align*}
+Since \(u\) and \(v\) are real-valued functions, \(v_{xy}^2 \ge 0\) and \(u_{xy}^2 \ge 0\).
+So \(-v_{xy}^2 - u_{xy}^2 \le 0\).
+
+Therefore,
+\begin{align*}
+\det
+\begin{pmatrix}
+u_{xx} & u_{xy} \\ u_{yx} & u_{yy}
+\end{pmatrix}
+=
+\det
+\begin{pmatrix}
+v_{xx} & v_{xy} \\ v_{yx} & v_{yy}
+\end{pmatrix}
+= u_{xx}u_{yy} - u_{xy}u_{yx}
+&= -v_{xy}^2 - u_{xy}^2
+\le 0
+\end{align*}
+\qedsq

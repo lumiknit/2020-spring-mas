@@ -1,0 +1,105 @@
+\section*{Problem 4}
+
+Prove the injective resolution version of the Horseshoe Lemma:
+
+\begin{theorem}
+(Horseshoe Lemma for injective modules)
+Suppose
+\[0 \rightarrow M' \rightarrow M \rightarrow M'' \rightarrow 0\]
+is a short exact sequence of \(R\)-modules.
+Suppose there are injective resolutions
+\(M' \to I'^\bullet\)
+and
+\(M'' \to I''^\bullet\).
+Then there is an injective resolution \(M \to I^\bullet\)
+such that it fits into a short exact sequence of complexes:
+\[0 \rightarrow I'_\bullet \rightarrow I_\bullet \rightarrow I''_\bullet \rightarrow 0\]
+\end{theorem}
+
+%-----------------------------------------------------------
+\subsection*{Lemmata}
+
+\begin{lemma}\label{lem-prod-inj}
+  Let \(I_1, I_2\) be injective \(R\)-modules. \(I_1 \oplus I_2\) is injective.
+\end{lemma}
+\begin{proof}
+  Let \(0 \to M \xrightarrow{f} N\) be an exact sequence of \(R\)-modules.
+  And suppose that there is a map \(g: M \to I_1 \oplus I_2\).
+  Let \(\pi_k: I_1 \oplus I_2 \to I_k\) be a natural projection for \(k = 1, 2\).
+  Let \(g_k = \pi_k \circ g\) for \(k = 1, 2\).
+  Since each \(I_k\) are injective, there is an extension \(h_k: N \to I_k\)
+  such that \(g_k = h_k \circ f\).
+  Then, let \(h: N \to I_1 \oplus I_2: x \mapsto (h_1(x), h_2(x))\).
+  Trivially, it's a homomorphism as a composition of homomorphisms.
+  \(h\) is an extension of \(g\), because for \(m \in M\),
+  \[h(f(m)) = (h_1(f(m)), h_2(f(m))) = (g_1(m), g_2(m)) = g(m)\].
+  Therefore, \(I_1 \oplus I_2\) is also injective.
+\end{proof}
+
+
+%-----------------------------------------------------------
+\subsection*{Proof}
+
+\[
+\begin{tikzcd}
+& 0 \ar{d} & 0 \ar{d} & 0 \ar{d} & \\
+0 \ar{r} & M' \ar["i"]{r} \ar["g_0"]{d} & M \ar["p"]{r} \ar[dashed, "f_0"]{d} & M'' \ar{r} \ar["h_0"]{d} & 0 \\
+0 \ar{r} & I'^0 \ar["\iota_0"]{r} \ar["g_1"]{d} & I^0 = I'^0 \oplus I''^0 \ar["\pi_0"]{r} \ar[dashed,"f_1"]{d} & I''^0 \ar{r} \ar["h_1"]{d} & 0 \\
+0 \ar{r} & I'^1 \ar["\iota_1"]{r} \ar["g_2"]{d} & I^1 = I'^1 \oplus I''^1 \ar["\pi_1"]{r} \ar[dashed,"f_2"]{d} & I''^1 \ar{r} \ar["h_2"]{d} & 0 \\
+ & \vdots& \vdots & \vdots &
+\end{tikzcd}
+\]
+
+Suppose that the exact sequence \(0 \to M' \to M \to M'' \to 0\) with \(i, p\), 
+an injective resolution \(M' \to I'^\bullet\), \(M'' \to I''^\bullet\) with \(g_k, h_k\)
+were given as above diagram.
+
+As the Problem 1, take \(I^k = I'^k \oplus I''^k\) for \(k \in \bbZ^{\ge 0}\).
+Each \(I^k\) is injective by Lemma \ref{lem-prod-inj}.
+Let \(\iota_k: I'^k \to I^k\) and \(\pi_k: I^k \to I''^k\) be natural homomorphisms.
+
+Let's define \(f_k: I^{k - 1} \to I^k\).
+
+First,
+note that \(i\), \(\iota_0\) and \(g_0\) are injective because of exact sequences.
+Because \(I'^0\) is injective, there is an extension \(\alpha_1: M \to I'^0\) of \(g_0\) such that \(g_0 = i \circ \alpha_1\).
+Let \(f_0: M \to I^0\) be \(f_0: m \mapsto (\alpha_1(m), h_0(p(m)))\).
+
+Then, \(0 \to M \xrightarrow{f_0} I^0\) is exact.
+If \(f_0(m) = (0, 0)\) for some \(m \in M\),
+\(\alpha_1(m) = 0\) and \(h_0(p(m)) = 0\).
+Since \(h_0\) is injective, \(p(m) = 0\), and \(m \in \ker p = \im i\).
+Let \(x \in M'\) such that \(i(x) = m\).
+\(0 = f_0(m) = f_0(i(x)) = \iota_0(g_0(x))\).
+Since \(\iota_0\) is injective, \(g_0(x) = 0\).
+Since \(g_0\) is injective, \(x = 0\).
+Therefore, \(m = i(x) = 0\).
+This shows \(\ker f_0 = \{0\}\) and \(f_0\) is injective.
+
+By Snake Lemma (See Problem 7), \(\coker g_0 \xrightarrow{\tilde \iota_0} \coker f_0 \to \coker{\tilde \pi_0} h_0\) is exact, where \(\tilde\iota_0\) and \(\tilde\pi_0\) are naturally induced from \(\iota_0\) and \(\pi_0\).
+Also, \(\tilde\pi_0\) is surjective as \(\pi_0\) is surjective.
+Also, since \(\ker h_0 = \im 0 = 0\), \(0 = \ker h_0 \to \coker g_0 \to \coker f_0\) is exact.
+Because \(\im g_0 = \ker g_1\) and \(\im h_0 = \ker h_1\),
+we can build the below diagram with the induced injective homomorphisms \(\tilde g_1: \coker g_0 = I'^0 / \ker g_1 \to I'^1\) and \(\tilde h_1: \coker h_0 = I''^0 / \ker h_1 \to I''^1\) which obtained from \(g_1\) and \(h_1\):
+\[
+\begin{tikzcd}
+& 0 \ar{d} & 0 \ar{d} & 0 \ar{d} & \\
+0 \ar{r} & \coker g_0 \ar["\tilde \iota_0"]{r} \ar["\tilde g_1"]{d} & \coker f_0 \ar["\tilde \pi_0"]{r} \ar[dashed, "\tilde f_1"]{d} & \coker h_0 \ar{r} \ar["\tilde h_1"]{d} & 0 \\
+0 \ar{r} & I'^1 \ar["\iota_1"]{r} \ar["g_2"]{d} & I^1 = I'^1 \oplus I''^1 \ar["\pi_1"]{r}  & I''^1 \ar{r} \ar["h_2"]{d} & 0 \\
+ & \vdots&  & \vdots &
+\end{tikzcd}
+\]
+Note that each rows and the first and third column of above diagram is exact.
+In this case, we can repeat what we did above,
+just considering \(\coker f_0\), \(\coker g_0\), \(\coker h_0\) as \(M\), \(M'\), \(M''\).
+Then, we can construct \(\tilde f_1: \coker f_0 \to I^1\) using the injectivity of \(I'^1\),
+and an exact sequcne \(0 \to \coker g_1 \to \coker f_1 \to \coker h_1 \to 0\),
+and \(\tilde f_2: \coker f_1 \to I^2\),
+\(\cdots\).
+
+Then, let \(f_k: I^{k - 1} \to I^k\) such as \(f_k(x) = \tilde f_k(x + \im f_{k - 1})\) for each \(k \in \bbZ^{\ge 0}\) (Let's assume \(I^{-1} = M\), \(I^{-2} = 0\) and \(f_{-2} = 0\) for convenience).
+Then, since each \(\tilde f_k\) is injective, \(\tilde f_k (x) = 0\) iff \(x = \im f_{k - 1}\).
+It implies \(\ker f_k = \im f_{k - 1}\).
+
+Therefore, \(I^\bullet\) is an injective resolution of \(M\).
+\qedsq

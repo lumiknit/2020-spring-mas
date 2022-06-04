@@ -1,0 +1,72 @@
+\section*{Problem 5}
+
+Try \(G = \{1, x, x^2\}\), a group of order \(3\).
+This is also cyclic.
+So \(r = 3\) and all \(d_i = 1\).
+We begin with
+
+\begin{center}
+\begin{tabular}{c|ccc}
+  & \(1\) & \(x\) & \(x^2\) \\
+  & \(1\) & \(1\) & \(1\) \\
+  \hline
+  \(\chi_1\) & \(1\) & \(1\) & \(1\) \\
+  \(\chi_2\) & \(1\) & \(?_1\) & \(?_2\) \\
+  \(\chi_3\) & \(1\) & \(?_3\) & \(?_4\)
+\end{tabular}
+\end{center}
+
+Here, the rows and columns are orthogonal.
+From the 1st and the 2nd columns,
+we get \(1 + ?_1 + ?_3 = 0\),
+and similarly \(1 + ?_1 + ?_2 = 0\), etc.
+This shows \(?_2 = ?_3 = -1 - ?_1\) and \(?_4 = ?_1\).
+
+Show that when \(\omega\) is a primitive 3rd root of unity,
+\(?_1 = ?_4 = \omega\), \(?_2 = ?_3 = \omega^2\).
+
+\subsection*{Proof}
+
+Between two different columns, we obtain
+\begin{gather}
+  1 + ?_1 + ?_3 = 0 \\
+  1 + ?_2 + ?_4 = 0 \\
+  1 + ?_1 \overline{?_2} + ?_3 \overline{?_4} = 0
+\end{gather}
+Between two different rows, we obtain
+\begin{gather}
+  1 + ?_1 + ?_2 = 0 \\
+  1 + ?_3 + ?_4 = 0 \\
+  1 + ?_1 \overline{?_3} + ?_2 \overline{?_4} = 0
+\end{gather}
+
+From (1) and (4), we obtain
+\[?_2 = ?_3 = -1 - ?_1\]
+In the similar way, we obtain
+\[?_1 = ?_4 = -1 - ?_3\]
+
+Let \(z = ?_1 = ?_4\) and \(w = ?_2 = ?_3\).
+
+Since \(x^{-1} = x^2\), \(\chi_k(x^2) = \chi_k(x^{-1}) = \overline{\chi_k(x)}\) for each \(k = 1, 2, 3\).
+Thus, \(z = \overline{w}\).
+Then, from (4),
+\[0 = 1 + z + w = 1 + z + \overline{z} = 1 + 2 \Re z\]
+\[\Re z = -\frac{1}{2}\]
+
+From (3) using \(?_2 = ?_3 = -1-?_1\), we obtain
+\[1 - z - \overline{z} - 2 z \overline{z} = 0\]
+And we can simplify it such as:
+\[2 - 2 z \overline{z} = 0\]
+\[z \overline{z} = 1\]
+\[|z|^2 = 1\]
+Thus \(|z| = 1\). Since \(\Re z = -1/2\),
+\[z = -\frac{1}{2} \pm \frac{\sqrt{3}}{2}i\]
+\[w = \overline{z} = -\frac{1}{2} \mp \frac{\sqrt{3}}{2}i\]
+
+Note that \(\omega = e^{\frac{2}{3} \pi i} = -\frac{1}{2} + \frac{\sqrt{3}}{2}i\).
+Thus, \(?_1 = ?_4 = z = \omega\) and \(?_2 = ?_3 = w = \omega^2\).
+\qedsq
+
+(Since the equations are symmetric,
+\(?_1 = ?_4 = \omega^2\), \(?_2 = ?_3 = \omega\)
+is also possible.)

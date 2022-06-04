@@ -1,0 +1,83 @@
+\section*{Problem 3}
+
+\begin{theorem}
+  Let \(\psi_1, \psi_2\) be characters of \(G\).
+  Then so is \(\psi_1 \psi_2\).
+  In particular, \(\calF\) is closed under the product of class functions.
+
+  More precisely, if \(\psi_i = \Tr \phi_i\) for representations \(\phi_i\),
+  then \(\psi_1 \psi_2 = \Tr \phi_1 \otimes \phi_2\).
+\end{theorem}
+
+One way to prove the above theorem is using the fact that
+\[\Tr(T_1 \otimes T_2) = \Tr(T_1) \cdot \Tr(T_2)\]
+where \(T_1 \otimes T_2\) is the tensor product of linear transformations.
+
+Give another proof of the above,
+using dual basis descrption of the characters.
+
+\subsection*{Proof}
+
+Let \(F\) be a field,
+\(V_1, V_2\) be finite dimension vector spaces over \(F\),
+\(m = \dim_F V_1\),
+\(n = \dim_F V_2\),
+\(\calA = \{a_1, \cdots, a_m\}\) be a basis of \(V_1\),
+\(\calB = \{b_1, \cdots, b_n\}\) be a basis of \(V_2\),
+\(\calA^* = \{a^*_1, \cdots, a^*_m\}\) be a dual of \(\calA\),
+\(\calB^* = \{b^*_1, \cdots, b^*_n\}\) be a dual of \(\calB\).
+
+Let \(\phi_1: G \to \GL(V_1)\) and \(\phi_2: G \to \GL(V_2)\) be linear representations.
+And let \(\psi_k\) is the character of \(\phi_k\) for \(k = 1, 2\).
+
+Note that
+one of basis of \(A \otimes B\)
+is
+\(\calT = \{a_i \otimes b_j \mid a_i \in \calA, b_j \in \calB\}\).
+
+As the theorem in the Problem 2, for \(g \in G\),
+\[\psi_1(g) = \Tr(\phi_1(g)) = \sum_{i=1}^m a_i^*(\phi_1(g)(a_i))\]
+\[\psi_2(g) = \Tr(\phi_2(g)) = \sum_{i=1}^n b_i^*(\phi_2(g)(b_i))\]
+
+Some notes:
+\begin{itemize}
+\item Since we defined \(G\) acts on \(V_1 \otimes V_2\) such as
+  \(g \cdot (v_1 \otimes v_2) = (g \cdot v_1) \otimes (g \cdot v_2)\)
+  in the lecture,
+  \((\phi_1 \otimes \phi_2)(g)(v_1 \otimes v_2) = \phi_1(g)(v_1) \otimes \phi_2(g)(v_2)\).
+\item Each dual basis element \((a_i \otimes b_j)^*\) is defined as
+  \((a_i \otimes b_j)^*(x)\) is 0 for all elements of \(\calT\)
+  except \(a_i \otimes b_j\) which is valued by \(1_F\).
+  Since \(a_i^*\) makes all elements of \(\calA\) zero except \(a_i\) (which gives \(1_F\))
+  and \(b_j^*\) makes all elements of \(\calB\) zero except \(b_j\) (which gives \(1_F\)),
+  \((a_i \otimes b_j)^*(a \otimes b) = a_i^*(a) b_j^*(b)\)
+  for every \(a \otimes b \in \calT\).
+  Because linear transformation is determined uniquely by the image of basis,
+  \((a_i \otimes b_j)^*(a \otimes b) = a_i^*(a) b_j^*(b)\) holds for every \(a \otimes b \in V_1 \otimes V_2\).
+  (Note that we do not have to check for every element of \(V_1 \otimes V_2\),
+  which may have a form of \(\sum_k a_k \otimes b_k\),
+  because only the form of \(a \otimes b\) appears in the below calculation.)
+\end{itemize}
+Then, for every \(g \in G\),
+\begin{align*}
+  \Tr((\phi_1 \otimes \phi_2)(g))
+  &= \sum_{i=1}^m \sum_{j=1}^n
+    (a_i \otimes b_j)^*((\phi_1(g) \otimes \phi_2(g))(a_i \otimes b_j))
+  \\&= \sum_{i=1}^m \sum_{j=1}^n
+    (a_i \otimes b_j)^*(\phi_1(g)(a_i) \otimes \phi_2(g)(b_j))
+  \\&= \sum_{i=1}^m \sum_{j=1}^n
+    a_i^*(\phi_1(g)(a_i)) b_j^*(\phi_2(g)(b_j))
+  \\&= \sum_{i=1}^m a_i^*(\phi_1(g)(a_i))
+    \sum_{j=1}^n b_j^*(\phi_2(g)(b_j))
+  \\&= \left( \sum_{i=1}^m a_i^*(\phi_1(g)(a_i)) \right)
+    \left( \sum_{j=1}^n b_j^*(\phi_2(g)(b_j)) \right)
+  \\&= \psi_1(g) \psi_2(g)
+  \\&= (\psi_1\psi_2)(g)
+\end{align*}
+
+This shows \(\Tr \circ (\phi_1 \otimes \phi_2) = \psi_1 \psi_2\).
+
+Therefore, the character of tensor product of representations
+is a multiplication of the characters of each representations.
+Thus, \(\calF\) is closed under the multiplication.
+\qedsq

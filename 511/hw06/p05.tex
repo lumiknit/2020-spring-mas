@@ -1,0 +1,61 @@
+\section*{Problem 5}
+
+(Continue from Problem 4)
+
+We obtained a set map \(\eta: \Ext_R^1(M, N) \to \Ext_R(M, N)\) which maps \(x\) to \(e\).
+
+Let \(\beta' \in \Hom_R(K, N)\) such that \(\partial'(\beta') = x\).
+Since
+\[\Hom_R(P, N) \xrightarrow{\alpha^*} \Hom_R(K, N) \to \Ext_1^R(M, N)\]
+is exact, there is some \(\gamma \in \Hom_R(P, N)\)
+such that \(\beta' = \beta + \gamma \circ \alpha\)
+
+Let \(e' = [0 \to N \to T' \to M \to 0]\)
+obtained by taking the push-out of \(\alpha\) and \(\beta'\).
+
+Prove that \(e\) and \(e'\) are equivalent short exact sequences.
+
+\subsection*{Proof}
+
+Let \(f: K \to P \oplus N\) be a homomorphism \(K \to P \oplus N\),
+such that \(f(k) = (\alpha(k), -\beta(k))\).
+And, let \(f': K \to P \oplus N\) be a homomorphism \(K \to P \oplus N\),
+such that \(f(k) = (\alpha(k), -\beta'(k))\).
+
+\[\begin{tikzcd}
+  0 \ar{rr} && N \ar["i"]{rr} && T \ar["\psi"]{rr} \ar[dashed, pos=0.2, "\tau", crossing over]{dd} && M \ar{r} \ar[equal]{dd} & 0 \\
+  0 \ar{r}
+  & K \ar["\beta"]{ur} \ar["\beta'"]{dr} \ar[pos=0.7, "\alpha"]{rr}
+  && P \ar["\phi"]{ur} \ar["\phi'"]{dr} \ar[pos=0.7, "\pi"]{rr}
+  && M \ar[equal]{ur} \ar[equal]{dr} \ar{rr}
+  && 0 \\
+  0 \ar{rr} && N \ar["i'"]{rr} && T' \ar["\psi'"]{rr} && M \ar{r} & 0
+\end{tikzcd}\]
+
+In this case, take \(\tau: T \to T'\) as,
+\(\tau((p, n) + \im f) = (p, n - \gamma(p)) + \im f'\).
+
+First, this is well-defined.
+Let \(p, p' \in P\), \(n, n' \in N\) such that \((p, n) + \im f = (p', n') + \im f\).
+Then, \((p - p', n - n') \in \im f\).
+In other words, there is \(k \in K\) such that
+\(p - p' = \alpha(k)\),
+\(n - n' = -\beta(k)\).
+Then, \(-\beta'(k) = -\beta(k) - \gamma(\alpha(k)) = -\beta(k) - \gamma(p - p')\).
+Then,
+\(p - p' = \alpha(k)\),
+and \(n - n' - \gamma(p - p') = -\beta'(k)\).
+This shows that
+\((p - p', (n - \gamma(p)) - (n' - \gamma(p'))) = (p - p', n - n' - \gamma(p - p')) \in \im f'\),
+and
+\((p, n - \gamma(p)) + \im f' = (p', n' - \gamma(p')) + \im f'\).
+Therefore, \(\tau\) is well-defined.
+
+This is a homomorphism because it's a combination of homomorphisms.
+
+Let \(n \in N\).
+\(\tau(i(n)) = \tau((0, n) + \im f) = (0, n - \gamma(0)) + \im f' = (0, n) + \im f' = i'(n)\).
+Therefore, \(\tau \circ i = i'\).
+And by the definition of class of extensions,
+\(e\) and \(e'\) are equivalent.
+\qedsq

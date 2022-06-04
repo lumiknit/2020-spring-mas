@@ -1,0 +1,162 @@
+\section*{Problem 9}
+
+Let \(h\) be a continuous function on the boundary of the unit disc in \(\bbC\).
+Let \(C\) be a curve given by \(C = C(\theta) = e^{i\theta}\),
+\(0 \le \theta \le 2\pi\).
+For \(z \in \bbC\) with \(|z| \neq 1\), we define
+\[
+f(z) = \frac{1}{2\pi i} \int_{C} \frac{h(\zeta)}{\zeta - z} d\zeta
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item Prove that \(f\) is analytic in \(\bbC \bs C\).
+\item Prove or disprove that for each \(z_0 \in \bbC\) with \(|z_0| = 1\),
+  \(\lim_{|z| < 1, z \to z_0} f(z) = h(z_0)\).
+\end{enumerate}
+
+\subsection*{Lemmata}
+  \begin{lemma}\label{lem-9-rect}
+    Let \(R \subseteq \bbC\) be a closed rectangle, which does not contains \(0\). Then,
+    \[\int_{\partial R} \frac{1}{z} dz = 0\]
+  \end{lemma}
+  \begin{proof}
+    Let \(R = [a, b] \times [c, d]\) in \(\bbC\) for some \(a, b, c, d \in \bbR\), \(a < b\) and \(c < d\).
+    (If \(a = b\) or \(c = d\), \(\int_{\partial R} \frac{1}{z} dz\) is just an integration following a line segment forward and backward. Thus it's trivially 0.)
+    First, since \(R\) is non-empty, closed, bounded and compact, and modulus \(|\cdot|\) is continuous, \(\{|z| \mid z \in R\}\) has minimum. Let \(r = \min \{|z| \mid z \in R\}\).
+    Since \(0 \not\in R\), \(r > 0\) and \(|z| \ge r > 0\) for every \(z \in R\).
+    Then, let \(t = \frac{r}{2\sqrt{2}}\).
+    And split \(R\) into,
+    \(R_{jk} = [a_{j - 1}, a_{j}] \times [c_{k - 1}, c_k]\) in \(\bbC\)
+    where \(a = a_0 < a_1 < \cdots < a_{n - 1} < a_n = b\), \(c = c_0 < c_1 < \cdots < c_{m - 1} < c_m = d\), \(a_{k} = a_{k - 1} + t\) for integer \(0 < k < n\), \(c_{k} = c_{k - 1} + t\) for integer \(0 < k < m\) and \(n, m\) is an integer such that \(b \le a + nt < b + t\) and \(d \le c + mt < d + t\).
+    (\(n = \lceil \frac{b - a}{t} \rceil\), \(m = \lceil \frac{d - c}{t} \rceil\))
+    Then let \(N_{jk} = D(\frac{(a_{j - 1} + a_{j}) + i(c_{k - 1} + c_{k})}{2}; t)\).
+    \(N_{jk}\) is a open neighborhood which containing \(R_{jk}\).
+    In this case, every \(N_{jk}\) does not contains \(0\).
+    (\(\because\) \(N_{jk}\) contains \(R_{jk}\). For every \(x \in R_{jk}\), \(|x| > r = 2\sqrt{2}t\). Because \(|y| \ge |x| - |x - y|\) every \(y \in N_{jk}\), \(|y| \ge |x| - |x - y| \ge 2\sqrt{2}t - 2t > 0\) and \(|y| > 0\). Thus \(y \neq 0\) for every \(y \in N_{jk}\).)
+
+    \(\frac{1}{z}\) is differentiable in \(\bbC \bs \{0\}\).
+    (\(\because\) For \(z = x + iy \neq 0\),
+    \(\frac{\partial}{\partial x} \frac{1}{x + iy} = \frac{-1}{(x + iy)^2} = -z^{-2}\)
+    and \(\frac{\partial}{\partial y} \frac{1}{x + iy} = \frac{-i}{(x + iy)^2} = -iz^{-2}\)
+    They are continuous in some neighborhood of \(z\) and
+    Cauchy-Riemann Equation, \(i\frac{\partial}{\partial x} \frac{1}{x + iy} = -iz^{-2} = \frac{\partial}{\partial y} \frac{1}{x + iy}\) holds.)
+    Therefore, \(\frac{1}{z}\) is analytic in the open set \(\bbC \bs \{0\}\), and analytic in each \(R_{jk} \subseteq \bbC \bs \{0\}\).
+
+    Then, by Theorem 6.2, 6.3,
+    \[\int_{\partial R_{jk}} \frac{1}{z} dz = 0\]
+    holds.
+
+    Since \(\{R_{jk}\}_{1 \le j \le n, 1 \le k \le m}\) is a set of splitted rectangles of \(R\),
+
+    \[\int_{\partial R} \frac{1}{z} dz = \sum_{j=1}^{n} \sum_{k=1}^{m} \int_{\partial R_{jk}} \frac{1}{z} dz = \sum_{j=1}^{n} \sum_{k=1}^{m} 0 = 0\]
+  \end{proof}
+  \begin{lemma}\label{lem-9-anti}
+    If \(D(c; r)\) does not contain \(0\), \(\frac{1}{z}\) has an antiderivative in \(D(c; r)\).
+  \end{lemma}
+  \begin{proof}
+    Take \(F(z) = \int_{c}^{z} \frac{1}{\zeta} d\zeta\).
+    Then as the proof of Theorem 4.15 applying Lemma \ref{lem-9-rect} as Retangle Theorem, we can show that \(F'(z) = \frac{1}{z}\).
+  \end{proof}
+  \begin{lemma}\label{lem-9-2-pi-i}
+    Let \(C: \sigma(t) = c + r \cdot e^{i\theta}\) where \(t \in [0, 2\pi]\), \(c \in \bbC\), \(r > 0\), \(|c| < r\).
+    Then,
+    \[\int_{C} \frac{1}{z} dz = 2\pi i\]
+  \end{lemma}
+  \begin{proof}
+    In this case, \(C\) is a circle centered at \(c\) with radius \(r\) and \(|0 - c| = |c| < r\). Thus, by Lemma 5.4,
+    \[\int_{C} \frac{dz}{z} = 2\pi i\]
+  \end{proof}
+
+\subsection*{Proof of (1)}
+
+  Let \(D_1 = \{z \in \bbC \mid |z| > 1\}\) and \(D_2 = \{z \in \bbC \mid |z| < 1\}\).
+  Since \(C = \{z \in \bbC \mid |z| = 1\}\), \(D_1 \sqcup D_2 = \bbC \bs C\).
+  Also, both of \(D_1\) and \(D_2\) are regions (open, connected).
+
+  First, note that \(f(z)\) is continuous in \(\bbC \bs C\) because it's an integration of continuous function.
+  (\(\because\) \(h\) is continuous on \(C\) and \(\zeta - z\) cannot be 0 for \(z \in C\) because if not, \(\zeta = z\) but \(1 = |\zeta| = |z| \neq 1\).)
+
+  Let \(\Gamma \subseteq D_1\) be a boundary of a closed rectangle \(R\) in \(D_1\).
+  Because \(R \subseteq D_1\), for every points \(x\) of \(R\), \(|x| > 1\).
+  Thus, for any \(\zeta \in \bbC\) such that \(|\zeta| = 1\),
+  \(\zeta - x \neq 0\) for every \(x \in R\).
+  (If not, \(\zeta = x\) for some \(x\), but it contradicts since \(1 = |\zeta| = |x| > 1\))
+  It implies that \(\zeta - R\) does not contains \(0\).
+  Since \(f\) is continuous in \(D_1\), \(f\) is Riemann-integrable and it's integration is continuous.
+  Thus \(\int_\Gamma \int_C \frac{h(\zeta)}{\zeta - z} d\zeta dz\) converges and we can change the order of integrations.
+  Therefore, by Lemma 4,
+\begin{align*}
+  \int_{\Gamma} \frac{1}{2\pi i} \int_{C} \frac{h(\zeta)}{\zeta - z} d\zeta dz
+  &= \frac{1}{2\pi i} \int_{\Gamma} \int_{C} \frac{h(\zeta)}{\zeta - z} dz d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} \int_{\Gamma} \frac{h(\zeta)}{\zeta - z} dz d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta) \int_{\Gamma} \frac{1}{\zeta - z} dz d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta)
+    \left(- \int_{\zeta - \Gamma} \frac{1}{z} dz \right) d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta)
+    \left(- \int_{\partial(\zeta - R)} \frac{1}{z} dz \right) d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta) \cdot 0 d\zeta
+  = \frac{1}{2\pi i} \int_{C} 0 d\zeta
+  = \frac{1}{2\pi i} \cdot 0
+  = 0
+\end{align*}
+
+Thus, by Morera's Theorem, \(f\) is analytic on \(D_1\).
+
+Let \(\Gamma\) be a closed rectangle \(R\) in \(D_2\).
+Because \(R \subseteq D_2\), every point \(x \in R\) satisfies \(|x| < 1\).
+Then, for every \(\zeta \in \bbC\) such that \(|\zeta| = 1\), \(0 \not\in \zeta - R\).
+(If not, there is some \(x \in R\) such that \(\zeta - x = 0\), but in this case, \(\zeta = x\) and \(1 = |\zeta| = |x| < 1\). It's a contradiction.)
+Then, as above,
+\begin{align*}
+  \int_{\Gamma} \frac{1}{2\pi i} \int_{C} \frac{h(\zeta)}{\zeta - z} d\zeta dz
+  &= \frac{1}{2\pi i} \int_{\Gamma} \int_{C} \frac{h(\zeta)}{\zeta - z} dz d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} \int_{\Gamma} \frac{h(\zeta)}{\zeta - z} dz d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta) \int_{\Gamma} \frac{1}{\zeta - z} dz d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta)
+    \left(- \int_{\zeta - \Gamma} \frac{1}{z} dz \right) d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta)
+    \left(- \int_{\partial(\zeta - R)} \frac{1}{z} dz \right) d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} h(\zeta) \cdot 0 d\zeta
+  = \frac{1}{2\pi i} \int_{C} 0 d\zeta
+  = \frac{1}{2\pi i} \cdot 0
+  = 0
+\end{align*}
+
+Thus, by Morera's Theorem, \(f\) is analytic on \(D_2\), too.
+
+In conclusion, \(f\) is analytic in \(\bbC \bs C = D_1 \sqcup D_2\) by Morera's Theorem.
+\qedsq
+
+\subsection*{Answer of (2)}
+
+Let \(h(z) = 1/z\).
+It's obvious that \(h\) is continuous in \(C = \partial D(0; 1)\) since \(z\) is a continuous as polynomial and \(z \neq 0\) for \(z \in \bbC \bs \{0\}\).
+Then, for \(|z| < 1\),
+\begin{align*}
+  f(z)
+  &= \frac{1}{2\pi i} \int_{C} \frac{h(\zeta)}{\zeta - z} d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} \frac{1}{\zeta(\zeta - z)} d\zeta
+  \\&= \frac{1}{2\pi i} \int_{C} \frac{-1}{z\zeta} + \frac{1}{z(\zeta - z)} d\zeta
+  \\&= \frac{1}{2\pi i} \frac{1}{z} \int_{C} \frac{-1}{\zeta} + \frac{1}{\zeta - z} d\zeta
+  \\&= \frac{1}{2\pi i} \frac{1}{z} \left( \int_{C} \frac{-1}{\zeta} d\zeta + \int_{C} \frac{1}{\zeta - z} d\zeta \right)
+  \\&= \frac{1}{2\pi i} \frac{1}{z} \left( \int_{C} \frac{-1}{\zeta} d\zeta + \int_{C - z} \frac{1}{\zeta} d\zeta \right)
+\end{align*}
+
+Beceause \(C\) is a boundary of \(D(0; 1)\), \(C - z\) is a boundary of \(D(-z; 1)\). And since \(|-z - 0| < 1\), \(D(-z; 1)\) contains \(0\). Also \(D(0; 1)\) contains \(0\) trivially.
+Thus, by Lemma \ref{lem-9-2-pi-i},
+\[\int_{C} \frac{1}{\zeta} d\zeta = 2\pi i = \int_{C - z} \frac{1}{\zeta} d\zeta\]
+And,
+\begin{align*}
+  f(z)
+  &= \frac{1}{2\pi i} \frac{1}{z} \left( \int_{C} \frac{-1}{\zeta} d\zeta + \int_{C - z} \frac{1}{\zeta} d\zeta \right)
+  \\&= \frac{1}{2\pi i} \frac{1}{z} \left( -2\pi i + 2\pi i \right)
+  \\&= \frac{1}{2\pi i} \frac{1}{z} \cdot 0
+  \\&= 0
+\end{align*}
+
+Therefore, \(f(z) = 0\) for \(h(z) = 1/z\) and \(|z| < 1\).
+Then,
+\[
+  \lim_{x \to 1^-} f(x) = \lim_{x \to 1^-} 0 = 0 \neq 1 = h(1)
+\]
+So, \(h(z) = 1/z\) is a counterexample of the problem (2).
+\qedsq

@@ -1,0 +1,207 @@
+\section*{Problem 2}
+
+Find all entire functions \(f\) such that
+\(f (n\pi) = 0\) for any \(n \in \bbZ\)
+and \(\left|f(x+iy)\right| \le Ce^{\left|y\right|} < \infty\),
+\(x, y \in \bbR\) for some \(C > 0\).
+
+\subsection*{Answer}
+
+\[\{z \mapsto K \sin z \mid K \in \bbC\}\]
+
+\subsection*{Proof}
+
+First of all, note that \(f = K\sin\) for \(K \in \bbC\) satisfies all conditions in the problem:
+\begin{itemize}
+\item \(\sin\) is entire. Thus \(K \sin\) is also entire.
+\item \(K\sin(n\pi) = K \cdot 0 = 0\) for every \(n \in \bbZ\).
+\item Let \(C = \max(1, 2 |K|) > 0\). Then, for \(x, y \in \bbR\),
+  \begin{align*}
+    |K \sin (x + iy)|
+    &= |K| \cdot \left| \frac{e^{-y} e^{ix} - e^{y} e^{-ix}}{2i} \right|
+    \\&\le |K| \cdot \left| e^{-y} e^{ix} - e^{y} e^{-ix} \right|
+    \\&\le |K| \cdot (\left| e^{-y} e^{ix} \right| + \left| e^{y} e^{-ix} \right|)
+    \\&\le |K| \cdot (\left| e^{-y} \right| + \left| e^{y} \right|)
+    \\&= |K| (e^y + e^{-y})
+    \le 2 |K| e^{|y|} \le C e^{|y|}
+  \end{align*}
+\end{itemize}
+
+Suppose that \(f\) is some function satisfies all conditions given in the problem: 
+\(f\) is entire, \(\forall n \in \bbZ: f(n\pi) = 0\), there is \(C > 0\), which satisfies \(\forall x, y \in \bbR: |f(x + iy)| \le Ce^{|y|} < \infty\).
+
+First of all, let's consider
+\[\frac{f(z)}{\sin z}\]
+It's well-defined only for \(\bbC \bs \pi \bbZ\), where \(\sin z\) is non-zero.
+(\(\pi \bbZ = \{\pi n \mid b \in \bbZ\}\))
+We know that \(\sin z\) is expanded as the Taylor series:
+\begin{align*}
+  \sin z
+  &= \sum_{k=0}^{\infty} (-1)^k \frac{z^{2k + 1}}{(2k + 1)!}
+  \\&= z - \frac{z^3}{3!} + \frac{z^5}{5!} - \cdots
+\end{align*}
+And since \(\sin(z - n\pi) = (-1)^n\sin(z)\) for \(n \in \bbZ\)
+(\(\because\)
+  \(\sin(z - n\pi)
+    = (e^{i(z - n\pi)} - e^{-i(z - n\pi)})/(2i)
+    = (e^{iz}e^{-n\pi i} - e^{-iz}e^{n\pi i})/(2i)
+    = ((-1)^n e^{iz} - (-1)^n e^{-iz})/(2i)
+    = (-1)^n(e^{iz} - e^{-iz})/(2i)
+    = (-1)^n \sin z\))
+\begin{align*}
+  \sin z
+  &= (-1)^n \sin (z - n\pi)
+  \\&= (-1)^n \sum_{k=0}^{\infty} (-1)^k \frac{(z - n\pi)^{2k + 1}}{(2k + 1)!}
+  \\&= (-1)^n \left( (z - n\pi) - \frac{(z - n\pi)^3}{3!} + \frac{(z - n\pi)^5}{5!} - \cdots \right)
+\end{align*}
+
+Because \(f\) is entire, we can expand \(f\) as:
+\[f(z) = \sum_{k=0}^{\infty} b_{n,k} (z - n\pi)^k\]
+Since \(f(0\pi) = f(0) = 0\), \(b_{n, 0} = 0\). Thus,
+\[f(z) = \sum_{k=1}^{\infty} b_{n,k} (z - n\pi)^k\]
+and,
+
+Note that for an entire function \(\phi\), for every \(a \in \bbC\),
+\[\psi(z) = \left\{\begin{array}{ll}
+  \frac{\phi(z) - \phi(a)}{z - a} & (z \neq a) \\
+  \phi'(a) & (z = a)
+\end{array}\right.\]
+is entire by Proposition 5.8, continuous and converges at every points.
+Thus,
+\begin{align*}
+  \lim_{z \to n\pi} \frac{f(z)}{\sin z}
+  &= \lim_{z \to n\pi}
+    \frac {\sum_{k=1}^{\infty} b_{n,k} (z - n\pi)^k}
+    {(-1)^n \left( (z - n\pi) - \frac{(z - n\pi)^3}{3!} + \frac{(z - n\pi)^5}{5!} - \cdots \right)}
+  \\&= \lim_{z \to n\pi}
+    \frac {
+      \frac{\sum_{k=1}^{\infty} b_{n,k} (z - n\pi)^k}{z - n\pi}}
+    {(-1)^n \frac{ (z - n\pi) - \frac{(z - n\pi)^3}{3!} + \frac{(z - n\pi)^5}{5!} - \cdots }{z - n\pi}}
+  \\&= 
+  \lim_{z \to n\pi}
+    (-1)^n
+    \frac{\sum_{k=1}^{\infty} b_{n,k} (z - n\pi)^{k - 1}}
+    { 1 - \frac{(z - n\pi)^2}{3!} + \frac{(z - n\pi)^4}{5!} - \cdots}
+  \\&= 
+    (-1)^n
+    \frac{\lim_{z \to n\pi} \sum_{k=1}^{\infty} b_{n,k} (z - n\pi)^{k - 1}}
+    {\lim_{z \to n\pi} \left( 1 - \frac{(z - n\pi)^2}{3!} + \frac{(z - n\pi)^4}{5!} - \cdots \right)}
+  \\&= 
+    (-1)^n
+    \frac{\left. \sum_{k=1}^{\infty} b_{n,k} (z - n\pi)^{k - 1} \right|_{z = n\pi}}
+    {\left. 1 - \frac{(z - n\pi)^2}{3!} + \frac{(z - n\pi)^4}{5!} - \cdots \right|_{z = n\pi}}
+  = (-1)^n b_{n,1}
+\end{align*}
+
+Thus, if we take
+\[g(z) = \left\{
+  \begin{array}{ll}
+    (-1)^n b_{n,1} & (z = n\pi \in \pi\bbZ) \\
+    f(z) / \sin z & (z \in \bbC \bs \pi\bbZ)
+  \end{array}
+\right.\]
+\(g\) is continuous.
+
+Since \(f\), \(\sin\) are entire and \(\sin\) is non-zero at \(\bbC \bs \pi\bbZ\), \(g\) is analytic in \(\bbC \bs \pi\bbZ\).
+For each \(n\pi \in \pi\bbZ\), we can take \(D(n\pi; 1/2)\),
+and \(D(n\pi; 1/2) \cap \{k\pi\}_{k \in \bbZ} = \{n\pi\}\) holds.
+Thus, \(g\) is analytic in \(D(n\pi; 1/2)\) exception \(n\pi\).
+Let \(L = \{x + iy \mid y = 0, x \in [n\pi - 1/4, n\pi + 1/4]\}\).
+Then, \(g\) is continuous in \(\bbC\), analytic in the open set \(D(n\pi; 1/2)\) except the line segment \(L\).
+By Theorem 7.7, \(g\) is analytic in \(D(n\pi; 1/2)\).
+This implies that \(g\) is differentiable in each \(n\pi \in \pi\bbZ\).
+Therefore, \(g\) is differentiable in \((\bbC \bs \pi\bbZ) \cup (\pi\bbZ) = \bbC\),
+and \(g\) is entire.
+
+Let's show that \(g\) is bounded.
+
+Let \(z = x + iy\) where \(x, y \in \bbR\),
+\begin{align*}
+  |\sin(z)| = 
+  |\sin(x + iy)|
+  &= \frac{1}{2} \left| e^{ix - y} - e^{-ix + y} \right|
+  \\&= \frac{1}{2} \left| e^{-y} e^{ix} - e^{y} e^{-ix} \right|
+  \\&\ge \frac{1}{2} \left| |e^{-y} e^{ix}| - |e^{y} e^{-ix}| \right|
+  \\&\ge \frac{1}{2} \left| e^{-y} - e^{y} \right|
+\end{align*}
+and, for \(y \neq 0\),
+\[\frac{1}{|\sin(z)|} \le \frac{2}{\left| e^{-y} - e^{y} \right|}\]
+
+Suppose that \(|y| \ge 1\).
+Note that \(e^{-2|y|} \le e^{-2} \simeq 0.135 < 0.5\).
+\begin{align*}
+  \frac{1}{|\sin(z)|}
+  \le \frac{2}{\left| e^{-y} - e^{y} \right|}
+  = \frac{2}{ e^{|y|} - e^{-|y|} }
+  \le \frac{2}{e^{|y|} (1 - e^{-2|y|})}
+  \le \frac{2}{e^{|y|} (1 - e^{-2})}
+  \le \frac{2}{0.5 e^{|y|}} = 4e^{-|y|}
+\end{align*}
+And,
+\begin{align*}
+  |g(z)|
+  &= \left| \frac{f(x + iy)}{\sin (x + iy)} \right|
+  \\&= |f(x + iy)| \left| \frac{1}{\sin (x + iy)} \right|
+  \\&\le Ce^{|y|} \cdot 4e^{-|y|} = 4C
+\end{align*}
+and \(g(z)\) is bounded by \(4C\) for \(z \in \{x + iy \mid x, y \in \bbR, |y| \ge 1\}\).
+
+Suppose that \(|y| \le 1\).
+
+If \(x = n\pi + \frac{\pi}{2}\) for \(n \in \bbN\), \(e^{ix} = -e^{-ix}\) because \((ix) - (-ix) = 2n\pi + \pi\), and
+\[|\sin(z)|
+  = \frac{1}{2} \left| e^{-y} e^{ix} - e^{y} e^{-ix} \right|
+  = \frac{1}{2} \left| (e^{-y} + e^{y}) e^{ix} \right|
+  = \frac{|e^{-y} + e^{y}|}{2}
+  = \frac{e^{-y} + e^y}{2} \ge e^{-|y|} \]
+And for this \(z\),
+\[|g(z)|
+  = \frac{|f(z)|}{|\sin (z)|}
+  \le \frac{Ce^{|y|}}{e^{-|y|}}
+  = C e^{2|y|}
+  \le e^2 C\]
+
+If \(|y| = 1\), as we shown above, \(g(z)\) is bounded by \(4C\).
+
+Take \(D_n = (\frac{\pi}{2} - n\pi, \frac{\pi}{2} + n\pi) \times (-1, 1)\) in the complex plane for \(n \ge 2\).
+Since \((\frac{\pi}{2} - n\pi, \frac{\pi}{2} + n\pi), (-1, 1)\) are non-empty open interval, \(D_n\) is open and connected.
+Then, \(z \in \partial D_n\) satisfies \(\text{Re } z = \frac{\pi}{2} \pm n\pi\)
+or \(\text{Im } z = 1\).
+Thus, \(|g(z)| \le \max(4C, e^2C) = e^2C\) for \(z \in \partial D_n\).
+Let \(M = \max_{z \in \partial D_n} |g(z)|\).
+(\(M\) exists because \(g\) and \(|\cdot|\) are continuous, \(\partial D_n\) is non-empty, bounded, closed and compact, continuous image of compact set is compact, and a non-empty compact set has maximum.)
+Then, \(M \le e^2C\).
+Then, by Maximum-Modulus Theorem,
+every \(z \in D_n\), \(|g(z)|\) cannot be a maximum of \(\overline{D_n}\) and \(|g(z)| \le M \le e^2C\).
+
+Let \(z = x + iy \in \bbC\) such that \(|y| \le 1\).
+And let \(n = 2 + \lceil \frac{|x|}{\pi} \rceil\).
+Then, \(z \in D_n\) holds and \(|g(z)| \le e^2C\) as we shown above.
+Therefore, modulus of \(g\) is bounded by \(e^2C\) for \(\{z = x + iy \mid x, y \in \bbR, |y| \le 1\}\).
+
+Lastly, let \(U = \max(4C, e^2C) = e^2C\).
+For \(z\) such that \(\left|\text{Im } z\right| \ge 1\), \(|g(z)| \le 4C \le U\).
+For \(z\) such that \(\left|\text{Im } z\right| \le 1\), \(|g(z)| \le e^2C \le U\).
+Thus, modulus of \(g\) is bounded by \(U\) in \(\bbC\).
+
+Because \(g\) is entire and bounded,
+by Liouville's Theorem,
+\(g\) is a constant.
+Let \(K \in \bbC\) such that
+\[g(z) = K\]
+Then, for \(z \not\in \pi\bbZ\),
+\[f(z) = K \sin z\]
+
+Let \(h(z) = f(z) - K\sin z\).
+Since \(f(z) = K \sin z\) at \(z \not\in \pi\bbZ\),
+\(h(z) = 0\) for \(z \in [\frac{\pi}{4}, \frac{3\pi}{4}]\).
+Since \([\frac{\pi}{4}, \frac{3\pi}{4}]\) is compact,
+it has a limit point in \(\bbC\),
+such as \(\frac{\pi}{2}\).
+Since \(f\) and \(\sin\) are entire, \(h\) is entire.
+Thus, by Uniqueness Theorem, \(h(z) \equiv 0\) and \(f(z) = K\sin z\) for \(z \in \bbC\).
+
+In conclusion, if \(f\) is entire, \(\forall n \in \bbZ: f(n\pi) = 0\), and \(\forall x, y \in \bbR: |f(x + iy)| \le C e^{|y|} < \infty\) for some fixed \(C > 0\), \(f = K\sin z\) for some \(K \in \bbR\).
+It means, \(\{z \mapsto K \sin z \mid K \in \bbC\}\)
+is a set consisting of all functions which satisfies every condition in the problem.
+\qedsq

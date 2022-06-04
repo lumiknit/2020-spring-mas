@@ -1,0 +1,58 @@
+\section*{Problem 3}
+
+Let a power series \(f = \sum_{n=1}^{\infty} a_n z^n\) be uniformly convergent on any compact subset of \(\bbC\). Let \(C\) be a close curve in \(\bbC\).
+\begin{enumerate}[label=(\arabic*)]
+\item Prove that for any nonnegative integer \(n\), \(\int_{C} z^n dz = 0\).
+\item Using the fact in (1), prove that \(\int_C f(z) dz = 0\).
+\end{enumerate}
+
+\subsection*{Proof of (1)}
+
+Let \(n \in \bbZ^{\ge 0}\).
+Since \(z^n\) is an analytic polynomial, it's analytic everywhere in \(\bbC\) (i.e. entire).
+Thus, there are antiderivatives of \(z^n\).
+For example, \(\frac{1}{n + 1}z^{n + 1}\) is an entire function (\(\because\) it's a analytic polynomial) and the derivative is \(z^n\).
+Let \(\sigma: [0, 1] \to \bbC\) be a function of the closed curve \(C\).
+Then, \(\sigma(0) = \sigma(1)\) by closedness of \(C\) and,
+\begin{align*}
+\int_C z^n dz
+&= \int_{0}^{1} \sigma(t)^n \sigma'(t) dt
+\\&= \left[ \frac{1}{n + 1} \sigma(t)^{n + 1} \right]_{t=0}^{1}
+= \frac{1}{n + 1} (\sigma(1)^{n + 1} - \sigma(0)^{n + 1})
+= \frac{1}{n + 1} (\sigma(0)^{n + 1} - \sigma(0)^{n + 1})
+= 0
+\end{align*}
+by Proposition 4.12.
+\qedsq
+
+\subsection*{Proof of (2)}
+
+Let \(f_m(z) = \sum_{n=1}^{m} a_n z^n\).
+Because \(C\) is a closed curve in \(\bbC\), there is a compact subset \(D \subseteq \bbC\) such that
+\(C \subseteq D \subsetneq \bbC\).
+(e.g. \(D = C\). \(\because\) \(C\) is a closed curve implies that there is a continuous function
+\(\sigma: [0, 1] \to \bbC\) such that \(C = \sigma([0, 1])\).
+Since \([0, 1]\) is closed, bounded, and compact, the continuous image \(C\) of \(\sigma\) is also compact.)
+By the assumption in the problem, \(f_m \to f\) uniformly in the compact domain \(D\).
+Since each \(f_m\) is continuous (\(\because\) it's a polynomial)
+and \(f_m \to f\) uniformly in the compact set \(D\), by Proposition 4.11,
+\[
+\int_C f(z) dz =
+\lim_{m \to \infty} \int_C f_m(z) dz
+\]
+holds.
+Note that,
+\begin{align*}
+\int_C f_m(z) dz
+&= \int_C \sum_{n=1}^{m} a_n z^m dz
+\\&= \sum_{n=1}^{m} a_n \int_C z^m dz
+= \sum_{n=1}^{m} a_n \cdot 0 = 0
+\end{align*}
+because we can reorder finite sum and integration, and because of the fact we proved in (1).
+Therefore,
+\begin{align*}
+\int_C f(z) dz
+&= \lim_{m \to \infty} \int_C f_m(z) dz
+\\&= \lim_{m \to \infty} 0 = 0
+\end{align*}
+\qedsq

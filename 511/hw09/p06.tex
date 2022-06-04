@@ -1,0 +1,45 @@
+\section*{Problem 6}
+
+Note:
+\begin{definition}
+For two functions \(f_1, f_2: G \to \bbC\),
+define the \emph{convolution} to be a function \(f_1 * f_2: G \to \bbC\)
+given by,
+\[(f_1 * f_2)(g) = \sum_{h \in G} f_1(gh^{-1})f_2(h).\]
+\end{definition}
+
+\begin{definition}
+Let \(f \in F(G, \bbC)\) and let \(\varphi: G \to \GL(V)\) be a representation.
+Then the \emph{Fourier transform of \(f\) at \(\varphi\)} is defined to be
+\[\widehat{f}(\varphi) := \sum_{g \in G} f(g) \varphi(g).\]
+\end{definition}
+
+Let \(f_1, f_2 \in F(G, \bbC)\).
+Then prove that
+\[\widehat{f_1 * f_2} = \widehat{f_1} \widehat{f_2}.\]
+
+\subsection*{Proof}
+
+For any representation \(\varphi: G \to \GL(V)\),
+\begin{align*}
+  \widehat{f_1 * f_2}(\varphi)
+  &= \sum_{g \in G} (f_1 * f_2)(g) \varphi(g)
+  \\&= \sum_{g \in G} \left(\sum_{h \in G} f_1(gh^{-1}) f_2(h)\right) \varphi(g)
+  \\&= \sum_{g \in G} \left(\sum_{h \in G} f_1(gh^{-1}) f_2(h)\right) \varphi(gh^{-1}) \varphi(h)
+  \\&= \sum_{g' \in G h^{-1}} \left(\sum_{h \in G} f_1(g') f_2(h)\right) \varphi(g') \varphi(h)
+  \\&= \sum_{g' \in G} \left(\sum_{h \in G} f_1(g') f_2(h)\right) \varphi(g') \varphi(h)
+  \\&= \sum_{g' \in G} \sum_{h \in G} f_1(g') \varphi(g') f_2(h) \varphi(h)
+  \\&= \sum_{g' \in G} f_1(g') \varphi(g') \sum_{h \in G} f_2(h) \varphi(h)
+  \\&= \left(\sum_{g' \in G} f_1(g') \varphi(g') \right) \left( \sum_{h \in G} f_2(h) \varphi(h) \right)
+  \\&= \widehat{f_1}(\varphi) \widehat{f_2}(\varphi)
+\end{align*}
+because \(Ga = G\) for every group \(G\) and its element \(a\).
+Note that beacuse \(f_k\) maps elements of \(G\) into the \(\bbC\),
+the set of scalar values,
+it can commute to other scalar functions and linear transformations.
+However, \(\varphi(gh^{-1})\) and \(\varphi(h)\) may not commute
+each other, because their image is in \(\GL(V)\) which is a set of
+some linear transformations.
+
+Therefore, \(\widehat{f_1 * f_2} = \widehat{f_1} \widehat{f_2}\) holds.
+\qedsq

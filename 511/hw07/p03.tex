@@ -1,0 +1,43 @@
+\section*{Problem 3}
+
+Give an example of an integral domain \(R\) of dimension \(\ge 2\),
+where the first theorem fails:
+namely \(M\) is a free of finite rank,
+and \(N \subset M\) is a submodule,
+but \(N\) is not free.
+
+\subsection*{Proof}
+
+\(R = \bbZ[x]\).
+It's not a PID, because the ideal \((2, x)\) is not a principal ideal.
+(Instead, it's a UFD because a polynomial ring of UFD is UFD.)
+
+Let \(M = R\) be a \(R\)-module.
+Since \(M = R \simeq R^1\), \(M\) is free of rank 1.
+
+Take \(N = (2, x)\).
+Since it's an finitely generated ideal of \(M\), \(N\) is a submodule of \(M\).
+
+Let's show that \(N\) is not free.
+
+Suppose that \(N\) is free.
+Note that free modules should have a basis.
+Let \(\calB\) be a basis of \(N\).
+Since \(N \neq 0\), \(\calB \neq \emptyset\) trivially.
+
+Suppose that \(\calB = \{b\}\).
+If \(\deg b \ge 1\), there is no \(r \in \bbZ[x]\) such that \(rb = 2\)
+since \(rb = 0\) or \(\deg rb = \deg r + \deg b \ge \deg b = 1 > 0 = \deg 2\).
+If \(\deg b = 0\), \(b = 2n\) for some \(n \in \bbZ\).
+However, in this case, there is no \(r \in \bbZ[x]\) such that \(rb = x\), because every coefficient of \(rb\) is multiplications by \(2\).
+Therefore, \(|\calB| \ge 2\).
+
+As above, if \(\calB\) contains only elements of degree greater than 0, or if \(\calB\) contains only elements of degree 0, \(\calB\) cannot generate \(N\).
+Thus, there are \(b_1, b_2 \in \calB\) such that \(\deg b_1 = 0\), \(\deg b_2 > 0\).
+However, in this case,
+\(b_1 \cdot b_2 - b_2 \cdot b_1 = 0\).
+This shows that \(\calB\) is not linearly independent.
+
+Therefore, there is no basis \(\calB\) of \((2, x)\) as an \(\bbZ[x]\)-module.
+It means, the ideal \((2, x)\) cannot be free.
+\qedsq

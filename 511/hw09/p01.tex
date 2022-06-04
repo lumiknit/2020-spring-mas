@@ -1,0 +1,186 @@
+\section*{Problem 1}
+
+\begin{theorem}
+  Let \(G\) be a finite group.
+  Let \(M, N\) be two finite dimensional representations of \(G\).
+  Let \(\chi, \psi\) be their characters.
+  Then, \(M \simeq N\) as \(\bbC G\)-modules if and only if \(\chi = \psi\).
+\end{theorem}
+
+Since \(M_1, \cdots, M_r\) are all of the in-equivalent irreducible
+\(\bbC G\)-modules, we can write
+\[\left\{\begin{array}{c}
+  M \simeq M_1^{\bigoplus a_1} \oplus \cdots \oplus M_r^{\bigoplus a_r} \\
+  N \simeq M_1^{\bigoplus b_1} \oplus \cdots \oplus M_r^{\bigoplus b_r}
+\end{array}\right.\]
+Thus, \(\chi = \sum_i a_i \chi_i\) and \(\psi = \sum_i b_i \chi_i\).
+
+Since
+\[\bbC G \simeq M_{n_1}(\bbC) \times \cdots \times M_{n_r}(\bbC)\]
+for \(1 \le j \le r\),
+we have \(e_j \in \bbC G\) such that
+\[e_j M_i = \delta_{ij} M_i\]
+where \(\delta_{ij}\) is the Kronecker delta.
+
+Prove rigorously that such \(e_j \in \bbC G\) exists.
+
+\subsection*{Proof}
+
+Let \(\eta: \bbC G \to M_{n_1}(\bbC) \times \cdots \times M_{n_r}(\bbC)\)
+be an isomorphism.
+
+For each \(i \in \{1, \cdots, r\}\),
+since \(M_{n_i}(\bbC)\) is a set of (dimension of \(n_i\)) matrices over \(\bbC\),
+it contains a zero matrix \(0_{n_i}\) and an identity matrix \(I_{n_i}\).
+Then, let
+\[E_j = (0_{n_1}, \cdots, 0_{n_{j-1}}, I_{n_j}, 0_{n_{j+1}}, \cdots, 0_{n_r})\]
+This \(E_j\) is idempotent, since
+\begin{align*}
+  E_j E_j
+  &= (0_{n_1}, \cdots, 0_{n_{j-1}}, I_{n_j}, 0_{n_{j+1}}, \cdots, 0_{n_r})
+    (0_{n_1}, \cdots, 0_{n_{j-1}}, I_{n_j}, 0_{n_{j+1}}, \cdots, 0_{n_r})
+  \\&= (0_{n_1} 0_{n_1}, \cdots, 0_{n_{j-1}} 0_{n_{j-1}}, I_{n_j} I_{n_j}, 0_{n_{j+1}} 0_{n_{j+1}}, \cdots, 0_{n_r} 0_{n_r})
+  \\&= (0_{n_1}, \cdots, 0_{n_{j-1}}, I_{n_j}, 0_{n_{j+1}}, \cdots, 0_{n_r})
+  = E_j
+\end{align*}
+Also, if \(i < j\),
+\begin{align*}
+  E_i E_j
+  &= (0_{n_1}, \cdots, 0_{n_{i-1}}, I_{n_i}, 0_{n_{i+1}}, \cdots, 0_{n_r})
+    (0_{n_1}, \cdots, 0_{n_{j-1}}, I_{n_j}, 0_{n_{j+1}}, \cdots, 0_{n_r})
+  \\&= (0_{n_1} 0_{n_1}, \cdots, I_{n_{i}} 0_{n_{i}}, \cdots, 0_{n_j} I_{n_j}, \cdots, 0_{n_r} 0_{n_r})
+  \\&= 0
+\end{align*}
+Thus \(E_i E_j = \delta_{ij} E_i\).
+In the same way, \(E_j E_i = \delta_{ij} E_j\).
+Then, let \(e_i = \eta^{-1}(E_i)\) for each \(i = 1, \cdots, r\).
+They satisfy
+\(e_i e_j = \delta_{ij} e_i\).
+Also, since each \(e_k\) is an isomorphic image of non-zero element, \(e_k\) is non-zero.
+Also, since \(\sum_{i=1}^r E_i = I\),
+\(\sum_{i=1}^r e_i = 1_G\).
+\br
+\noindent
+Let \(\phi: G \to \GL(M)\) be the representation given in the problem.
+Since \(M \simeq M_1^{\bigoplus a_1} \oplus \cdots \oplus M_r^{\bigoplus a_r}\),
+there are representations \(\phi_k\) which is correspond to \(M_k\).
+And, in this case, \(\phi = \phi_1^{\bigoplus a_1} \oplus \cdots \oplus \phi_r^{\bigoplus a_r}\).
+
+Because each \(\phi(e_j)\)
+(Note: \(\phi(\sum_{g \in G} \alpha_g g) = \sum_{g \in G} \alpha_g \phi(g)\))
+is a linear transformation,
+the image of \(\phi(e_j)\) is a submodule of \(M\).
+In the same sense, the image of \(\phi_k(e_j)\) is a submodule of \(M_k\).
+Since each \(M_k\) are simple, \(M_k\) has only two submodule: \(0\) and \(M_k\).
+Thus, \(\phi_k(e_j) M_k\) should be \(0\) or \(M_k\).
+Therefore, the image of \(\phi(e_j)\) has a full of \(M_k^{\bigoplus a_k}\) as a direct summand, or does not have any component \(M_k\), for each \(k\).
+\br
+\noindent
+First, note that \(\Id = \sum_{k=1}^r e_k\).
+Thus \((\sum_{k=1}^r e_k) \cdot M_j = \phi(\sum_{k=1}^r e_k) M_j = \sum_{k=1}^r \phi(e_k) M_j = M_j\).
+If \(\phi(e_k) M_j = 0\) for all \(e_k\),
+then \(\sum_{k=1}^r \phi(e_k) M_j = 0\)
+and it's a contradiction.
+Thus, there must be some \(e_k\) such that \(\phi(e_k) M_j \neq 0\).
+As we showed above, \(\phi(e_k) M_j = 0\) or \(M_j\).
+Thus, \(\phi(e_k) M_j = M_j\) for some \(k\).
+This shows, for every \(j \in \{1, \cdots, r\}\)
+there is \(k \in \{1, \cdots, r\}\)
+such that \(e_k \cdot M_j = \phi(e_k) M_j = M_j\).
+\(\qquad\cdots\) (1)
+\br
+\noindent
+Suppose that \(\phi_i(e_j) M_i \neq 0\) and \(\phi_i(e_k) M_i \neq 0\) hold
+for some \(i, j, k \in \{1, \cdots, r\}\) such that \(j \neq k\).
+Then, \(\phi_i(e_j) M_i = \phi_i(e_k) M_i = M_i\)
+by the simplicity of \(M_i\).
+This implies \(\phi_i(e_j e_k) M_i = \phi_i(e_j) \phi_i(e_k) M_i = \phi_i(e_j) M_i = M_i\).
+But since \(e_j e_k = 0\), \(\phi_i(e_j e_k) M_i = 0\).
+Thus, it's a contradiction.
+Therefore, for each \(i\), there are exactly one \(j \in \{1, \cdots, r\}\)
+such that \(\phi_i(e_j) M_i = e_j \cdot M_i\) is non-zero.
+\(\qquad\cdots\) (2)
+\br
+\noindent
+Now, we want to show that for each \(j\),
+there is at most one \(k\) such that \(\phi(e_j) M_k = M_k\).
+
+Suppose that there is \(i, j, k \in \{1, \cdots, r\}\)
+such that \(j \neq k\) and
+\(\phi_j(e_i) M_j\) and \(\phi_k(e_i) M_k\) are non-zero.
+Thus, \(\phi_j(e_i) M_j = M_j\), \(\phi_k(e_i) M_k = M_k\)
+by the simplicity of \(M_j\) and \(M_k\).
+
+First, since each \(M_j\) is a non-zero module, there is a non-zero element \(m\).
+In that case, we can consider \(\bbC G \cdot m = \{g \cdot m \mid g \in \bbC G\}\).,
+which is a generated set from \(\bbC G\)-action and \(m\).
+Then, \(\bbC G \cdot m\) is a submodule of \(M_j\),
+since \(M_j\) is closed under \(\bbC G\)-action.
+Also, since \(\bbC G\) contains \(1\), (more precisely, \(1 \cdot 1_G\)),
+\(\bbC G \cdot m\) contains at least one non-zero element, \(m\).
+However, since \(M_j\) is an irreducible \(\bbC G\)-module,
+there are no proper non-trivial submodule.
+Since \(\bbC G \cdot m\) is non-trivial, \(\bbC G \cdot m = M_j\).
+
+But, note that \(e_i\) is an idempotent element, which preserve \(M_j\).
+Because \(e_i \cdot M_j = \phi_j(e_i) M_j = M_j\),
+there is some \(x \in M_j\) such that \(e_i \cdot x = m\).
+Since \(e_i \cdot 0 = 0\) and \(m \neq 0\), \(x \neq 0\).
+In this case,
+\(M_j = \bbC G \cdot m = \bbC G \cdot (e_i \cdot x) = (\bbC G  e_i) \cdot x
+= \{(g e_i) \cdot x \mid g \in \bbC G \}\).
+
+In this case, \(- \cdot x\) gives a surjective \(\bbC G\)-module homomorphism
+from \(\bbC G e_i\)
+to \(\bbC G \cdot m = M_j\).
+Let \(\gamma = - \cdot x\).
+Then, \(M_j \simeq \bbC G e_i / \ker \gamma\).
+
+Note that \(e_i\) is comes from \(E_i\), which all entries are zero
+except the \(i\)-th entry, which is valued as an identity matrix.
+Since \(\bbC G \simeq M_{n_1}(\bbC) \times \cdots \times M_{n_r}(\bbC)\),
+\[\bbC G e_i \simeq 0 \times \cdots \times 0 \times M_{n_i}(\bbC) \times 0 \times \cdots \times 0 \simeq M_{n_i}(\bbC)\]
+Also, since \(\bbC\) is a division ring,
+\(M_{n_i}(\bbC)\) is a simple ring.
+Since \(\bbC G\) contains an isomorphic image of \(M_{n_i}(\bbC)\),
+\(M_{n_i}(\bbC)\) is simple as a \(\bbC G\)-module.
+Therefore, \(\bbC G e_i \simeq M_{n_i}(\bbC)\)
+has no proper non-trivial submodule.
+
+This shows \(\ker \gamma\),
+which is a submodule of \(\bbC G e_i\),
+should be \(0\) or \(\bbC G e_i\).
+Since \(M_j\) is non-zero, \(\ker \gamma \neq \bbC G e_i\).
+Thus \(\ker \gamma = 0\) and \(\gamma\) is an isomorphism.
+And we can conclude that \(M_j \simeq \bbC G e_i\).
+
+We can repeat exactly same process for \(M_k\) and we obtain
+\(M_k \simeq \bbC G e_i\).
+Thus, \(M_k \simeq \bbC G e_i \simeq M_j\).
+However, it's a contradiction, because the problem assumed that
+\(M_j\) and \(M_k\) are inequivalent where \(j \neq k\).
+
+Therefore, such \(i, j, k\) cannot exist.
+It means, for every \(i \in \{1, \cdots, r\}\),
+if \(e_i \cdot M_j = M_j\) for some \(j\),
+\(e_i \cdot M_k = 0\) for all \(k \neq j\).
+\(\qquad\cdots\) (3)
+\br
+\noindent
+Therefore, from (1), (2) and (3),
+we know that
+(1) for each \(i \in \{1, \cdots, r\}\), there are at least one \(j \in \{1, \cdots, r\}\) such that \(\phi_i(e_j) M_i = M_i\);
+(2) for each \(i \in \{1, \cdots, r\}\), there are at most one \(j \in \{1, \cdots, r\}\) such that \(\phi_i(e_j) M_i = M_i\) and \(\phi_i(e_k) M_i = 0\) for \(j \neq k\);
+(3) for each \(i \in \{1, \cdots, r\}\), there are at most one \(j \in \{1, \cdots, r\}\) such that \(\phi_j(e_i) M_j = M_j\)  and \(\phi_k(e_i) M_k = 0\) for every \(k \neq j\).
+Therefore, for each \(M_j\) there is exactly one \(e_i\) such that \(e_i \cdot M_j = M_j\) and \(e_i \cdot M_k = 0\) for every \(k \neq j\),
+and for each \(e_i\) there is exactly one \(M_j\) such that \(e_i \cdot M_j = M_j\) and \(e_i \cdot M_k = 0\) for every \(k \neq j\).
+Then, by reordering \(\{e_i\}_{i=1}^r\),
+we have \(e_i\) and \(M_i\) such that
+\(e_i \cdot M_i = M_i\)
+and
+\(\forall j \neq i, e_i \cdot M_j = 0\).
+Thus,
+\(e_i \cdot M_j = \delta_{ij} M_j\).
+Since each \(e_i\) is an idempotent element of \(\bbC G\),
+these \(\{e_i\}_{i=1}^r\) are the required ones in the problem.
+\qedsq

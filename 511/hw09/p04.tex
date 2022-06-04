@@ -1,0 +1,60 @@
+\section*{Problem 4}
+
+Prove below:
+\begin{theorem}
+  For a representation \(V\) of \(G\),
+  let \(\chi\) be its character.
+  Then the character for the dual representation \(V^*\)
+  is the complex conjugate \(\overline{\chi}\).
+\end{theorem}
+
+\subsection*{Proof}
+
+(Since trace is well-defined only for finite dimension matrix,
+I'll assume that \(V\) is finite-dimensional.)
+
+Let \(V\) be a \(n\)-dimensional vector space over \(\bbC\).
+Let \(\calB = \{v_1, \cdots, v_n\}\) be a basis of \(V\).
+Then, the dual space \(V^*\) exists and one of its basis is
+\(\calB^* = \{v_1^*, \cdots, v_n^*\}\), the dual basis of \(\calB\).
+
+Let \(\varphi: G \to \GL(V)\) be a representation \(V\) of \(G\)
+and \(\chi\) be a character of the representation \(\varphi\).
+Then, as the Problem 2,
+\[\chi(g) = \Tr \varphi(g) = \sum_{i=1}^{n} v_i^*(\varphi(g)(v_i))\]
+Also,
+\[\chi^*(g) = \sum_{i=1}^{n} v_i^{**}(\varphi^*(g)(v_i^*))\]
+where \(\varphi^*\) be the dual representation of \(\varphi\),
+and \(\chi^*\) is the character of \(\varphi^*\).
+By the definition of \(\varphi^*\),
+\[\varphi^*(g)(f)(v) = (g \cdot f)(v) = f(g^{-1} \cdot v) = f(\varphi(g^{-1})(v))\]
+for \(f \in V^*\).
+
+\[\chi^*(g)
+= \sum_{i=1}^{n} v_i^{**}(\varphi^*(g)(v_i^*))
+= \sum_{i=1}^{n} v_i^{**}(v_i^* \circ \varphi(g^{-1}))\]
+
+Let \((a_{i,j}) = [\varphi(g^{-1})]_\calB\).
+Then, \(\varphi(g^{-1})(v_i) = \sum_{k=1}^n a_{k, i} v_k\).
+Thus, \(v_i^* \circ \varphi(g^{-1})\) maps \(v_j\) to \(a_{i, j}\).
+In this case, we can denote \(v_i^* \circ \varphi(g^{-1})\) as
+\[v_i^* \circ \varphi(g^{-1}) = \sum_{j=1}^n a_{i, j} v_j^*\]
+Then, by the linearity of dual basis,
+\begin{align*}
+  \chi^*(g)
+  = \sum_{i=1}^{n} v_i^{**}(v_i^* \circ \varphi(g^{-1}))
+  &= \sum_{i=1}^{n} v_i^{**}(\sum_{j=1}^n a_{i, j} v_j^*)
+  \\&= \sum_{i=1}^{n} \sum_{j=1}^n v_i^{**}( a_{i, j} v_j^*)
+  \\&= \sum_{i=1}^{n} \sum_{j=1}^n a_{i, j} \delta_{i, j}
+  \\&= \sum_{i=1}^{n} a_{i, i} = \Tr\varphi(g^{-1}) = \chi(g^{-1})
+\end{align*}
+
+We proved the below lemma in the lecture (Lemma (B)):
+\begin{lemma}
+  For a character \(\psi: G \to \bbC\),
+  \(\psi(x^{-1}) = \overline{\psi(x)}\) for all \(x \in G\).
+\end{lemma}
+
+Thus,
+\[\chi^*(g) = \chi(g^{-1}) = \overline{\chi(g)}\]
+\qedsq
